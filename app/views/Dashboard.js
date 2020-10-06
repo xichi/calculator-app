@@ -21,14 +21,14 @@ const styles = StyleSheet.create({
 
 function Dashboard({ navigation }) {
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={() => navigation.navigate('Calculator')}
-    >
-      <View style={styles.item}>
+    <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.item}
+        onPress={() => navigation.navigate('Calculator')}
+      >
         <CalculatorIcon width={50} height={50} />
         <Text>计算器</Text>
-      </View>
+      </TouchableOpacity>
       <View style={styles.item}>
         <Text>汇率换算</Text>
       </View>
@@ -41,7 +41,7 @@ function Dashboard({ navigation }) {
       <View style={styles.item}>
         <Text>日期计算</Text>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 }
 
