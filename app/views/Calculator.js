@@ -39,28 +39,62 @@ const equal = StyleSheet.compose(baseStyles.item, baseStyles.equal);
 function BaseCalculator() {
   const [exp, setExp] = useState('');
 
-  const updateExpression = (e) => {
-    console.log(e.target);
-    //setExp(exp.concat(item));
-  };
-
   const DATA = [
-    ['AC', '（）', '☒', '÷'],
-    ['7', '8', '9', 'x'],
+    ['AC', '()', '☒', '/'],
+    ['7', '8', '9', '*'],
     ['4', '5', '6', '-'],
     ['1', '2', '3', '+'],
     ['%', '0', '.', '='],
   ];
 
+  const getCharCount = (str, char) => {
+    var regex = new RegExp(char, 'g');
+    var result = str.match(regex);
+    var count = !result ? 0 : result.length;
+    return count;
+  };
+
+  const getLatestNum = (str) => {
+    var numArr = str.match(/-?([1-9]\d*(\.\d*)*|0\.[1-9]\d*)/g);
+    return numArr.pop();
+  };
+
+  const compute = (item) => {
+    let temp = exp;
+    const getExp = () => {
+      switch (item) {
+        case 'AC':
+          return '';
+        case '=':
+          return temp + '=' + eval(exp);
+        case '☒':
+          return temp.substr(0, temp.length - 1);
+        case '%':
+          const numStr = getLatestNum(temp);
+          const percentage = numStr / 100;
+          return temp.slice(0, temp.length - numStr.length) + percentage;
+        case '()':
+          const count = getCharCount(temp, '[(]') - getCharCount(temp, '[)]');
+          return count === 0 ? temp.concat('(') : temp.concat(')');
+        default:
+          return temp.concat(item);
+      }
+    };
+    setExp(getExp);
+  };
+
   return (
     <View>
-      <View style={{ height: 180 }} />
+      <View style={{ height: 180 }}>
+        <Text style={{ fontSize: 30 }}>{exp}</Text>
+      </View>
       {DATA.map((line, lineIndex) => (
         <View style={baseStyles.line} key={`line-${lineIndex}`}>
           {line.map((item, itemIndex) => (
             <Text
               style={item === '=' ? equal : baseStyles.item}
               key={`${lineIndex}-${itemIndex}`}
+              onPress={() => compute(item)}
             >
               {item}
             </Text>
@@ -74,7 +108,7 @@ function BaseCalculator() {
 function ScientificCalculator() {
   const DATA = [
     ['AC', '（）', '☒', '÷'],
-    ['7', '8', '9', 'x'],
+    ['7', '8', '9', '*'],
   ];
 
   return (
