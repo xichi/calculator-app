@@ -1,13 +1,50 @@
-import React, { useState } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  exp: {
+    flexGrow: 1,
+    position: 'relative',
+    paddingRight: 30,
+    paddingTop: 15,
+  },
+  expText: {
+    fontSize: 50,
+    position: 'absolute',
+    bottom: 15,
+    right: 15,
+  },
+  board: {
+    flexShrink: 0,
+  },
+});
 
 function Calculator({ route, navigation }) {
   const { mode } = route.params;
+  const [exp, setExp] = useState('');
+
+  const updateExp = (item) => {
+    setExp(item);
+  };
 
   return (
-    <View>
-      {mode === 'scientific' ? <ScientificCalculator /> : <BaseCalculator />}
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.exp}>
+        <Text style={styles.expText}>{exp}</Text>
+      </View>
+      <View style={styles.board}>
+        {mode === 'scientific' ? (
+          <ScientificCalculator />
+        ) : (
+            <BaseCalculator updateExp={updateExp} />
+          )}
+      </View>
+    </SafeAreaView>
   );
 }
 
@@ -19,8 +56,8 @@ const baseStyles = StyleSheet.create({
   item: {
     flexShrink: 0,
     width: '25%',
-    height: 100,
-    lineHeight: 100,
+    height: 80,
+    lineHeight: 80,
     fontSize: 25,
     textAlign: 'center',
     borderStyle: 'solid',
@@ -36,11 +73,17 @@ const baseStyles = StyleSheet.create({
 
 const equal = StyleSheet.compose(baseStyles.item, baseStyles.equal);
 
-function BaseCalculator() {
+function BaseCalculator(props) {
   const [exp, setExp] = useState('');
+  const [flag, setFlag] = useState(false); // is finished
+
+  useEffect(() => {
+    props.updateExp(exp);
+  }, [exp, props]);
 
   const DATA = [
-    ['AC', '()', '☒', '/'],
+    ['AC', '()', 'e', '☒'],
+    ['x²', '√', 'π', '/'],
     ['7', '8', '9', '*'],
     ['4', '5', '6', '-'],
     ['1', '2', '3', '+'],
@@ -61,21 +104,42 @@ function BaseCalculator() {
 
   const compute = (item) => {
     let temp = exp;
+
+    if (flag) {
+      temp = '';
+      setFlag(false);
+    }
+
     const getExp = () => {
       switch (item) {
         case 'AC':
           return '';
         case '=':
-          return temp + '=' + eval(exp);
+          temp = temp.replace(/π/gi, '3.1415926');
+          temp = temp.replace(/e/gi, '2.7182818');
+          const expression = exp + '=' + eval(temp);
+          setFlag(true);
+          return expression;
         case '☒':
           return temp.substr(0, temp.length - 1);
+        case '()':
+          const count = getCharCount(temp, '[(]') - getCharCount(temp, '[)]');
+          const lastChar = temp.slice(temp.length - 1, temp.length);
+          return count === 0 || lastChar === '('
+            ? temp.concat('(')
+            : temp.concat(')');
         case '%':
           const numStr = getLatestNum(temp);
           const percentage = numStr / 100;
           return temp.slice(0, temp.length - numStr.length) + percentage;
-        case '()':
-          const count = getCharCount(temp, '[(]') - getCharCount(temp, '[)]');
-          return count === 0 ? temp.concat('(') : temp.concat(')');
+        case 'x²':
+          const numStr1 = getLatestNum(temp);
+          const square = Math.pow(numStr1, 2);
+          return temp.slice(0, temp.length - numStr1.length) + square;
+        case '√':
+          const numStr2 = getLatestNum(temp);
+          const squareRoot = Math.sqrt(numStr2);
+          return temp.slice(0, temp.length - numStr2.length) + squareRoot;
         default:
           return temp.concat(item);
       }
@@ -85,9 +149,6 @@ function BaseCalculator() {
 
   return (
     <View>
-      <View style={{ height: 180 }}>
-        <Text style={{ fontSize: 30 }}>{exp}</Text>
-      </View>
       {DATA.map((line, lineIndex) => (
         <View style={baseStyles.line} key={`line-${lineIndex}`}>
           {line.map((item, itemIndex) => (

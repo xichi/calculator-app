@@ -29,9 +29,12 @@ function Dashboard({ navigation }) {
         <CalculatorIcon width={50} height={50} />
         <Text>计算器</Text>
       </TouchableOpacity>
-      <View style={styles.item}>
+      <TouchableOpacity
+        style={styles.item}
+        onPress={() => navigation.navigate('ExchangeRate')}
+      >
         <Text>汇率换算</Text>
-      </View>
+      </TouchableOpacity>
       <View style={styles.item}>
         <Text>房贷计算</Text>
       </View>
