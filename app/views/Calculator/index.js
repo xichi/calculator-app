@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
+import { Pi, E } from '../../constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -115,8 +116,8 @@ function BaseCalculator(props) {
         case 'AC':
           return '';
         case '=':
-          temp = temp.replace(/π/gi, '3.1415926');
-          temp = temp.replace(/e/gi, '2.7182818');
+          temp = temp.replace(/π/gi, Pi);
+          temp = temp.replace(/e/gi, E);
           const expression = exp + '=' + eval(temp);
           setFlag(true);
           return expression;

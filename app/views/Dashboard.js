@@ -39,10 +39,16 @@ function Dashboard({ navigation }) {
         <Text>房贷计算</Text>
       </View>
       <View style={styles.item}>
-        <Text>万能公式</Text>
+        <Text>单位换算</Text>
       </View>
       <View style={styles.item}>
         <Text>日期计算</Text>
+      </View>
+      <View style={styles.item}>
+        <Text>万能公式</Text>
+      </View>
+      <View style={styles.item}>
+        <Text>进制计算</Text>
       </View>
     </View>
   );
