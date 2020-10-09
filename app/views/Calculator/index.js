@@ -42,8 +42,8 @@ function Calculator({ route, navigation }) {
         {mode === 'scientific' ? (
           <ScientificCalculator />
         ) : (
-            <BaseCalculator updateExp={updateExp} />
-          )}
+          <BaseCalculator updateExp={updateExp} />
+        )}
       </View>
     </SafeAreaView>
   );
@@ -103,6 +103,46 @@ function BaseCalculator(props) {
     return numArr.pop();
   };
 
+  /**
+   TODO:
+   1. 把'8e'这种情况自动转换成'8*e'
+   2. 表达式完成计算后把结果用于下一次计算
+   */
+  const getExp = (item, temp) => {
+    switch (item) {
+      case 'AC':
+        return '';
+      case '=':
+        temp = temp.replace(/π/gi, Pi);
+        temp = temp.replace(/e/gi, E);
+        temp = exp + '=' + eval(temp);
+        setFlag(true);
+        return temp;
+      case '☒':
+        return temp.substr(0, temp.length - 1);
+      case '()':
+        const count = getCharCount(temp, '[(]') - getCharCount(temp, '[)]');
+        const lastChar = temp.slice(temp.length - 1, temp.length);
+        return count === 0 || lastChar === '('
+          ? temp.concat('(')
+          : temp.concat(')');
+      case '%':
+        const numStr = getLatestNum(temp);
+        const percentage = numStr / 100;
+        return temp.slice(0, temp.length - numStr.length) + percentage;
+      case 'x²':
+        const numStr1 = getLatestNum(temp);
+        const square = Math.pow(numStr1, 2);
+        return temp.slice(0, temp.length - numStr1.length) + square;
+      case '√':
+        const numStr2 = getLatestNum(temp);
+        const squareRoot = Math.sqrt(numStr2);
+        return temp.slice(0, temp.length - numStr2.length) + squareRoot;
+      default:
+        return temp.concat(item);
+    }
+  };
+
   const compute = (item) => {
     let temp = exp;
 
@@ -111,41 +151,14 @@ function BaseCalculator(props) {
       setFlag(false);
     }
 
-    const getExp = () => {
-      switch (item) {
-        case 'AC':
-          return '';
-        case '=':
-          temp = temp.replace(/π/gi, Pi);
-          temp = temp.replace(/e/gi, E);
-          const expression = exp + '=' + eval(temp);
-          setFlag(true);
-          return expression;
-        case '☒':
-          return temp.substr(0, temp.length - 1);
-        case '()':
-          const count = getCharCount(temp, '[(]') - getCharCount(temp, '[)]');
-          const lastChar = temp.slice(temp.length - 1, temp.length);
-          return count === 0 || lastChar === '('
-            ? temp.concat('(')
-            : temp.concat(')');
-        case '%':
-          const numStr = getLatestNum(temp);
-          const percentage = numStr / 100;
-          return temp.slice(0, temp.length - numStr.length) + percentage;
-        case 'x²':
-          const numStr1 = getLatestNum(temp);
-          const square = Math.pow(numStr1, 2);
-          return temp.slice(0, temp.length - numStr1.length) + square;
-        case '√':
-          const numStr2 = getLatestNum(temp);
-          const squareRoot = Math.sqrt(numStr2);
-          return temp.slice(0, temp.length - numStr2.length) + squareRoot;
-        default:
-          return temp.concat(item);
-      }
-    };
-    setExp(getExp);
+    try {
+      temp = getExp(item, temp);
+    } catch {
+      temp = temp + 'ERROR';
+      setFlag(true);
+    } finally {
+      setExp(temp);
+    }
   };
 
   return (

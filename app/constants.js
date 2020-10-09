@@ -13,5 +13,5 @@ export const AppUrl = 'https://openexchangerates.org';
 export const AppId = '2dc9e06756ad48489053d73e84ba4aa1';
 
 // MATH
-export const Pi = 3.1415926;
-export const E = 2.7182818;
+export const Pi = '3.1415926';
+export const E = '2.7182818';

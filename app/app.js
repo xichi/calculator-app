@@ -13,6 +13,10 @@ import HousingLoan from './views/HousingLoan';
 
 const Stack = createStackNavigator();
 
+/*
+  TODO:
+  定制化样式颜色(至少支持夜间模式)
+*/
 const styles = StyleSheet.create({
   navbar: { display: 'flex', flexDirection: 'row' },
   title: {
