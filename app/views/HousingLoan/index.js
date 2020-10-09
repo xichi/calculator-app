@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Text, View, TextInput } from 'react-native';
+import { Picker } from 'native-base';
 
 function HousingLoan() {
   const [amount, onChangeAmount] = useState('');
   const [years, onChangeYears] = useState('');
   const [rate, onChangeRate] = useState('4.9');
+  const [selectedMethod, onChangeMethod] = useState('key0');
 
   return (
     <View>
@@ -37,6 +39,16 @@ function HousingLoan() {
       </View>
       <View>
         <Text>贷款方式</Text>
+        <Picker
+          note
+          mode="dropdown"
+          style={{ width: 200 }}
+          selectedValue={selectedMethod}
+          onValueChange={(value) => onChangeMethod(value)}
+        >
+          <Picker.Item label="等额本息" value="key0" />
+          <Picker.Item label="等额本金" value="key1" />
+        </Picker>
       </View>
     </View>
   );
