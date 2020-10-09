@@ -9,6 +9,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Dashboard from './views/Dashboard';
 import Calculator from './views/Calculator';
 import ExchangeRate from './views/ExchangeRate';
+import HousingLoan from './views/HousingLoan';
 
 const Stack = createStackNavigator();
 
@@ -68,6 +69,13 @@ function App() {
           component={ExchangeRate}
           options={{
             title: '汇率换算',
+          }}
+        />
+        <Stack.Screen
+          name="HousingLoan"
+          component={HousingLoan}
+          options={{
+            title: '房贷计算',
           }}
         />
       </Stack.Navigator>

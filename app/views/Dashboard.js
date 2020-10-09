@@ -35,9 +35,12 @@ function Dashboard({ navigation }) {
       >
         <Text>汇率换算</Text>
       </TouchableOpacity>
-      <View style={styles.item}>
+      <TouchableOpacity
+        style={styles.item}
+        onPress={() => navigation.navigate('HousingLoan')}
+      >
         <Text>房贷计算</Text>
-      </View>
+      </TouchableOpacity>
       <View style={styles.item}>
         <Text>单位换算</Text>
       </View>
