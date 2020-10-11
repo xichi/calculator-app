@@ -10,9 +10,15 @@ import Dashboard from './views/Dashboard';
 import Calculator from './views/Calculator';
 import ExchangeRate from './views/ExchangeRate';
 import HousingLoan from './views/HousingLoan';
+import UnitConversion from './views/UnitConversion';
+import DecimalConversion from './views/DecimalConversion'
 
 const Stack = createStackNavigator();
 
+/*
+  TODO:
+  定制化样式颜色(至少支持夜间模式)
+*/
 const styles = StyleSheet.create({
   navbar: { display: 'flex', flexDirection: 'row' },
   title: {
@@ -76,6 +82,20 @@ function App() {
           component={HousingLoan}
           options={{
             title: '房贷计算',
+          }}
+        />
+        <Stack.Screen
+          name="UnitConversion"
+          component={UnitConversion}
+          options={{
+            title: '单位换算',
+          }}
+        />
+        <Stack.Screen
+          name="DecimalConversion"
+          component={DecimalConversion}
+          options={{
+            title: '进制转换',
           }}
         />
       </Stack.Navigator>
