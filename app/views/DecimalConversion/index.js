@@ -8,9 +8,6 @@ const DecimalConversion =() =>{
     const [txtValue16,settxtValue16]=useState('');
 
     function Transform(){
-        // if(typeof(parseInt(txtValue10, 10))!="NaN"){
-        //     alert(typeof(parseInt(txtValue10, 10)));
-        // }
         let index = parseInt(txtValue10, 10);
         settxtValue2(index.toString(2));
         settxtValue8(index.toString(8));
