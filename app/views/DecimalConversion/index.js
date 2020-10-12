@@ -8,10 +8,14 @@ const DecimalConversion =() =>{
     const [txtValue16,settxtValue16]=useState('');
 
     function Transform(){
-        let index = parseInt(txtValue10, 10);
-        settxtValue2(index.toString(2));
-        settxtValue8(index.toString(8));
-        settxtValue16(index.toString(16));  
+        if(txtValue10==''){
+            alert("请输入十进制数值");
+        }else{
+            let index = parseInt(txtValue10, 10);
+            settxtValue2(index.toString(2));
+            settxtValue8(index.toString(8));
+            settxtValue16(index.toString(16));
+        }
     }
     function Clear(){
         settxtValue2('');
@@ -81,7 +85,7 @@ const styles=StyleSheet.create({
     Decimaltext:{
         color:'#333',
         fontSize:23,
-        marginTop:35,
+        marginTop:35
     },
     inputstyle:{
         flex:2,
