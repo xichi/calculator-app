@@ -1,14 +1,9 @@
 import axios from 'axios';
-import { AppUrl, AppId } from '../constants';
 
 const request = axios.create({
-  baseURL: AppUrl,
+  baseURL: 'https://www.mycurrency.net',
 });
 
 export function getExchangeRate() {
-  return request.get('/api/latest.json', {
-    params: {
-      app_id: AppId,
-    },
-  });
+  return request.get('/US.json');
 }
