@@ -66,42 +66,6 @@ function index({ navigation }) {
         >
           <Text style={styles.text}>重量单位</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.item}
-          onPress={() => navigation.navigate('Weight')}
-        >
-          <Text style={styles.text}>重量单位</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.item}
-          onPress={() => navigation.navigate('Weight')}
-        >
-          <Text style={styles.text}>重量单位</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.item}
-          onPress={() => navigation.navigate('Weight')}
-        >
-          <Text style={styles.text}>重量单位</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.item}
-          onPress={() => navigation.navigate('Weight')}
-        >
-          <Text style={styles.text}>重量单位</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.item}
-          onPress={() => navigation.navigate('Weight')}
-        >
-          <Text style={styles.text}>重量单位</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.item}
-          onPress={() => navigation.navigate('Weight')}
-        >
-          <Text style={styles.text}>重量单位</Text>
-        </TouchableOpacity>
       </View>
     </ScrollView>
   );
