@@ -5,14 +5,12 @@ import {
   FlatList,
   SafeAreaView,
   StyleSheet,
-  ActivityIndicator,
-  Modal,
   Image,
   Linking,
 } from 'react-native';
 import moment from 'moment';
 import { getExchangeRate } from '../../api';
-import { CurrencyDATA } from './data';
+import { CurrencyDATA, CurrencyTime } from './data';
 
 const CurrencyId = CurrencyDATA.map((item) => item.id);
 
@@ -20,7 +18,6 @@ function ExchangeRate() {
   const [time, setTime] = useState('');
   const [update, setUpdate] = useState(false);
   const [currency, setCurrency] = useState(CurrencyDATA);
-  const [loadingVisible, onShowLoading] = useState(true);
 
   const fetchRateData = async () => {
     const results = await getExchangeRate();
@@ -35,9 +32,12 @@ function ExchangeRate() {
     });
     setCurrency(newCurrency);
     setUpdate(true);
-    onShowLoading(false);
   };
 
+  /*
+    TODO:
+    Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
+  */
   useEffect(() => {
     fetchRateData();
   }, [update]);
@@ -61,22 +61,18 @@ function ExchangeRate() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>基准汇率</Text>
-        <Text style={styles.headerText}>更新时间： {time ? time : '未知'}</Text>
-      </View>
-      <Modal visible={loadingVisible} transparent={true}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <ActivityIndicator size="large" color="#0000ff" />
-            <Text style={{ color: '#0000ff', marginTop: 10 }}>loading</Text>
-          </View>
-        </View>
-      </Modal>
       <FlatList
         data={currency}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
+        ListHeaderComponent={
+          <View style={styles.header}>
+            <Text style={styles.headerText}>基准汇率</Text>
+            <Text style={styles.headerText}>
+              更新时间： {time ? time : CurrencyTime}
+            </Text>
+          </View>
+        }
         ListFooterComponent={
           <Text style={{ marginVertical: 10, textAlign: 'center' }}>
             感谢
@@ -133,28 +129,6 @@ const styles = StyleSheet.create({
   },
   currencyName: {
     color: '#999',
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    width: 150,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 2,
-      height: 2,
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 3.84,
-    elevation: 5,
   },
 });
 
