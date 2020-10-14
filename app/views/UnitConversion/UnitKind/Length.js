@@ -95,15 +95,27 @@ const Length = () => {
               数值:{' '}
             </Text>
             <TextInput style={styles.inputstyletop} placeholder="请输入数值" />
+            <TouchableOpacity style={styles.btn2} onPress={Clear}>
+              <Text style={styles.btnText}>重置</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.units}>
             <TouchableOpacity
               onPress={() => {
-                setflagmm(!flagmm);
+                if (flagmm == true) {
+                  setflagmm(!flagmm);
+                  setflagdm(true);
+                  setflagm(true);
+                  setflagkm(true);
+                  setflagfoot(true);
+                  setflaginch(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagmm ? 'white' : 'blue' },
+                { backgroundColor: flagmm ? 'white' : '#5050F3' },
               ]}
             >
               <Text
@@ -114,11 +126,20 @@ const Length = () => {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                setflagdm(!flagdm);
+                if (flagdm == true) {
+                  setflagmm(true);
+                  setflagdm(!flagdm);
+                  setflagm(true);
+                  setflagkm(true);
+                  setflagfoot(true);
+                  setflaginch(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagdm ? 'white' : 'blue' },
+                { backgroundColor: flagdm ? 'white' : '#5050F3' },
               ]}
             >
               <Text
@@ -129,11 +150,20 @@ const Length = () => {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                setflagm(!flagm);
+                if (flagm == true) {
+                  setflagmm(true);
+                  setflagdm(true);
+                  setflagm(!flagm);
+                  setflagkm(true);
+                  setflagfoot(true);
+                  setflaginch(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagm ? 'white' : 'blue' },
+                { backgroundColor: flagm ? 'white' : '#5050F3' },
               ]}
             >
               <Text
@@ -144,11 +174,20 @@ const Length = () => {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                setflagkm(!flagkm);
+                if (flagkm == true) {
+                  setflagmm(true);
+                  setflagdm(true);
+                  setflagm(true);
+                  setflagkm(!flagkm);
+                  setflagfoot(true);
+                  setflaginch(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagkm ? 'white' : 'blue' },
+                { backgroundColor: flagkm ? 'white' : '#5050F3' },
               ]}
             >
               <Text
@@ -159,11 +198,20 @@ const Length = () => {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                setflagfoot(!flagfoot);
+                if (flagfoot == true) {
+                  setflagmm(true);
+                  setflagdm(true);
+                  setflagm(true);
+                  setflagkm(true);
+                  setflagfoot(!flagfoot);
+                  setflaginch(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagfoot ? 'white' : '#3333ff' },
+                { backgroundColor: flagfoot ? 'white' : '#5050F3' },
               ]}
             >
               <Text
@@ -174,11 +222,20 @@ const Length = () => {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                setflaginch(!flaginch);
+                if (flaginch == true) {
+                  setflagmm(true);
+                  setflagdm(true);
+                  setflagm(true);
+                  setflagkm(true);
+                  setflagfoot(true);
+                  setflaginch(!flaginch);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flaginch ? 'white' : 'blue' },
+                { backgroundColor: flaginch ? 'white' : '#5050F3' },
               ]}
             >
               <Text
@@ -188,12 +245,6 @@ const Length = () => {
               </Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.btn1} onPress={Transform}>
-            <Text style={[styles.btnText, { color: 'white' }]}>转换</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.btn2} onPress={Clear}>
-            <Text style={styles.btnText}>重置</Text>
-          </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
     </ScrollView>
@@ -232,7 +283,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   inputstyletop: {
-    width: 285,
+    width: 185,
     height: 45,
     padding: 10,
     marginLeft: 25,
@@ -247,34 +298,20 @@ const styles = StyleSheet.create({
     color: '#111',
     fontWeight: '500',
   },
-  btn1: {
-    //For Dark Mode
-    //backgroundColor:'white',
-    backgroundColor: 'black',
-    padding: 5,
-    width: 150,
-    height: 80,
-    borderRadius: 20,
-    position: 'absolute',
-    top: 480,
-    left: 40,
-  },
   btn2: {
     backgroundColor: 'red',
     padding: 5,
-    width: 150,
-    height: 80,
-    borderRadius: 20,
-    position: 'absolute',
-    top: 480,
-    left: 220,
+    width: 75,
+    height: 45,
+    marginLeft: 25,
+    borderRadius: 10,
   },
   btnText: {
-    fontSize: 25,
+    fontSize: 22,
     color: 'white',
     fontWeight: 'bold',
     textAlign: 'center',
-    marginTop: 23,
+    marginTop: 7,
   },
 });
 
