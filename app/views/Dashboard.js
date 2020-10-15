@@ -48,10 +48,13 @@ function Dashboard({ navigation }) {
         <Text>日期计算</Text>
       </View>
       <View style={styles.item}>
-        <Text>万能公式</Text>
+        <Text>BMI计算</Text>
       </View>
       <View style={styles.item}>
         <Text>进制计算</Text>
+      </View>
+      <View style={styles.item}>
+        <Text>大写金额</Text>
       </View>
     </View>
   );
