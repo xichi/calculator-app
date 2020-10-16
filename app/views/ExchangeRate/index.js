@@ -20,28 +20,23 @@ function ExchangeRate() {
   const [update, setUpdate] = useState(false);
   const [currency, setCurrency] = useState(CurrencyDATA);
 
-  const fetchRateData = async () => {
-    const results = await getExchangeRate();
-    const { rates } = results.data;
-    setTime(moment().format('MM-DD HH:mm:ss'));
-    let newCurrency = currency;
-    rates.map((item, key) => {
-      const TheKey = CurrencyId.indexOf(item.currency_code);
-      if (TheKey !== -1) {
-        newCurrency[TheKey] = { ...currency[TheKey], rate: item.rate };
-      }
-    });
-    setCurrency(newCurrency);
-    setUpdate(true);
-  };
-
-  /*
-    TODO:
-    Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
-  */
   useEffect(() => {
+    const fetchRateData = async () => {
+      const results = await getExchangeRate();
+      const { rates } = results.data;
+      setTime(moment().format('MM-DD HH:mm:ss'));
+      let newCurrency = currency;
+      rates.map((item, key) => {
+        const TheKey = CurrencyId.indexOf(item.currency_code);
+        if (TheKey !== -1) {
+          newCurrency[TheKey] = { ...currency[TheKey], rate: item.rate };
+        }
+      });
+      setCurrency(newCurrency);
+      setUpdate(true);
+    };
     fetchRateData();
-  }, [update]);
+  }, [update, currency]);
 
   const renderItem = ({ item }) => (
     <View style={styles.item}>
