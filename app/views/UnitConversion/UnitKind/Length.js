@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   ScrollView,
-  Alert,
 } from 'react-native';
 
 const Length = () => {
@@ -19,83 +18,149 @@ const Length = () => {
   const [foot, setfoot] = useState('');
   const [inch, setinch] = useState('');
   const [flagmm, setflagmm] = useState(true);
+  const [flagcm, setflagcm] = useState(true);
   const [flagdm, setflagdm] = useState(true);
-  const [flagm, setflagm] = useState(true);
+  const [flagm, setflagm] = useState(false);
   const [flagkm, setflagkm] = useState(true);
   const [flagfoot, setflagfoot] = useState(true);
   const [flaginch, setflaginch] = useState(true);
 
-  function duserqq(indexm) {
-    let indexkm = (indexm / 1000).toFixed(2);
-    let indexdm = (indexm * 10).toFixed(2);
-    let indexcm = (indexm * 100).toFixed(2);
-    let indexmm = (indexm * 1000).toFixed(2);
-    let indexfoot = (indexm * 3.2808399).toFixed(2);
-    let indexinch = (indexm * 39.3700787).toFixed(2);
-    setcm(indexcm);
-    setdm(indexdm);
-    setmm(indexmm);
-    setkm(indexkm);
-    setfoot(indexfoot);
-    setinch(indexinch);
-    setm(indexm);
-    alert('Designed by NJR10byh in China.\nAssembled in NJUPT');
+  function Transform(base) {
+    if (!flagmm) {
+      let indexm = (base / 1000).toFixed(6);
+      let indexmm = (indexm * 1000).toFixed(6);
+      let indexcm = (indexm * 100).toFixed(6);
+      let indexdm = (indexm * 10).toFixed(6);
+      let indexkm = (indexm / 1000).toFixed(6);
+      let indexinch = (indexm * 39.3700787).toFixed(6);
+      let indexfoot = (indexm * 3.2808399).toFixed(6);
+      setmm(indexmm);
+      setcm(indexcm);
+      setdm(indexdm);
+      setm(indexm);
+      setkm(indexkm);
+      setinch(indexinch);
+      setfoot(indexfoot);
+    }
+    if (!flagcm) {
+      let indexm = (base / 100).toFixed(6);
+      let indexmm = (indexm * 1000).toFixed(6);
+      let indexcm = (indexm * 100).toFixed(6);
+      let indexdm = (indexm * 10).toFixed(6);
+      let indexkm = (indexm / 1000).toFixed(6);
+      let indexinch = (indexm * 39.3700787).toFixed(6);
+      let indexfoot = (indexm * 3.2808399).toFixed(6);
+      setmm(indexmm);
+      setcm(indexcm);
+      setdm(indexdm);
+      setm(indexm);
+      setkm(indexkm);
+      setinch(indexinch);
+      setfoot(indexfoot);
+    }
+    if (!flagdm) {
+      let indexm = (base / 10).toFixed(6);
+      let indexmm = (indexm * 1000).toFixed(6);
+      let indexcm = (indexm * 100).toFixed(6);
+      let indexdm = (indexm * 10).toFixed(6);
+      let indexkm = (indexm / 1000).toFixed(6);
+      let indexinch = (indexm * 39.3700787).toFixed(6);
+      let indexfoot = (indexm * 3.2808399).toFixed(6);
+      setmm(indexmm);
+      setcm(indexcm);
+      setdm(indexdm);
+      setm(indexm);
+      setkm(indexkm);
+      setinch(indexinch);
+      setfoot(indexfoot);
+    }
+    if (!flagm) {
+      let indexm = (base * 1).toFixed(6);
+      let indexmm = (indexm * 1000).toFixed(6);
+      let indexcm = (indexm * 100).toFixed(6);
+      let indexdm = (indexm * 10).toFixed(6);
+      let indexkm = (indexm / 1000).toFixed(6);
+      let indexinch = (indexm * 39.3700787).toFixed(6);
+      let indexfoot = (indexm * 3.2808399).toFixed(6);
+      setmm(indexmm);
+      setcm(indexcm);
+      setdm(indexdm);
+      setm(indexm);
+      setkm(indexkm);
+      setinch(indexinch);
+      setfoot(indexfoot);
+    }
+    if (!flagkm) {
+      let indexm = (base * 1000).toFixed(6);
+      let indexmm = (indexm * 1000).toFixed(6);
+      let indexcm = (indexm * 100).toFixed(6);
+      let indexdm = (indexm * 10).toFixed(6);
+      let indexkm = (indexm / 1000).toFixed(6);
+      let indexinch = (indexm * 39.3700787).toFixed(6);
+      let indexfoot = (indexm * 3.2808399).toFixed(6);
+      setmm(indexmm);
+      setcm(indexcm);
+      setdm(indexdm);
+      setm(indexm);
+      setkm(indexkm);
+      setinch(indexinch);
+      setfoot(indexfoot);
+    }
+    if (!flagfoot) {
+      let indexm = (base * 0.3048).toFixed(6);
+      let indexmm = (indexm * 1000).toFixed(6);
+      let indexcm = (indexm * 100).toFixed(6);
+      let indexdm = (indexm * 10).toFixed(6);
+      let indexkm = (indexm / 1000).toFixed(6);
+      let indexinch = (indexm * 39.3700787).toFixed(6);
+      let indexfoot = (indexm * 3.2808399).toFixed(6);
+      setmm(indexmm);
+      setcm(indexcm);
+      setdm(indexdm);
+      setm(indexm);
+      setkm(indexkm);
+      setinch(indexinch);
+      setfoot(indexfoot);
+    }
+    if (!flaginch) {
+      let indexm = (base * 0.0254).toFixed(6);
+      let indexmm = (indexm * 1000).toFixed(6);
+      let indexcm = (indexm * 100).toFixed(6);
+      let indexdm = (indexm * 10).toFixed(6);
+      let indexkm = (indexm / 1000).toFixed(6);
+      let indexinch = (indexm * 39.3700787).toFixed(6);
+      let indexfoot = (indexm * 3.2808399).toFixed(6);
+      setmm(indexmm);
+      setcm(indexcm);
+      setdm(indexdm);
+      setm(indexm);
+      setkm(indexkm);
+      setinch(indexinch);
+      setfoot(indexfoot);
+    }
   }
 
-  function Transform() {
-    if (mm != '') {
-      let indexmm = parseFloat(mm);
-      indexm = (indexmm / 1000).toFixed(2);
-      //alert(indexm);
-      duserqq(indexm);
-    }
-    if (cm != '') {
-      let indexcm = parseFloat(cm);
-      indexm = (indexcm / 100).toFixed(2);
-      duserqq(indexm);
-    }
-    if (dm != '') {
-      let indexdm = parseFloat(dm);
-      indexm = (indexdm / 10).toFixed(2);
-      duserqq(indexm);
-    }
-    if (m != '') {
-      indexm = parseFloat(m).toFixed(2);
-      duserqq(indexm);
-    }
-    if (km != '') {
-      let indexkm = parseFloat(km);
-      indexm = (indexkm * 1000).toFixed(2);
-      duserqq(indexm);
-    }
-    if (foot != '') {
-      let indexfoot = parseFloat(foot);
-      indexm = (indexfoot * 0.3048).toFixed();
-      duserqq(indexm);
-    }
-    if (inch != '') {
-      let indexinch = parseFloat(inch);
-      indexm = (indexinch * 0.0254).toFixed(2);
-      duserqq(indexm);
-    }
-  }
   function Clear() {
     setmm('');
     setcm('');
     setdm('');
     setm('');
     setkm('');
+    setfoot('');
+    setinch('');
   }
   return (
     <ScrollView>
       <KeyboardAvoidingView behavior="position">
         <View style={styles.body}>
           <View style={styles.valuetop}>
-            <Text style={{ fontSize: 30, fontWeight: '500', marginTop: 3 }}>
-              数值:{' '}
-            </Text>
-            <TextInput style={styles.inputstyletop} placeholder="请输入数值" />
-            <TouchableOpacity style={styles.btn2} onPress={Clear}>
+            <Text style={styles.valuetoptext}>数值: </Text>
+            <TextInput
+              style={styles.valuetopinput}
+              placeholder="请输入数值"
+              onChangeText={(text) => Transform(text)}
+            />
+            <TouchableOpacity style={styles.valuetopbtn} onPress={Clear}>
               <Text style={styles.btnText}>重置</Text>
             </TouchableOpacity>
           </View>
@@ -104,6 +169,7 @@ const Length = () => {
               onPress={() => {
                 if (flagmm == true) {
                   setflagmm(!flagmm);
+                  setflagcm(true);
                   setflagdm(true);
                   setflagm(true);
                   setflagkm(true);
@@ -119,15 +185,63 @@ const Length = () => {
               ]}
             >
               <Text
-                style={[styles.text, { color: flagmm ? '#31A4F0' : 'white' }]}
+                style={[
+                  styles.textleft,
+                  { color: flagmm ? '#31A4F0' : 'white' },
+                ]}
               >
-                毫米: {mm}{' '}
+                毫米: {mm}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flagmm ? '#31A4F0' : 'white' },
+                ]}
+              >
+                mm
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                if (flagcm == true) {
+                  setflagmm(true);
+                  setflagcm(!flagcm);
+                  setflagdm(true);
+                  setflagm(true);
+                  setflagkm(true);
+                  setflagfoot(true);
+                  setflaginch(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
+              }}
+              style={[
+                styles.unitsview,
+                { backgroundColor: flagcm ? 'white' : '#5050F3' },
+              ]}
+            >
+              <Text
+                style={[
+                  styles.textleft,
+                  { color: flagcm ? '#31A4F0' : 'white' },
+                ]}
+              >
+                厘米: {cm}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flagcm ? '#31A4F0' : 'white' },
+                ]}
+              >
+                cm
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
                 if (flagdm == true) {
                   setflagmm(true);
+                  setflagcm(true);
                   setflagdm(!flagdm);
                   setflagm(true);
                   setflagkm(true);
@@ -143,15 +257,27 @@ const Length = () => {
               ]}
             >
               <Text
-                style={[styles.text, { color: flagdm ? '#31A4F0' : 'white' }]}
+                style={[
+                  styles.textleft,
+                  { color: flagdm ? '#31A4F0' : 'white' },
+                ]}
               >
-                分米: {dm} dm{' '}
+                分米: {dm}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flagdm ? '#31A4F0' : 'white' },
+                ]}
+              >
+                dm
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
                 if (flagm == true) {
                   setflagmm(true);
+                  setflagcm(true);
                   setflagdm(true);
                   setflagm(!flagm);
                   setflagkm(true);
@@ -167,15 +293,28 @@ const Length = () => {
               ]}
             >
               <Text
-                style={[styles.text, { color: flagm ? '#31A4F0' : 'white' }]}
+                style={[
+                  styles.textleft,
+                  { color: flagm ? '#31A4F0' : 'white' },
+                ]}
               >
-                米: {m} m
+                米: {m}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flagm ? '#31A4F0' : 'white' },
+                ]}
+              >
+                m
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
+              ouchableOpacity
               onPress={() => {
                 if (flagkm == true) {
                   setflagmm(true);
+                  setflagcm(true);
                   setflagdm(true);
                   setflagm(true);
                   setflagkm(!flagkm);
@@ -191,15 +330,27 @@ const Length = () => {
               ]}
             >
               <Text
-                style={[styles.text, { color: flagkm ? '#31A4F0' : 'white' }]}
+                style={[
+                  styles.textleft,
+                  { color: flagkm ? '#31A4F0' : 'white' },
+                ]}
               >
-                千米: {km} km
+                千米: {km}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flagkm ? '#31A4F0' : 'white' },
+                ]}
+              >
+                km
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
                 if (flagfoot == true) {
                   setflagmm(true);
+                  setflagcm(true);
                   setflagdm(true);
                   setflagm(true);
                   setflagkm(true);
@@ -215,15 +366,27 @@ const Length = () => {
               ]}
             >
               <Text
-                style={[styles.text, { color: flagfoot ? '#31A4F0' : 'white' }]}
+                style={[
+                  styles.textleft,
+                  { color: flagfoot ? '#31A4F0' : 'white' },
+                ]}
               >
-                英尺: {foot} foot
+                英尺: {foot}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flagfoot ? '#31A4F0' : 'white' },
+                ]}
+              >
+                foot
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
                 if (flaginch == true) {
                   setflagmm(true);
+                  setflagcm(true);
                   setflagdm(true);
                   setflagm(true);
                   setflagkm(true);
@@ -239,9 +402,20 @@ const Length = () => {
               ]}
             >
               <Text
-                style={[styles.text, { color: flaginch ? '#31A4F0' : 'white' }]}
+                style={[
+                  styles.textleft,
+                  { color: flaginch ? '#31A4F0' : 'white' },
+                ]}
               >
-                英寸: {inch} inch
+                英寸: {inch}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flaginch ? '#31A4F0' : 'white' },
+                ]}
+              >
+                inch
               </Text>
             </TouchableOpacity>
           </View>
@@ -260,33 +434,18 @@ const styles = StyleSheet.create({
   },
   valuetop: {
     flexDirection: 'row',
+    flexWrap: 'nowrap',
+    justifyContent: 'space-around',
   },
-  units: {
-    flexDirection: 'column',
-    marginTop: 20,
+  valuetoptext: {
+    fontSize: 30,
+    fontWeight: '700',
+    marginTop: 3,
   },
-  unitsview: {
-    borderStyle: 'solid',
-    borderBottomColor: '#CCCCCC',
-    borderBottomWidth: 0.6,
-    paddingTop: 5,
-    paddingBottom: 10,
-    paddingLeft: 5,
-    marginTop: 5,
-    borderRadius: 15,
-  },
-  text: {
-    height: 30,
-    marginTop: 8,
-    fontSize: 23,
-    color: '#31A4F0',
-    fontWeight: '600',
-  },
-  inputstyletop: {
+  valuetopinput: {
     width: 185,
     height: 45,
     padding: 10,
-    marginLeft: 25,
     fontSize: 18,
     backgroundColor: '#EEEEEE',
     //For Dark Mode
@@ -298,13 +457,43 @@ const styles = StyleSheet.create({
     color: '#111',
     fontWeight: '500',
   },
-  btn2: {
+  valuetopbtn: {
     backgroundColor: 'red',
     padding: 5,
     width: 75,
     height: 45,
-    marginLeft: 25,
     borderRadius: 10,
+  },
+  units: {
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    marginTop: 20,
+  },
+  unitsview: {
+    alignSelf: 'stretch',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderStyle: 'solid',
+    borderBottomColor: '#CCCCCC',
+    borderBottomWidth: 0.6,
+    paddingTop: 5,
+    paddingBottom: 10,
+    paddingLeft: 5,
+    paddingRight: 10,
+    marginTop: 5,
+    borderRadius: 15,
+  },
+  textleft: {
+    height: 30,
+    marginTop: 8,
+    fontSize: 23,
+    fontWeight: '600',
+  },
+  textright: {
+    height: 30,
+    marginTop: 8,
+    fontSize: 23,
+    fontWeight: '600',
   },
   btnText: {
     fontSize: 22,
