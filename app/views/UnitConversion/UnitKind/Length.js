@@ -481,7 +481,7 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     paddingRight: 10,
     marginTop: 5,
-    borderRadius: 15,
+    borderRadius: 12,
   },
   textleft: {
     height: 30,

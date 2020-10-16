@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   ScrollView,
-  Alert,
 } from 'react-native';
 
 const Area = () => {
@@ -97,6 +96,7 @@ const Area = () => {
             <TextInput style={styles.inputstyletop} placeholder="请输入数值" />
           </View>
           <View style={styles.units}>
+            <Text style={styles.unitkinds}>公制 </Text>
             <TouchableOpacity
               onPress={() => {
                 setflagmm(!flagmm);
@@ -213,6 +213,9 @@ const styles = StyleSheet.create({
   units: {
     flexDirection: 'column',
     marginTop: 20,
+  },
+  unitkinds: {
+    color: '#636e72',
   },
   unitsview: {
     borderStyle: 'solid',

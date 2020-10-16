@@ -20,8 +20,8 @@ const Length = () => {
   const [flagus, setflagus] = useState(true);
   const [flags, setflags] = useState(true);
   const [flagmin, setflagmin] = useState(true);
-  const [flaghour, setflaghour] = useState(false);
-  const [flagday, setflagday] = useState(true);
+  const [flaghour, setflaghour] = useState(true);
+  const [flagday, setflagday] = useState(false);
   const [flagweek, setflagweek] = useState(true);
   const [flagyear, setflagyear] = useState(true);
 
@@ -275,7 +275,7 @@ const Length = () => {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                if (flagday == true) {
+                if (flaghour == true) {
                   setflagus(true);
                   setflags(true);
                   setflagmin(true);
@@ -481,7 +481,7 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     paddingRight: 10,
     marginTop: 5,
-    borderRadius: 15,
+    borderRadius: 12,
   },
   textleft: {
     height: 30,

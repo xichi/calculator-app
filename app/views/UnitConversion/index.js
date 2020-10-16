@@ -10,28 +10,28 @@ import {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
+    justifyContent: 'space-around',
     backgroundColor: '#efefef',
   },
   item: {
-    width: '41%',
+    width: '41.5%',
     height: 100,
-    alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: 'white',
-    margin: 18,
-    marginBottom: 8,
+    margin: 15,
+    paddingTop: 37.5,
     borderRadius: 20,
     shadowColor: 'black',
     shadowOffset: { h: 10, w: 10 },
     shadowRadius: 6,
     shadowOpacity: 0.1,
+    //textAlign: 'center',
   },
   text: {
-    fontSize: 24,
+    fontSize: 25,
     fontWeight: '600',
+    textAlign: 'center',
     color: '#1196EE',
     //color:'black'
   },
@@ -56,8 +56,8 @@ function index({ navigation }) {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.item}
-          //onPress={() => navigation.navigate('Area')}
-          onPress={() => alert('此模块还在维护，尚未开放！')}
+          onPress={() => navigation.navigate('Area')}
+          //onPress={() => alert('此模块还在维护，尚未开放！')}
         >
           <Text style={styles.text}>面积单位</Text>
         </TouchableOpacity>
