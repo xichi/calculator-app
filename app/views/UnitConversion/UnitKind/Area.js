@@ -10,190 +10,415 @@ import {
 } from 'react-native';
 
 const Area = () => {
-  const [mm, setmm] = useState('');
-  const [cm, setcm] = useState('');
-  const [dm, setdm] = useState('');
-  const [m, setm] = useState('');
-  const [km, setkm] = useState('');
-  const [foot, setfoot] = useState('');
-  const [inch, setinch] = useState('');
-  const [flagmm, setflagmm] = useState(true);
-  const [flagdm, setflagdm] = useState(true);
-  const [flagm, setflagm] = useState(true);
-  const [flagkm, setflagkm] = useState(true);
-  const [flagfoot, setflagfoot] = useState(true);
-  const [flaginch, setflaginch] = useState(true);
+  const [us, setus] = useState('');
+  const [s, sets] = useState('');
+  const [min, setmin] = useState('');
+  const [hour, sethour] = useState('');
+  const [day, setday] = useState('');
+  const [week, setweek] = useState('');
+  const [year, setyear] = useState('');
+  const [flagus, setflagus] = useState(true);
+  const [flags, setflags] = useState(true);
+  const [flagmin, setflagmin] = useState(true);
+  const [flaghour, setflaghour] = useState(true);
+  const [flagday, setflagday] = useState(false);
+  const [flagweek, setflagweek] = useState(true);
+  const [flagyear, setflagyear] = useState(true);
 
-  function duserqq(indexm) {
-    let indexkm = (indexm / 1000).toFixed(2);
-    let indexdm = (indexm * 10).toFixed(2);
-    let indexcm = (indexm * 100).toFixed(2);
-    let indexmm = (indexm * 1000).toFixed(2);
-    let indexfoot = (indexm * 3.2808399).toFixed(2);
-    let indexinch = (indexm * 39.3700787).toFixed(2);
-    setcm(indexcm);
-    setdm(indexdm);
-    setmm(indexmm);
-    setkm(indexkm);
-    setfoot(indexfoot);
-    setinch(indexinch);
-    setm(indexm);
-    alert('Designed by NJR10byh in China.\nAssembled in NJUPT');
+  function Transform(base) {
+    if (!flagus) {
+      let indexday = (base / 86400000000).toFixed(6);
+      let indexus = (indexday * 86400000000).toFixed(6);
+      let indexs = (indexday * 86400).toFixed(6);
+      let indexmin = (indexday * 1440).toFixed(6);
+      let indexhour = (indexday * 24).toFixed(6);
+      let indexweek = (indexday * 0.1428571).toFixed(6);
+      let indexyear = (indexday * 0.0027397).toFixed(6);
+      setus(indexus);
+      sets(indexs);
+      setmin(indexmin);
+      sethour(indexhour);
+      setday(indexday);
+      setweek(indexweek);
+      setyear(indexyear);
+    }
+    if (!flags) {
+      let indexday = (base / 86400).toFixed(6);
+      let indexus = (indexday * 86400000000).toFixed(6);
+      let indexs = (indexday * 86400).toFixed(6);
+      let indexmin = (indexday * 1440).toFixed(6);
+      let indexhour = (indexday * 24).toFixed(6);
+      let indexweek = (indexday * 0.1428571).toFixed(6);
+      let indexyear = (indexday * 0.0027397).toFixed(6);
+      setus(indexus);
+      sets(indexs);
+      setmin(indexmin);
+      sethour(indexhour);
+      setday(indexday);
+      setweek(indexweek);
+      setyear(indexyear);
+    }
+    if (!flagmin) {
+      let indexday = (base / 1440).toFixed(6);
+      let indexus = (indexday * 86400000000).toFixed(6);
+      let indexs = (indexday * 86400).toFixed(6);
+      let indexmin = (indexday * 1440).toFixed(6);
+      let indexhour = (indexday * 24).toFixed(6);
+      let indexweek = (indexday * 0.1428571).toFixed(6);
+      let indexyear = (indexday * 0.0027397).toFixed(6);
+      setus(indexus);
+      sets(indexs);
+      setmin(indexmin);
+      sethour(indexhour);
+      setday(indexday);
+      setweek(indexweek);
+      setyear(indexyear);
+    }
+    if (!flaghour) {
+      let indexday = (base / 24).toFixed(6);
+      let indexus = (indexday * 86400000000).toFixed(6);
+      let indexs = (indexday * 86400).toFixed(6);
+      let indexmin = (indexday * 1440).toFixed(6);
+      let indexhour = (indexday * 24).toFixed(6);
+      let indexweek = (indexday * 0.1428571).toFixed(6);
+      let indexyear = (indexday * 0.0027397).toFixed(6);
+      setus(indexus);
+      sets(indexs);
+      setmin(indexmin);
+      sethour(indexhour);
+      setday(indexday);
+      setweek(indexweek);
+      setyear(indexyear);
+    }
+    if (!flagday) {
+      let indexday = (base * 1).toFixed(6);
+      let indexus = (indexday * 86400000000).toFixed(6);
+      let indexs = (indexday * 86400).toFixed(6);
+      let indexmin = (indexday * 1440).toFixed(6);
+      let indexhour = (indexday * 24).toFixed(6);
+      let indexweek = (indexday * 0.1428571).toFixed(6);
+      let indexyear = (indexday * 0.0027397).toFixed(6);
+      setus(indexus);
+      sets(indexs);
+      setmin(indexmin);
+      sethour(indexhour);
+      setday(indexday);
+      setweek(indexweek);
+      setyear(indexyear);
+    }
+    if (!flagweek) {
+      let indexday = (base * 7).toFixed(6);
+      let indexus = (indexday * 86400000000).toFixed(6);
+      let indexs = (indexday * 86400).toFixed(6);
+      let indexmin = (indexday * 1440).toFixed(6);
+      let indexhour = (indexday * 24).toFixed(6);
+      let indexweek = (indexday * 0.1428571).toFixed(6);
+      let indexyear = (indexday * 0.0027397).toFixed(6);
+      setus(indexus);
+      sets(indexs);
+      setmin(indexmin);
+      sethour(indexhour);
+      setday(indexday);
+      setweek(indexweek);
+      setyear(indexyear);
+    }
+    if (!flagyear) {
+      let indexday = (base * 365).toFixed(6);
+      let indexus = (indexday * 86400000000).toFixed(6);
+      let indexs = (indexday * 86400).toFixed(6);
+      let indexmin = (indexday * 1440).toFixed(6);
+      let indexhour = (indexday * 24).toFixed(6);
+      let indexweek = (indexday * 0.1428571).toFixed(6);
+      let indexyear = (indexday * 0.0027397).toFixed(6);
+      setus(indexus);
+      sets(indexs);
+      setmin(indexmin);
+      sethour(indexhour);
+      setday(indexday);
+      setweek(indexweek);
+      setyear(indexyear);
+    }
   }
 
-  function Transform() {
-    if (mm != '') {
-      let indexmm = parseFloat(mm);
-      indexm = (indexmm / 1000).toFixed(2);
-      //alert(indexm);
-      duserqq(indexm);
-    }
-    if (cm != '') {
-      let indexcm = parseFloat(cm);
-      indexm = (indexcm / 100).toFixed(2);
-      duserqq(indexm);
-    }
-    if (dm != '') {
-      let indexdm = parseFloat(dm);
-      indexm = (indexdm / 10).toFixed(2);
-      duserqq(indexm);
-    }
-    if (m != '') {
-      indexm = parseFloat(m).toFixed(2);
-      duserqq(indexm);
-    }
-    if (km != '') {
-      let indexkm = parseFloat(km);
-      indexm = (indexkm * 1000).toFixed(2);
-      duserqq(indexm);
-    }
-    if (foot != '') {
-      let indexfoot = parseFloat(foot);
-      indexm = (indexfoot * 0.3048).toFixed();
-      duserqq(indexm);
-    }
-    if (inch != '') {
-      let indexinch = parseFloat(inch);
-      indexm = (indexinch * 0.0254).toFixed(2);
-      duserqq(indexm);
-    }
-  }
   function Clear() {
-    setmm('');
-    setcm('');
-    setdm('');
-    setm('');
-    setkm('');
+    setus('');
+    sets('');
+    setmin('');
+    sethour('');
+    setday('');
+    setweek('');
+    setyear('');
   }
   return (
     <ScrollView>
       <KeyboardAvoidingView behavior="position">
         <View style={styles.body}>
           <View style={styles.valuetop}>
-            <Text style={{ fontSize: 30, fontWeight: '500', marginTop: 3 }}>
-              数值:{' '}
-            </Text>
-            <TextInput style={styles.inputstyletop} placeholder="请输入数值" />
+            <Text style={styles.valuetoptext}>数值: </Text>
+            <TextInput
+              style={styles.valuetopinput}
+              placeholder="请输入数值"
+              onChangeText={(text) => Transform(text)}
+            />
+            <TouchableOpacity style={styles.valuetopbtn} onPress={Clear}>
+              <Text style={styles.btnText}>重置</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.units}>
-            <Text style={styles.unitkinds}>公制 </Text>
             <TouchableOpacity
               onPress={() => {
-                setflagmm(!flagmm);
+                if (flagus == true) {
+                  setflagus(!flagus);
+                  setflags(true);
+                  setflagmin(true);
+                  setflaghour(true);
+                  setflagday(true);
+                  setflagweek(true);
+                  setflagyear(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagmm ? 'white' : 'blue' },
+                { backgroundColor: flagus ? 'white' : '#5050F3' },
               ]}
             >
               <Text
-                style={[styles.text, { color: flagmm ? '#31A4F0' : 'white' }]}
+                style={[
+                  styles.textleft,
+                  { color: flagus ? '#31A4F0' : 'white' },
+                ]}
               >
-                毫米: {mm}{' '}
+                微秒: {us}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flagus ? '#31A4F0' : 'white' },
+                ]}
+              >
+                us
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                setflagdm(!flagdm);
+                if (flags == true) {
+                  setflagus(true);
+                  setflags(!flags);
+                  setflagmin(true);
+                  setflaghour(true);
+                  setflagday(true);
+                  setflagweek(true);
+                  setflagyear(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagdm ? 'white' : 'blue' },
+                { backgroundColor: flags ? 'white' : '#5050F3' },
               ]}
             >
               <Text
-                style={[styles.text, { color: flagdm ? '#31A4F0' : 'white' }]}
+                style={[
+                  styles.textleft,
+                  { color: flags ? '#31A4F0' : 'white' },
+                ]}
               >
-                分米: {dm} dm{' '}
+                秒: {s}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flags ? '#31A4F0' : 'white' },
+                ]}
+              >
+                s
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                setflagm(!flagm);
+                if (flagmin == true) {
+                  setflagus(true);
+                  setflags(true);
+                  setflagmin(!flagmin);
+                  setflaghour(true);
+                  setflagday(true);
+                  setflagweek(true);
+                  setflagyear(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagm ? 'white' : 'blue' },
+                { backgroundColor: flagmin ? 'white' : '#5050F3' },
               ]}
             >
               <Text
-                style={[styles.text, { color: flagm ? '#31A4F0' : 'white' }]}
+                style={[
+                  styles.textleft,
+                  { color: flagmin ? '#31A4F0' : 'white' },
+                ]}
               >
-                米: {m} m
+                分: {min}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flagmin ? '#31A4F0' : 'white' },
+                ]}
+              >
+                min
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                setflagkm(!flagkm);
+                if (flaghour == true) {
+                  setflagus(true);
+                  setflags(true);
+                  setflagmin(true);
+                  setflaghour(!flaghour);
+                  setflagday(true);
+                  setflagweek(true);
+                  setflagyear(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagkm ? 'white' : 'blue' },
+                { backgroundColor: flaghour ? 'white' : '#5050F3' },
               ]}
             >
               <Text
-                style={[styles.text, { color: flagkm ? '#31A4F0' : 'white' }]}
+                style={[
+                  styles.textleft,
+                  { color: flaghour ? '#31A4F0' : 'white' },
+                ]}
               >
-                千米: {km} km
+                时: {hour}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flaghour ? '#31A4F0' : 'white' },
+                ]}
+              >
+                hour
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              ouchableOpacity
+              onPress={() => {
+                if (flagday == true) {
+                  setflagus(true);
+                  setflags(true);
+                  setflagmin(true);
+                  setflaghour(true);
+                  setflagday(!flagday);
+                  setflagweek(true);
+                  setflagyear(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
+              }}
+              style={[
+                styles.unitsview,
+                { backgroundColor: flagday ? 'white' : '#5050F3' },
+              ]}
+            >
+              <Text
+                style={[
+                  styles.textleft,
+                  { color: flagday ? '#31A4F0' : 'white' },
+                ]}
+              >
+                天: {day}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flagday ? '#31A4F0' : 'white' },
+                ]}
+              >
+                天
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                setflagfoot(!flagfoot);
+                if (flagweek == true) {
+                  setflagus(true);
+                  setflags(true);
+                  setflagmin(true);
+                  setflaghour(true);
+                  setflagday(true);
+                  setflagweek(!flagweek);
+                  setflagyear(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagfoot ? 'white' : '#3333ff' },
+                { backgroundColor: flagweek ? 'white' : '#5050F3' },
               ]}
             >
               <Text
-                style={[styles.text, { color: flagfoot ? '#31A4F0' : 'white' }]}
+                style={[
+                  styles.textleft,
+                  { color: flagweek ? '#31A4F0' : 'white' },
+                ]}
               >
-                英尺: {foot} foot
+                周: {week}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flagweek ? '#31A4F0' : 'white' },
+                ]}
+              >
+                周
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                setflaginch(!flaginch);
+                if (flagyear == true) {
+                  setflagus(true);
+                  setflags(true);
+                  setflagmin(true);
+                  setflaghour(true);
+                  setflagday(true);
+                  setflagweek(true);
+                  setflagyear(!flagyear);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flaginch ? 'white' : 'blue' },
+                { backgroundColor: flagyear ? 'white' : '#5050F3' },
               ]}
             >
               <Text
-                style={[styles.text, { color: flaginch ? '#31A4F0' : 'white' }]}
+                style={[
+                  styles.textleft,
+                  { color: flagyear ? '#31A4F0' : 'white' },
+                ]}
               >
-                英寸: {inch} inch
+                年: {year}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flagyear ? '#31A4F0' : 'white' },
+                ]}
+              >
+                年
               </Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.btn1} onPress={Transform}>
-            <Text style={[styles.btnText, { color: 'white' }]}>转换</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.btn2} onPress={Clear}>
-            <Text style={styles.btnText}>重置</Text>
-          </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
     </ScrollView>
@@ -209,36 +434,18 @@ const styles = StyleSheet.create({
   },
   valuetop: {
     flexDirection: 'row',
+    flexWrap: 'nowrap',
+    justifyContent: 'space-around',
   },
-  units: {
-    flexDirection: 'column',
-    marginTop: 20,
+  valuetoptext: {
+    fontSize: 30,
+    fontWeight: '700',
+    marginTop: 3,
   },
-  unitkinds: {
-    color: '#636e72',
-  },
-  unitsview: {
-    borderStyle: 'solid',
-    borderBottomColor: '#CCCCCC',
-    borderBottomWidth: 0.6,
-    paddingTop: 5,
-    paddingBottom: 10,
-    paddingLeft: 5,
-    marginTop: 5,
-    borderRadius: 15,
-  },
-  text: {
-    height: 30,
-    marginTop: 8,
-    fontSize: 23,
-    color: '#31A4F0',
-    fontWeight: '600',
-  },
-  inputstyletop: {
-    width: 285,
+  valuetopinput: {
+    width: 185,
     height: 45,
     padding: 10,
-    marginLeft: 25,
     fontSize: 18,
     backgroundColor: '#EEEEEE',
     //For Dark Mode
@@ -250,34 +457,50 @@ const styles = StyleSheet.create({
     color: '#111',
     fontWeight: '500',
   },
-  btn1: {
-    //For Dark Mode
-    //backgroundColor:'white',
-    backgroundColor: 'black',
-    padding: 5,
-    width: 150,
-    height: 80,
-    borderRadius: 20,
-    position: 'absolute',
-    top: 480,
-    left: 40,
-  },
-  btn2: {
+  valuetopbtn: {
     backgroundColor: 'red',
     padding: 5,
-    width: 150,
-    height: 80,
-    borderRadius: 20,
-    position: 'absolute',
-    top: 480,
-    left: 220,
+    width: 75,
+    height: 45,
+    borderRadius: 10,
+  },
+  units: {
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    marginTop: 20,
+  },
+  unitsview: {
+    alignSelf: 'stretch',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderStyle: 'solid',
+    borderBottomColor: '#CCCCCC',
+    borderBottomWidth: 0.6,
+    paddingTop: 5,
+    paddingBottom: 10,
+    paddingLeft: 5,
+    paddingRight: 10,
+    marginTop: 5,
+    borderRadius: 12,
+  },
+  textleft: {
+    height: 30,
+    marginTop: 8,
+    fontSize: 23,
+    fontWeight: '600',
+  },
+  textright: {
+    height: 30,
+    marginTop: 8,
+    fontSize: 23,
+    fontWeight: '600',
   },
   btnText: {
-    fontSize: 25,
+    fontSize: 22,
     color: 'white',
     fontWeight: 'bold',
     textAlign: 'center',
-    marginTop: 23,
+    marginTop: 7,
   },
 });
 

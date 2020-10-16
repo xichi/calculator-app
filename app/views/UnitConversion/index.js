@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-// import CalculatorIcon from '../assets/images/calculator.svg';
+// import CalculatorIcon from 'app/assets/images/calculator.svg';
 
 const styles = StyleSheet.create({
   container: {
@@ -56,8 +56,8 @@ function index({ navigation }) {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.item}
-          onPress={() => navigation.navigate('Area')}
-          //onPress={() => alert('此模块还在维护，尚未开放！')}
+          //onPress={() => navigation.navigate('Area')}
+          onPress={() => alert('此模块还在维护，尚未开放！')}
         >
           <Text style={styles.text}>面积单位</Text>
         </TouchableOpacity>

@@ -9,7 +9,7 @@ import {
   ScrollView,
 } from 'react-native';
 
-const Length = () => {
+const Time = () => {
   const [us, setus] = useState('');
   const [s, sets] = useState('');
   const [min, setmin] = useState('');
@@ -504,4 +504,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Length;
+export default Time;
