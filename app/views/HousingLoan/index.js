@@ -8,7 +8,7 @@ import {
   SafeAreaView,
   ScrollView,
 } from 'react-native';
-import { Picker } from 'native-base';
+//import { Picker } from 'native-base';
 
 function HousingLoan() {
   const [amount, onChangeAmount] = useState('');
@@ -95,7 +95,7 @@ function HousingLoan() {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <View style={styles.line}>
-          <Text>贷款金额（万元）</Text>
+          <Text style={styles.text}>贷款金额（万元）</Text>
           <TextInput
             style={styles.TextInput}
             keyboardType="numeric"
@@ -104,7 +104,7 @@ function HousingLoan() {
           />
         </View>
         <View style={styles.line}>
-          <Text>贷款年限（年）</Text>
+          <Text style={styles.text}>贷款年限（年）</Text>
           <TextInput
             style={styles.TextInput}
             keyboardType="numeric"
@@ -113,7 +113,7 @@ function HousingLoan() {
           />
         </View>
         <View style={styles.line}>
-          <Text>贷款利率（%）</Text>
+          <Text style={styles.text}>贷款利率（%）</Text>
           <TextInput
             style={styles.TextInput}
             keyboardType="numeric"
@@ -122,8 +122,8 @@ function HousingLoan() {
           />
         </View>
         <View style={styles.line}>
-          <Text>贷款方式</Text>
-          <Picker
+          <Text style={styles.text}>贷款方式</Text>
+          {/* <Picker
             mode="dialog"
             style={styles.picker}
             selectedValue={selectedMethod}
@@ -131,10 +131,10 @@ function HousingLoan() {
           >
             <Picker.Item label="等额本息" value="key0" />
             <Picker.Item label="等额本金" value="key1" />
-          </Picker>
+          </Picker> */}
         </View>
-        <View style={{ marginTop: 20 }}>
-          <Button onPress={compute} color="#ffa931" title="计算" />
+        <View style={styles.btn}>
+          <Button onPress={compute} color="#0984e3" title="计算" />
         </View>
         {results ? (
           <View style={styles.results}>
@@ -182,32 +182,47 @@ function HousingLoan() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingHorizontal: 10,
+    //flex: 1,
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    marginHorizontal: 10,
     marginTop: 20,
   },
   line: {
-    display: 'flex',
+    alignItems: 'stretch',
+    marginTop: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+  },
+  text: {
+    fontSize: 17,
+    marginTop: 3,
+  },
+  TextInput: {
+    width: 200,
+    height: 30,
+    padding: 6,
+    borderRadius: 6,
+    borderColor: '#999',
+    backgroundColor: '#fff',
+    borderWidth: 1,
   },
   item: {
     width: '25%',
     textAlign: 'center',
     color: '#333',
   },
-  TextInput: {
-    width: 200,
-    height: '80%',
-    borderColor: '#999',
-    backgroundColor: '#fff',
-    borderWidth: 1,
-  },
   picker: {
     width: 200,
     flexGrow: 0,
     color: '#333',
+  },
+  btn: {
+    alignSelf: 'center',
+    marginTop: 20,
+    width: 200,
+    backgroundColor: '#fdcb6e',
+    borderRadius: 6,
   },
   results: {
     marginVertical: 20,
