@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import CalculatorIcon from '../assets/images/calculator.svg';
+// import CalculatorIcon from '../assets/images/calculator.svg';
 
 const styles = StyleSheet.create({
   container: {
@@ -26,7 +26,7 @@ function Dashboard({ navigation }) {
         style={styles.item}
         onPress={() => navigation.navigate('Calculator')}
       >
-        <CalculatorIcon width={50} height={50} />
+        {/* <CalculatorIcon width={50} height={50} /> */}
         <Text>计算器</Text>
       </TouchableOpacity>
       <TouchableOpacity
@@ -41,21 +41,24 @@ function Dashboard({ navigation }) {
       >
         <Text>房贷计算</Text>
       </TouchableOpacity>
-      <View style={styles.item}>
+      <TouchableOpacity
+        style={styles.item}
+        onPress={() => navigation.navigate('UnitConversion')}
+      >
         <Text>单位换算</Text>
-      </View>
+      </TouchableOpacity>
       <View style={styles.item}>
         <Text>日期计算</Text>
       </View>
       <View style={styles.item}>
         <Text>BMI计算</Text>
       </View>
-      <View style={styles.item}>
-        <Text>进制计算</Text>
-      </View>
-      <View style={styles.item}>
-        <Text>大写金额</Text>
-      </View>
+      <TouchableOpacity
+        style={styles.item}
+        onPress={() => navigation.navigate('DecimalConversion')}
+      >
+        <Text>进制转换</Text>
+      </TouchableOpacity>
     </View>
   );
 }

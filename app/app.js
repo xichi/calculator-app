@@ -10,6 +10,12 @@ import Dashboard from './views/Dashboard';
 import Calculator from './views/Calculator';
 import ExchangeRate from './views/ExchangeRate';
 import HousingLoan from './views/HousingLoan';
+import UnitConversion from './views/UnitConversion';
+import DecimalConversion from './views/DecimalConversion'
+import Length from './views/UnitConversion/UnitKind/Length'
+import Area from './views/UnitConversion/UnitKind/Area'
+import Time from './views/UnitConversion/UnitKind/Time'
+import Weight from './views/UnitConversion/UnitKind/Weight'
 
 const Stack = createStackNavigator();
 
@@ -80,6 +86,48 @@ function App() {
           component={HousingLoan}
           options={{
             title: '房贷计算',
+          }}
+        />
+        <Stack.Screen
+          name="UnitConversion"
+          component={UnitConversion}
+          options={{
+            title: '单位换算',
+          }}
+        />
+        <Stack.Screen
+          name="DecimalConversion"
+          component={DecimalConversion}
+          options={{
+            title: '进制转换',
+          }}
+        />
+        <Stack.Screen
+          name="Length"
+          component={Length}
+          options={{
+            title: '长度单位',
+          }}
+        />
+        <Stack.Screen
+          name="Area"
+          component={Area}
+          options={{
+            title: '面积单位',
+          }}
+        />
+        <Stack.Screen
+          name="Time"
+          component={Time}
+          options={{
+            title: '时间单位',
+          }}
+        />
+        <Stack.Screen
+          name="Weight"
+          component={Weight}
+          options={{
+            title: '重量单位',
           }}
         />
       </Stack.Navigator>
