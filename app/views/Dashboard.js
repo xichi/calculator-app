@@ -51,7 +51,7 @@ function Dashboard({ navigation }) {
         <Text>日期计算</Text>
       </View>
       <View style={styles.item}>
-        <Text>万能公式</Text>
+        <Text>BMI计算</Text>
       </View>
       <TouchableOpacity
         style={styles.item}

@@ -9,8 +9,9 @@
 //export const Sign = '982144cc269c6d903b008c577dfd1623';
 
 // openexchangerates.org
-//export const AppUrl = 'https://openexchangerates.org';
-//export const AppId = '2dc9e06756ad48489053d73e84ba4aa1';
+// API访问限制：2020/11/09
+// export const AppUrl = 'https://openexchangerates.org';
+// export const AppId = '2dc9e06756ad48489053d73e84ba4aa1';
 
 // MATH
 export const Pi = '3.1415926';
