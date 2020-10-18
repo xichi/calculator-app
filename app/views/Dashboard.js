@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  SafeAreaView,
-} from 'react-native';
+import { View, Text, Image, StyleSheet, SafeAreaView } from 'react-native';
+import SortableGrid from 'react-native-sortable-grid';
 
 const tools = [
   {
@@ -30,6 +24,11 @@ const tools = [
     img: require('../assets/icons/unit.png'),
   },
   {
+    id: 'DecimalConversion',
+    name: '进制转换',
+    img: require('../assets/icons/10.png'),
+  },
+  {
     id: '1',
     name: '日期计算',
     img: require('../assets/icons/calendar.png'),
@@ -38,11 +37,6 @@ const tools = [
     id: '2',
     name: 'BMI计算',
     img: require('../assets/icons/BMI.png'),
-  },
-  {
-    id: '3',
-    name: '进制计算',
-    img: require('../assets/icons/10.png'),
   },
   {
     id: '4',
@@ -63,33 +57,45 @@ function Dashboard({ navigation }) {
           source={require('../assets/icons/add.png')}
         />
       </View>
-      <View style={styles.box}>
+      <SortableGrid
+        style={styles.box}
+        blockTransitionDuration={400}
+        activeBlockCenteringDuration={200}
+        itemsPerRow={3}
+        dragActivationTreshold={200}
+      >
         {myTools.map((item) => (
-          <TouchableOpacity
+          <View
             key={item.id}
             style={styles.item}
-            onPress={() => navigation.navigate(item.id)}
+            onTap={() => navigation.navigate(item.id)}
           >
             <Image style={styles.icon} source={item.img} />
             <Text style={styles.text}>{item.name}</Text>
-          </TouchableOpacity>
+          </View>
         ))}
-      </View>
+      </SortableGrid>
       <View style={styles.header}>
         <Text style={styles.headerText}>全部工具</Text>
       </View>
-      <View style={styles.box}>
+      <SortableGrid
+        style={styles.box}
+        blockTransitionDuration={400}
+        activeBlockCenteringDuration={200}
+        itemsPerRow={3}
+        dragActivationTreshold={200}
+      >
         {tools.map((item) => (
-          <TouchableOpacity
-            key={item.id}
+          <View
             style={styles.item}
-            onPress={() => navigation.navigate(item.id)}
+            key={item.id}
+            onTap={() => navigation.navigate(item.id)}
           >
             <Image style={styles.icon} source={item.img} />
             <Text style={styles.text}>{item.name}</Text>
-          </TouchableOpacity>
+          </View>
         ))}
-      </View>
+      </SortableGrid>
     </SafeAreaView>
   );
 }
@@ -103,12 +109,15 @@ const styles = StyleSheet.create({
   box: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    paddingHorizontal: 10,
   },
   line: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  item: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   header: {
     display: 'flex',
@@ -121,7 +130,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 50,
   },
-  item: {
+  boxItem: {
     flexShrink: 0,
     width: '33.3%',
     height: 120,
