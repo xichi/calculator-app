@@ -8,7 +8,7 @@ import {
   SafeAreaView,
   ScrollView,
 } from 'react-native';
-//import { Picker } from 'native-base';
+import { Picker } from 'native-base';
 
 function HousingLoan() {
   const [amount, onChangeAmount] = useState('');
@@ -123,7 +123,7 @@ function HousingLoan() {
         </View>
         <View style={styles.line}>
           <Text style={styles.text}>贷款方式</Text>
-          {/* <Picker
+          <Picker
             mode="dialog"
             style={styles.picker}
             selectedValue={selectedMethod}
@@ -131,10 +131,10 @@ function HousingLoan() {
           >
             <Picker.Item label="等额本息" value="key0" />
             <Picker.Item label="等额本金" value="key1" />
-          </Picker> */}
+          </Picker>
         </View>
         <View style={styles.btn}>
-          <Button onPress={compute} color="#0984e3" title="计算" />
+          <Button onPress={compute} color="#ffa931" title="计算" />
         </View>
         {results ? (
           <View style={styles.results}>
@@ -219,8 +219,8 @@ const styles = StyleSheet.create({
   },
   btn: {
     alignSelf: 'center',
-    marginTop: 20,
-    width: 200,
+    marginTop: 10,
+    width: '100%',
     backgroundColor: '#fdcb6e',
     borderRadius: 6,
   },
@@ -241,6 +241,7 @@ const styles = StyleSheet.create({
     height: 30,
     borderColor: '#999',
     borderWidth: 1,
+    marginTop: 0,
   },
 });
 
