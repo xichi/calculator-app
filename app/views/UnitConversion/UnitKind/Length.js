@@ -151,7 +151,7 @@ const Length = () => {
   }
   return (
     <ScrollView>
-      <KeyboardAvoidingView behavior="position">
+      <KeyboardAvoidingView>
         <View style={styles.body}>
           <View style={styles.valuetop}>
             <Text style={styles.valuetoptext}>数值: </Text>

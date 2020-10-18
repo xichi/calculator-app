@@ -10,148 +10,196 @@ import {
 } from 'react-native';
 
 const Area = () => {
-  const [us, setus] = useState('');
-  const [s, sets] = useState('');
-  const [min, setmin] = useState('');
-  const [hour, sethour] = useState('');
-  const [day, setday] = useState('');
-  const [week, setweek] = useState('');
-  const [year, setyear] = useState('');
-  const [flagus, setflagus] = useState(true);
-  const [flags, setflags] = useState(true);
-  const [flagmin, setflagmin] = useState(true);
-  const [flaghour, setflaghour] = useState(true);
-  const [flagday, setflagday] = useState(false);
-  const [flagweek, setflagweek] = useState(true);
-  const [flagyear, setflagyear] = useState(true);
+  //units
+  //公制
+  const [mm, setmm] = useState('');
+  const [cm, setcm] = useState('');
+  const [dm, setdm] = useState('');
+  const [m, setm] = useState('');
+  const [gongmu, setgongmu] = useState('');
+  const [gongqin, setgongqin] = useState('');
+  const [km, setkm] = useState('');
+  //英制
+  const [yingmu, setyingmu] = useState('');
+  const [yingli, setyingli] = useState('');
+  const [ma, setma] = useState('');
+  const [foot, setfoot] = useState('');
+  const [inch, setinch] = useState('');
+  //市制
+  const [qin, setqin] = useState('');
+  const [mu, setmu] = useState('');
+  const [fen, setfen] = useState('');
+  const [chi, setchi] = useState('');
+  const [cun, setcun] = useState('');
 
+  //flag
+  //公制
+  const [flagmm, setflagmm] = useState(true);
+  const [flagcm, setflagcm] = useState(true);
+  const [flagdm, setflagdm] = useState(true);
+  const [flagm, setflagm] = useState(false);
+  const [flaggongmu, setflaggongmu] = useState(true);
+  const [flaggongqin, setflaggongqin] = useState(true);
+  const [flagkm, setflagkm] = useState(true);
+  //英制
+  const [flagyingmu, setflagyingmu] = useState(true);
+  const [flagyingli, setflagyingli] = useState(true);
+  const [flagma, setflagma] = useState(true);
+  const [flagfoot, setflagfoot] = useState(true);
+  const [flaginch, setflaginch] = useState(true);
+  //市制
+  const [flagqin, setflagqin] = useState(true);
+  const [flagmu, setflagmu] = useState(true);
+  const [flagfen, setflagfen] = useState(true);
+  const [flagchi, setflagchi] = useState(true);
+  const [flagcun, setflagcun] = useState(true);
+
+  function tohtml(indexm) {
+    //公制
+    let indexmm = (indexm * 1000000).toFixed(2);
+    let indexcm = (indexm * 10000).toFixed(2);
+    let indexdm = (indexm * 100).toFixed(2);
+    let indexgongmu = (indexm * 0.01).toFixed(2);
+    let indexgongqin = (indexm * 0.0001).toFixed(2);
+    let indexkm = (indexm / 1000000).toFixed(2);
+    //英制
+    let indexyingmu = (indexm * 0.0002471).toFixed(2);
+    let indexyingli = (indexm / 38610000).toFixed(2);
+    let indexma = (indexm * 1.19599).toFixed(2);
+    let indexfoot = (indexm * 10.7639104).toFixed(2);
+    let indexinch = (indexm * 1550.0031).toFixed(2);
+    //市制
+    let indexqin = (indexm * 0.000015).toFixed(2);
+    let indexmu = (indexm * 0.0015).toFixed(2);
+    let indexfen = (indexm * 0.015).toFixed(2);
+    let indexchi = (indexm * 9).toFixed(2);
+    let indexcun = (indexm * 900).toFixed(2);
+    indexm = (indexm * 1).toFixed(2);
+
+    //公制
+    setmm(indexmm);
+    setcm(indexcm);
+    setdm(indexdm);
+    setm(indexm);
+    setgongmu(indexgongmu);
+    setgongqin(indexgongqin);
+    setkm(indexkm);
+    //英制
+    setyingmu(indexyingmu);
+    setyingli(indexyingli);
+    setma(indexma);
+    setfoot(indexfoot);
+    setinch(indexinch);
+    //市制
+    setqin(indexqin);
+    setmu(indexmu);
+    setfen(indexfen);
+    setchi(indexchi);
+    setcun(indexcun);
+  }
   function Transform(base) {
-    if (!flagus) {
-      let indexday = (base / 86400000000).toFixed(6);
-      let indexus = (indexday * 86400000000).toFixed(6);
-      let indexs = (indexday * 86400).toFixed(6);
-      let indexmin = (indexday * 1440).toFixed(6);
-      let indexhour = (indexday * 24).toFixed(6);
-      let indexweek = (indexday * 0.1428571).toFixed(6);
-      let indexyear = (indexday * 0.0027397).toFixed(6);
-      setus(indexus);
-      sets(indexs);
-      setmin(indexmin);
-      sethour(indexhour);
-      setday(indexday);
-      setweek(indexweek);
-      setyear(indexyear);
+    //公制
+    if (!flagmm) {
+      let indexm = (base / 1000000).toFixed(6);
+      tohtml(indexm);
     }
-    if (!flags) {
-      let indexday = (base / 86400).toFixed(6);
-      let indexus = (indexday * 86400000000).toFixed(6);
-      let indexs = (indexday * 86400).toFixed(6);
-      let indexmin = (indexday * 1440).toFixed(6);
-      let indexhour = (indexday * 24).toFixed(6);
-      let indexweek = (indexday * 0.1428571).toFixed(6);
-      let indexyear = (indexday * 0.0027397).toFixed(6);
-      setus(indexus);
-      sets(indexs);
-      setmin(indexmin);
-      sethour(indexhour);
-      setday(indexday);
-      setweek(indexweek);
-      setyear(indexyear);
+    if (!flagcm) {
+      let indexm = (base / 10000).toFixed(6);
+      tohtml(indexm);
     }
-    if (!flagmin) {
-      let indexday = (base / 1440).toFixed(6);
-      let indexus = (indexday * 86400000000).toFixed(6);
-      let indexs = (indexday * 86400).toFixed(6);
-      let indexmin = (indexday * 1440).toFixed(6);
-      let indexhour = (indexday * 24).toFixed(6);
-      let indexweek = (indexday * 0.1428571).toFixed(6);
-      let indexyear = (indexday * 0.0027397).toFixed(6);
-      setus(indexus);
-      sets(indexs);
-      setmin(indexmin);
-      sethour(indexhour);
-      setday(indexday);
-      setweek(indexweek);
-      setyear(indexyear);
+    if (!flagdm) {
+      let indexm = (base / 100).toFixed(6);
+      tohtml(indexm);
     }
-    if (!flaghour) {
-      let indexday = (base / 24).toFixed(6);
-      let indexus = (indexday * 86400000000).toFixed(6);
-      let indexs = (indexday * 86400).toFixed(6);
-      let indexmin = (indexday * 1440).toFixed(6);
-      let indexhour = (indexday * 24).toFixed(6);
-      let indexweek = (indexday * 0.1428571).toFixed(6);
-      let indexyear = (indexday * 0.0027397).toFixed(6);
-      setus(indexus);
-      sets(indexs);
-      setmin(indexmin);
-      sethour(indexhour);
-      setday(indexday);
-      setweek(indexweek);
-      setyear(indexyear);
+    if (!flagm) {
+      let indexm = (base * 1).toFixed(6);
+      tohtml(indexm);
     }
-    if (!flagday) {
-      let indexday = (base * 1).toFixed(6);
-      let indexus = (indexday * 86400000000).toFixed(6);
-      let indexs = (indexday * 86400).toFixed(6);
-      let indexmin = (indexday * 1440).toFixed(6);
-      let indexhour = (indexday * 24).toFixed(6);
-      let indexweek = (indexday * 0.1428571).toFixed(6);
-      let indexyear = (indexday * 0.0027397).toFixed(6);
-      setus(indexus);
-      sets(indexs);
-      setmin(indexmin);
-      sethour(indexhour);
-      setday(indexday);
-      setweek(indexweek);
-      setyear(indexyear);
+    if (!flaggongmu) {
+      let indexm = (base / 0.01).toFixed(6);
+      tohtml(indexm);
     }
-    if (!flagweek) {
-      let indexday = (base * 7).toFixed(6);
-      let indexus = (indexday * 86400000000).toFixed(6);
-      let indexs = (indexday * 86400).toFixed(6);
-      let indexmin = (indexday * 1440).toFixed(6);
-      let indexhour = (indexday * 24).toFixed(6);
-      let indexweek = (indexday * 0.1428571).toFixed(6);
-      let indexyear = (indexday * 0.0027397).toFixed(6);
-      setus(indexus);
-      sets(indexs);
-      setmin(indexmin);
-      sethour(indexhour);
-      setday(indexday);
-      setweek(indexweek);
-      setyear(indexyear);
+    if (!flaggongqin) {
+      let indexm = (base / 0.0001).toFixed(6);
+      tohtml(indexm);
     }
-    if (!flagyear) {
-      let indexday = (base * 365).toFixed(6);
-      let indexus = (indexday * 86400000000).toFixed(6);
-      let indexs = (indexday * 86400).toFixed(6);
-      let indexmin = (indexday * 1440).toFixed(6);
-      let indexhour = (indexday * 24).toFixed(6);
-      let indexweek = (indexday * 0.1428571).toFixed(6);
-      let indexyear = (indexday * 0.0027397).toFixed(6);
-      setus(indexus);
-      sets(indexs);
-      setmin(indexmin);
-      sethour(indexhour);
-      setday(indexday);
-      setweek(indexweek);
-      setyear(indexyear);
+    if (!flagkm) {
+      let indexm = (base * 1000000).toFixed(6);
+      tohtml(indexm);
+    }
+
+    //英制
+    if (!flagyingmu) {
+      let indexm = (base * 4046.8564224).toFixed(6);
+      tohtml(indexm);
+    }
+    if (!flagyingli) {
+      let indexm = (base * 2589988.110336).toFixed(6);
+      tohtml(indexm);
+    }
+    if (!flagma) {
+      let indexm = (base * 0.8361274).toFixed(6);
+      tohtml(indexm);
+    }
+    if (!flagfoot) {
+      let indexm = (base * 0.092903).toFixed(6);
+      tohtml(indexm);
+    }
+    if (!flaginch) {
+      let indexm = (base * 0.0006452).toFixed(6);
+      tohtml(indexm);
+    }
+
+    //市制
+    if (!flagqin) {
+      let indexm = (base * 66666.6666667).toFixed(6);
+      tohtml(indexm);
+    }
+    if (!flagmu) {
+      let indexm = (base * 666.6666667).toFixed(6);
+      tohtml(indexm);
+    }
+    if (!flagfen) {
+      let indexm = (base * 66.6666667).toFixed(6);
+      tohtml(indexm);
+    }
+    if (!flagchi) {
+      let indexm = (base * 0.1111111).toFixed(6);
+      tohtml(indexm);
+    }
+    if (!flagcun) {
+      let indexm = (base * 0.0011111).toFixed(6);
+      tohtml(indexm);
     }
   }
 
   function Clear() {
-    setus('');
-    sets('');
-    setmin('');
-    sethour('');
-    setday('');
-    setweek('');
-    setyear('');
+    //公制
+    setmm('');
+    setcm('');
+    setdm('');
+    setm('');
+    setgongmu('');
+    setgongqin('');
+    setkm('');
+
+    //英制
+    setyingmu('');
+    setyingli('');
+    setma('');
+    setfoot('');
+    setinch('');
+
+    //市制
+    setqin('');
+    setmu('');
+    setfen('');
+    setchi('');
+    setcun('');
   }
   return (
     <ScrollView>
-      <KeyboardAvoidingView behavior="position">
+      <KeyboardAvoidingView>
         <View style={styles.body}>
           <View style={styles.valuetop}>
             <Text style={styles.valuetoptext}>数值: </Text>
@@ -165,257 +213,879 @@ const Area = () => {
             </TouchableOpacity>
           </View>
           <View style={styles.units}>
+            {/* 公制 */}
+            <Text style={styles.unitkinds}>公制</Text>
             <TouchableOpacity
               onPress={() => {
-                if (flagus == true) {
-                  setflagus(!flagus);
-                  setflags(true);
-                  setflagmin(true);
-                  setflaghour(true);
-                  setflagday(true);
-                  setflagweek(true);
-                  setflagyear(true);
+                if (flagmm == true) {
+                  //公制
+                  setflagmm(!flagmm);
+                  setflagcm(true);
+                  setflagdm(true);
+                  setflagm(true);
+                  setflaggongmu(true);
+                  setflaggongqin(true);
+                  setflagkm(true);
+
+                  //英制
+                  setflagyingmu(true);
+                  setflagyingli(true);
+                  setflagma(true);
+                  setflagfoot(true);
+                  setflaginch(true);
+
+                  //市制
+                  setflagqin(true);
+                  setflagmu(true);
+                  setflagfen(true);
+                  setflagchi(true);
+                  setflagcun(true);
                 } else {
                   alert('请选择一个单位作为基准单位');
                 }
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagus ? 'white' : '#5050F3' },
+                { backgroundColor: flagmm ? 'white' : '#5050F3' },
               ]}
             >
               <Text
                 style={[
                   styles.textleft,
-                  { color: flagus ? '#31A4F0' : 'white' },
+                  { color: flagmm ? '#31A4F0' : 'white' },
                 ]}
               >
-                微秒: {us}
+                平方毫米: {mm}
               </Text>
               <Text
                 style={[
                   styles.textright,
-                  { color: flagus ? '#31A4F0' : 'white' },
+                  { color: flagmm ? '#31A4F0' : 'white' },
                 ]}
               >
-                us
+                mm²
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                if (flags == true) {
-                  setflagus(true);
-                  setflags(!flags);
-                  setflagmin(true);
-                  setflaghour(true);
-                  setflagday(true);
-                  setflagweek(true);
-                  setflagyear(true);
+                if (flagcm == true) {
+                  //公制
+                  setflagmm(true);
+                  setflagcm(!flagcm);
+                  setflagdm(true);
+                  setflagm(true);
+                  setflaggongmu(true);
+                  setflaggongqin(true);
+                  setflagkm(true);
+
+                  //英制
+                  setflagyingmu(true);
+                  setflagyingli(true);
+                  setflagma(true);
+                  setflagfoot(true);
+                  setflaginch(true);
+
+                  //市制
+                  setflagqin(true);
+                  setflagmu(true);
+                  setflagfen(true);
+                  setflagchi(true);
+                  setflagcun(true);
                 } else {
                   alert('请选择一个单位作为基准单位');
                 }
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flags ? 'white' : '#5050F3' },
+                { backgroundColor: flagcm ? 'white' : '#5050F3' },
               ]}
             >
               <Text
                 style={[
                   styles.textleft,
-                  { color: flags ? '#31A4F0' : 'white' },
+                  { color: flagcm ? '#31A4F0' : 'white' },
                 ]}
               >
-                秒: {s}
+                平方厘米: {cm}
               </Text>
               <Text
                 style={[
                   styles.textright,
-                  { color: flags ? '#31A4F0' : 'white' },
+                  { color: flagcm ? '#31A4F0' : 'white' },
                 ]}
               >
-                s
+                cm²
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                if (flagmin == true) {
-                  setflagus(true);
-                  setflags(true);
-                  setflagmin(!flagmin);
-                  setflaghour(true);
-                  setflagday(true);
-                  setflagweek(true);
-                  setflagyear(true);
+                if (flagdm == true) {
+                  //公制
+                  setflagmm(true);
+                  setflagcm(true);
+                  setflagdm(!flagdm);
+                  setflagm(true);
+                  setflaggongmu(true);
+                  setflaggongqin(true);
+                  setflagkm(true);
+
+                  //英制
+                  setflagyingmu(true);
+                  setflagyingli(true);
+                  setflagma(true);
+                  setflagfoot(true);
+                  setflaginch(true);
+
+                  //市制
+                  setflagqin(true);
+                  setflagmu(true);
+                  setflagfen(true);
+                  setflagchi(true);
+                  setflagcun(true);
                 } else {
                   alert('请选择一个单位作为基准单位');
                 }
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagmin ? 'white' : '#5050F3' },
+                { backgroundColor: flagdm ? 'white' : '#5050F3' },
               ]}
             >
               <Text
                 style={[
                   styles.textleft,
-                  { color: flagmin ? '#31A4F0' : 'white' },
+                  { color: flagdm ? '#31A4F0' : 'white' },
                 ]}
               >
-                分: {min}
+                平方分米: {dm}
               </Text>
               <Text
                 style={[
                   styles.textright,
-                  { color: flagmin ? '#31A4F0' : 'white' },
+                  { color: flagdm ? '#31A4F0' : 'white' },
                 ]}
               >
-                min
+                dm²
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                if (flaghour == true) {
-                  setflagus(true);
-                  setflags(true);
-                  setflagmin(true);
-                  setflaghour(!flaghour);
-                  setflagday(true);
-                  setflagweek(true);
-                  setflagyear(true);
+                if (flagm == true) {
+                  //公制
+                  setflagmm(true);
+                  setflagcm(true);
+                  setflagdm(true);
+                  setflagm(!flagm);
+                  setflaggongmu(true);
+                  setflaggongqin(true);
+                  setflagkm(true);
+
+                  //英制
+                  setflagyingmu(true);
+                  setflagyingli(true);
+                  setflagma(true);
+                  setflagfoot(true);
+                  setflaginch(true);
+
+                  //市制
+                  setflagqin(true);
+                  setflagmu(true);
+                  setflagfen(true);
+                  setflagchi(true);
+                  setflagcun(true);
                 } else {
                   alert('请选择一个单位作为基准单位');
                 }
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flaghour ? 'white' : '#5050F3' },
+                { backgroundColor: flagm ? 'white' : '#5050F3' },
               ]}
             >
               <Text
                 style={[
                   styles.textleft,
-                  { color: flaghour ? '#31A4F0' : 'white' },
+                  { color: flagm ? '#31A4F0' : 'white' },
                 ]}
               >
-                时: {hour}
+                平方米: {m}
               </Text>
               <Text
                 style={[
                   styles.textright,
-                  { color: flaghour ? '#31A4F0' : 'white' },
+                  { color: flagm ? '#31A4F0' : 'white' },
                 ]}
               >
-                hour
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              ouchableOpacity
-              onPress={() => {
-                if (flagday == true) {
-                  setflagus(true);
-                  setflags(true);
-                  setflagmin(true);
-                  setflaghour(true);
-                  setflagday(!flagday);
-                  setflagweek(true);
-                  setflagyear(true);
-                } else {
-                  alert('请选择一个单位作为基准单位');
-                }
-              }}
-              style={[
-                styles.unitsview,
-                { backgroundColor: flagday ? 'white' : '#5050F3' },
-              ]}
-            >
-              <Text
-                style={[
-                  styles.textleft,
-                  { color: flagday ? '#31A4F0' : 'white' },
-                ]}
-              >
-                天: {day}
-              </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagday ? '#31A4F0' : 'white' },
-                ]}
-              >
-                天
+                m²
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                if (flagweek == true) {
-                  setflagus(true);
-                  setflags(true);
-                  setflagmin(true);
-                  setflaghour(true);
-                  setflagday(true);
-                  setflagweek(!flagweek);
-                  setflagyear(true);
+                if (flaggongmu == true) {
+                  //公制
+                  setflagmm(true);
+                  setflagcm(true);
+                  setflagdm(true);
+                  setflagm(true);
+                  setflaggongmu(!flaggongmu);
+                  setflaggongqin(true);
+                  setflagkm(true);
+
+                  //英制
+                  setflagyingmu(true);
+                  setflagyingli(true);
+                  setflagma(true);
+                  setflagfoot(true);
+                  setflaginch(true);
+
+                  //市制
+                  setflagqin(true);
+                  setflagmu(true);
+                  setflagfen(true);
+                  setflagchi(true);
+                  setflagcun(true);
                 } else {
                   alert('请选择一个单位作为基准单位');
                 }
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagweek ? 'white' : '#5050F3' },
+                { backgroundColor: flaggongmu ? 'white' : '#5050F3' },
               ]}
             >
               <Text
                 style={[
                   styles.textleft,
-                  { color: flagweek ? '#31A4F0' : 'white' },
+                  { color: flaggongmu ? '#31A4F0' : 'white' },
                 ]}
               >
-                周: {week}
+                公亩: {gongmu}
               </Text>
               <Text
                 style={[
                   styles.textright,
-                  { color: flagweek ? '#31A4F0' : 'white' },
+                  { color: flaggongmu ? '#31A4F0' : 'white' },
                 ]}
               >
-                周
+                公亩
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                if (flagyear == true) {
-                  setflagus(true);
-                  setflags(true);
-                  setflagmin(true);
-                  setflaghour(true);
-                  setflagday(true);
-                  setflagweek(true);
-                  setflagyear(!flagyear);
+                if (flaggongqin == true) {
+                  //公制
+                  setflagmm(true);
+                  setflagcm(true);
+                  setflagdm(true);
+                  setflagm(true);
+                  setflaggongmu(true);
+                  setflaggongqin(!flaggongqin);
+                  setflagkm(true);
+
+                  //英制
+                  setflagyingmu(true);
+                  setflagyingli(true);
+                  setflagma(true);
+                  setflagfoot(true);
+                  setflaginch(true);
+
+                  //市制
+                  setflagqin(true);
+                  setflagmu(true);
+                  setflagfen(true);
+                  setflagchi(true);
+                  setflagcun(true);
                 } else {
                   alert('请选择一个单位作为基准单位');
                 }
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagyear ? 'white' : '#5050F3' },
+                { backgroundColor: flaggongqin ? 'white' : '#5050F3' },
               ]}
             >
               <Text
                 style={[
                   styles.textleft,
-                  { color: flagyear ? '#31A4F0' : 'white' },
+                  { color: flaggongqin ? '#31A4F0' : 'white' },
                 ]}
               >
-                年: {year}
+                公顷: {gongqin}
               </Text>
               <Text
                 style={[
                   styles.textright,
-                  { color: flagyear ? '#31A4F0' : 'white' },
+                  { color: flaggongqin ? '#31A4F0' : 'white' },
                 ]}
               >
-                年
+                公顷
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                if (flagkm == true) {
+                  //公制
+                  setflagmm(true);
+                  setflagcm(true);
+                  setflagdm(true);
+                  setflagm(true);
+                  setflaggongmu(true);
+                  setflaggongqin(true);
+                  setflagkm(!flagkm);
+
+                  //英制
+                  setflagyingmu(true);
+                  setflagyingli(true);
+                  setflagma(true);
+                  setflagfoot(true);
+                  setflaginch(true);
+
+                  //市制
+                  setflagqin(true);
+                  setflagmu(true);
+                  setflagfen(true);
+                  setflagchi(true);
+                  setflagcun(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
+              }}
+              style={[
+                styles.unitsview,
+                { backgroundColor: flagkm ? 'white' : '#5050F3' },
+              ]}
+            >
+              <Text
+                style={[
+                  styles.textleft,
+                  { color: flagkm ? '#31A4F0' : 'white' },
+                ]}
+              >
+                平方千米: {km}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flagkm ? '#31A4F0' : 'white' },
+                ]}
+              >
+                km²
+              </Text>
+            </TouchableOpacity>
+
+            {/* 英制 */}
+            <Text style={[styles.unitkinds, { marginTop: 15 }]}>英制</Text>
+            <TouchableOpacity
+              onPress={() => {
+                if (flagyingmu == true) {
+                  //公制
+                  setflagmm(true);
+                  setflagcm(true);
+                  setflagdm(true);
+                  setflagm(true);
+                  setflaggongmu(true);
+                  setflaggongqin(true);
+                  setflagkm(true);
+
+                  //英制
+                  setflagyingmu(!flagyingmu);
+                  setflagyingli(true);
+                  setflagma(true);
+                  setflagfoot(true);
+                  setflaginch(true);
+
+                  //市制
+                  setflagqin(true);
+                  setflagmu(true);
+                  setflagfen(true);
+                  setflagchi(true);
+                  setflagcun(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
+              }}
+              style={[
+                styles.unitsview,
+                { backgroundColor: flagyingmu ? 'white' : '#5050F3' },
+              ]}
+            >
+              <Text
+                style={[
+                  styles.textleft,
+                  { color: flagyingmu ? '#31A4F0' : 'white' },
+                ]}
+              >
+                英亩: {yingmu}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flagyingmu ? '#31A4F0' : 'white' },
+                ]}
+              >
+                英亩
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                if (flagyingli == true) {
+                  //公制
+                  setflagmm(true);
+                  setflagcm(true);
+                  setflagdm(true);
+                  setflagm(true);
+                  setflaggongmu(true);
+                  setflaggongqin(true);
+                  setflagkm(true);
+
+                  //英制
+                  setflagyingmu(true);
+                  setflagyingli(!flagyingli);
+                  setflagma(true);
+                  setflagfoot(true);
+                  setflaginch(true);
+
+                  //市制
+                  setflagqin(true);
+                  setflagmu(true);
+                  setflagfen(true);
+                  setflagchi(true);
+                  setflagcun(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
+              }}
+              style={[
+                styles.unitsview,
+                { backgroundColor: flagyingli ? 'white' : '#5050F3' },
+              ]}
+            >
+              <Text
+                style={[
+                  styles.textleft,
+                  { color: flagyingli ? '#31A4F0' : 'white' },
+                ]}
+              >
+                英里: {yingli}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flagyingli ? '#31A4F0' : 'white' },
+                ]}
+              >
+                英里
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                if (flagma == true) {
+                  //公制
+                  setflagmm(true);
+                  setflagcm(true);
+                  setflagdm(true);
+                  setflagm(true);
+                  setflaggongmu(true);
+                  setflaggongqin(true);
+                  setflagkm(true);
+
+                  //英制
+                  setflagyingmu(true);
+                  setflagyingli(true);
+                  setflagma(!flagma);
+                  setflagfoot(true);
+                  setflaginch(true);
+
+                  //市制
+                  setflagqin(true);
+                  setflagmu(true);
+                  setflagfen(true);
+                  setflagchi(true);
+                  setflagcun(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
+              }}
+              style={[
+                styles.unitsview,
+                { backgroundColor: flagma ? 'white' : '#5050F3' },
+              ]}
+            >
+              <Text
+                style={[
+                  styles.textleft,
+                  { color: flagma ? '#31A4F0' : 'white' },
+                ]}
+              >
+                平方码: {ma}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flagma ? '#31A4F0' : 'white' },
+                ]}
+              >
+                平方码
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                if (flagfoot == true) {
+                  //公制
+                  setflagmm(true);
+                  setflagcm(true);
+                  setflagdm(true);
+                  setflagm(true);
+                  setflaggongmu(true);
+                  setflaggongqin(true);
+                  setflagkm(true);
+
+                  //英制
+                  setflagyingmu(true);
+                  setflagyingli(true);
+                  setflagma(true);
+                  setflagfoot(!flagfoot);
+                  setflaginch(true);
+
+                  //市制
+                  setflagqin(true);
+                  setflagmu(true);
+                  setflagfen(true);
+                  setflagchi(true);
+                  setflagcun(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
+              }}
+              style={[
+                styles.unitsview,
+                { backgroundColor: flagfoot ? 'white' : '#5050F3' },
+              ]}
+            >
+              <Text
+                style={[
+                  styles.textleft,
+                  { color: flagfoot ? '#31A4F0' : 'white' },
+                ]}
+              >
+                平方英尺: {foot}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flagfoot ? '#31A4F0' : 'white' },
+                ]}
+              >
+                平方英尺
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                if (flaginch == true) {
+                  //公制
+                  setflagmm(true);
+                  setflagcm(true);
+                  setflagdm(true);
+                  setflagm(true);
+                  setflaggongmu(true);
+                  setflaggongqin(true);
+                  setflagkm(true);
+
+                  //英制
+                  setflagyingmu(true);
+                  setflagyingli(true);
+                  setflagma(true);
+                  setflagfoot(true);
+                  setflaginch(!flaginch);
+
+                  //市制
+                  setflagqin(true);
+                  setflagmu(true);
+                  setflagfen(true);
+                  setflagchi(true);
+                  setflagcun(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
+              }}
+              style={[
+                styles.unitsview,
+                { backgroundColor: flaginch ? 'white' : '#5050F3' },
+              ]}
+            >
+              <Text
+                style={[
+                  styles.textleft,
+                  { color: flaginch ? '#31A4F0' : 'white' },
+                ]}
+              >
+                平方英寸: {inch}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flaginch ? '#31A4F0' : 'white' },
+                ]}
+              >
+                平方英寸
+              </Text>
+            </TouchableOpacity>
+
+            {/* 市制 */}
+            <Text style={[styles.unitkinds, { marginTop: 15 }]}>市制</Text>
+            <TouchableOpacity
+              onPress={() => {
+                if (flagqin == true) {
+                  //公制
+                  setflagmm(true);
+                  setflagcm(true);
+                  setflagdm(true);
+                  setflagm(true);
+                  setflaggongmu(true);
+                  setflaggongqin(true);
+                  setflagkm(true);
+
+                  //英制
+                  setflagyingmu(true);
+                  setflagyingli(true);
+                  setflagma(true);
+                  setflagfoot(true);
+                  setflaginch(true);
+
+                  //市制
+                  setflagqin(!flagqin);
+                  setflagmu(true);
+                  setflagfen(true);
+                  setflagchi(true);
+                  setflagcun(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
+              }}
+              style={[
+                styles.unitsview,
+                { backgroundColor: flagqin ? 'white' : '#5050F3' },
+              ]}
+            >
+              <Text
+                style={[
+                  styles.textleft,
+                  { color: flagqin ? '#31A4F0' : 'white' },
+                ]}
+              >
+                顷: {qin}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flagqin ? '#31A4F0' : 'white' },
+                ]}
+              >
+                顷
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                if (flagmu == true) {
+                  //公制
+                  setflagmm(true);
+                  setflagcm(true);
+                  setflagdm(true);
+                  setflagm(true);
+                  setflaggongmu(true);
+                  setflaggongqin(true);
+                  setflagkm(true);
+
+                  //英制
+                  setflagyingmu(true);
+                  setflagyingli(true);
+                  setflagma(true);
+                  setflagfoot(true);
+                  setflaginch(true);
+
+                  //市制
+                  setflagqin(true);
+                  setflagmu(!flagmu);
+                  setflagfen(true);
+                  setflagchi(true);
+                  setflagcun(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
+              }}
+              style={[
+                styles.unitsview,
+                { backgroundColor: flagmu ? 'white' : '#5050F3' },
+              ]}
+            >
+              <Text
+                style={[
+                  styles.textleft,
+                  { color: flagmu ? '#31A4F0' : 'white' },
+                ]}
+              >
+                亩: {mu}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flagmu ? '#31A4F0' : 'white' },
+                ]}
+              >
+                亩
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                if (flagfen == true) {
+                  //公制
+                  setflagmm(true);
+                  setflagcm(true);
+                  setflagdm(true);
+                  setflagm(true);
+                  setflaggongmu(true);
+                  setflaggongqin(true);
+                  setflagkm(true);
+
+                  //英制
+                  setflagyingmu(true);
+                  setflagyingli(true);
+                  setflagma(true);
+                  setflagfoot(true);
+                  setflaginch(true);
+
+                  //市制
+                  setflagqin(true);
+                  setflagmu(true);
+                  setflagfen(!flagfen);
+                  setflagchi(true);
+                  setflagcun(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
+              }}
+              style={[
+                styles.unitsview,
+                { backgroundColor: flagfen ? 'white' : '#5050F3' },
+              ]}
+            >
+              <Text
+                style={[
+                  styles.textleft,
+                  { color: flagfen ? '#31A4F0' : 'white' },
+                ]}
+              >
+                分: {fen}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flagfen ? '#31A4F0' : 'white' },
+                ]}
+              >
+                分
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                if (flagchi == true) {
+                  //公制
+                  setflagmm(true);
+                  setflagcm(true);
+                  setflagdm(true);
+                  setflagm(true);
+                  setflaggongmu(true);
+                  setflaggongqin(true);
+                  setflagkm(true);
+
+                  //英制
+                  setflagyingmu(true);
+                  setflagyingli(true);
+                  setflagma(true);
+                  setflagfoot(true);
+                  setflaginch(true);
+
+                  //市制
+                  setflagqin(true);
+                  setflagmu(true);
+                  setflagfen(true);
+                  setflagchi(!flagchi);
+                  setflagcun(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
+              }}
+              style={[
+                styles.unitsview,
+                { backgroundColor: flagchi ? 'white' : '#5050F3' },
+              ]}
+            >
+              <Text
+                style={[
+                  styles.textleft,
+                  { color: flagchi ? '#31A4F0' : 'white' },
+                ]}
+              >
+                尺: {chi}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flagchi ? '#31A4F0' : 'white' },
+                ]}
+              >
+                尺
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                if (flagcun == true) {
+                  //公制
+                  setflagmm(true);
+                  setflagcm(true);
+                  setflagdm(true);
+                  setflagm(true);
+                  setflaggongmu(true);
+                  setflaggongqin(true);
+                  setflagkm(true);
+
+                  //英制
+                  setflagyingmu(true);
+                  setflagyingli(true);
+                  setflagma(true);
+                  setflagfoot(true);
+                  setflaginch(true);
+
+                  //市制
+                  setflagqin(true);
+                  setflagmu(true);
+                  setflagfen(true);
+                  setflagchi(true);
+                  setflagcun(!flagcun);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
+              }}
+              style={[
+                styles.unitsview,
+                { backgroundColor: flagcun ? 'white' : '#5050F3' },
+              ]}
+            >
+              <Text
+                style={[
+                  styles.textleft,
+                  { color: flagcun ? '#31A4F0' : 'white' },
+                ]}
+              >
+                寸: {cun}
+              </Text>
+              <Text
+                style={[
+                  styles.textright,
+                  { color: flagcun ? '#31A4F0' : 'white' },
+                ]}
+              >
+                寸
               </Text>
             </TouchableOpacity>
           </View>
@@ -482,6 +1152,11 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     marginTop: 5,
     borderRadius: 12,
+  },
+  unitkinds: {
+    fontSize: 20,
+    color: '#636e72',
+    marginBottom: 6,
   },
   textleft: {
     height: 30,
