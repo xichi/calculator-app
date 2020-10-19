@@ -18,6 +18,7 @@ import ExchangeRate from './views/ExchangeRate';
 import HousingLoan from './views/HousingLoan';
 import UnitConversion from './views/UnitConversion';
 import DecimalConversion from './views/DecimalConversion';
+import Sixteen from './views/DecimalConversion/Sixteen';
 import Length from './views/UnitConversion/UnitKind/Length';
 import Area from './views/UnitConversion/UnitKind/Area';
 import Time from './views/UnitConversion/UnitKind/Time';
@@ -152,6 +153,13 @@ const App = () => {
           component={DecimalConversion}
           options={{
             title: '进制转换',
+          }}
+        />
+        <Stack.Screen
+          name="Sixteen"
+          component={Sixteen}
+          options={{
+            title: '十六进制计算',
           }}
         />
         <Stack.Screen

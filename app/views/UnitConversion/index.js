@@ -71,7 +71,7 @@ function index({ navigation }) {
         <TouchableOpacity
           style={Theme.colorTheme ? styles.itemdark : styles.itemlight}
           //onPress={() => navigation.navigate('Weight')}
-          onPress={() => alert('此模块还在维护，尚未开放！')}
+          onPress={() => alert('此模块还在维护，敬请期待！')}
         >
           <Text style={styles.text}>重量单位</Text>
         </TouchableOpacity>

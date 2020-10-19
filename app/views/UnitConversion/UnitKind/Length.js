@@ -25,118 +25,51 @@ const Length = () => {
   const [flagfoot, setflagfoot] = useState(true);
   const [flaginch, setflaginch] = useState(true);
 
+  function simplify(indexm) {
+    indexm = (indexm * 1).toFixed(2);
+    let indexmm = (indexm * 1000).toFixed(2);
+    let indexcm = (indexm * 100).toFixed(2);
+    let indexdm = (indexm * 10).toFixed(2);
+    let indexkm = (indexm / 1000).toFixed(2);
+    let indexinch = (indexm * 39.3700787).toFixed(2);
+    let indexfoot = (indexm * 3.2808399).toFixed(2);
+    setmm(indexmm);
+    setcm(indexcm);
+    setdm(indexdm);
+    setm(indexm);
+    setkm(indexkm);
+    setinch(indexinch);
+    setfoot(indexfoot);
+  }
+
   function Transform(base) {
     if (!flagmm) {
       let indexm = (base / 1000).toFixed(6);
-      let indexmm = (indexm * 1000).toFixed(6);
-      let indexcm = (indexm * 100).toFixed(6);
-      let indexdm = (indexm * 10).toFixed(6);
-      let indexkm = (indexm / 1000).toFixed(6);
-      let indexinch = (indexm * 39.3700787).toFixed(6);
-      let indexfoot = (indexm * 3.2808399).toFixed(6);
-      setmm(indexmm);
-      setcm(indexcm);
-      setdm(indexdm);
-      setm(indexm);
-      setkm(indexkm);
-      setinch(indexinch);
-      setfoot(indexfoot);
+      simplify(indexm);
     }
     if (!flagcm) {
       let indexm = (base / 100).toFixed(6);
-      let indexmm = (indexm * 1000).toFixed(6);
-      let indexcm = (indexm * 100).toFixed(6);
-      let indexdm = (indexm * 10).toFixed(6);
-      let indexkm = (indexm / 1000).toFixed(6);
-      let indexinch = (indexm * 39.3700787).toFixed(6);
-      let indexfoot = (indexm * 3.2808399).toFixed(6);
-      setmm(indexmm);
-      setcm(indexcm);
-      setdm(indexdm);
-      setm(indexm);
-      setkm(indexkm);
-      setinch(indexinch);
-      setfoot(indexfoot);
+      simplify(indexm);
     }
     if (!flagdm) {
       let indexm = (base / 10).toFixed(6);
-      let indexmm = (indexm * 1000).toFixed(6);
-      let indexcm = (indexm * 100).toFixed(6);
-      let indexdm = (indexm * 10).toFixed(6);
-      let indexkm = (indexm / 1000).toFixed(6);
-      let indexinch = (indexm * 39.3700787).toFixed(6);
-      let indexfoot = (indexm * 3.2808399).toFixed(6);
-      setmm(indexmm);
-      setcm(indexcm);
-      setdm(indexdm);
-      setm(indexm);
-      setkm(indexkm);
-      setinch(indexinch);
-      setfoot(indexfoot);
+      simplify(indexm);
     }
     if (!flagm) {
       let indexm = (base * 1).toFixed(6);
-      let indexmm = (indexm * 1000).toFixed(6);
-      let indexcm = (indexm * 100).toFixed(6);
-      let indexdm = (indexm * 10).toFixed(6);
-      let indexkm = (indexm / 1000).toFixed(6);
-      let indexinch = (indexm * 39.3700787).toFixed(6);
-      let indexfoot = (indexm * 3.2808399).toFixed(6);
-      setmm(indexmm);
-      setcm(indexcm);
-      setdm(indexdm);
-      setm(indexm);
-      setkm(indexkm);
-      setinch(indexinch);
-      setfoot(indexfoot);
+      simplify(indexm);
     }
     if (!flagkm) {
       let indexm = (base * 1000).toFixed(6);
-      let indexmm = (indexm * 1000).toFixed(6);
-      let indexcm = (indexm * 100).toFixed(6);
-      let indexdm = (indexm * 10).toFixed(6);
-      let indexkm = (indexm / 1000).toFixed(6);
-      let indexinch = (indexm * 39.3700787).toFixed(6);
-      let indexfoot = (indexm * 3.2808399).toFixed(6);
-      setmm(indexmm);
-      setcm(indexcm);
-      setdm(indexdm);
-      setm(indexm);
-      setkm(indexkm);
-      setinch(indexinch);
-      setfoot(indexfoot);
+      simplify(indexm);
     }
     if (!flagfoot) {
       let indexm = (base * 0.3048).toFixed(6);
-      let indexmm = (indexm * 1000).toFixed(6);
-      let indexcm = (indexm * 100).toFixed(6);
-      let indexdm = (indexm * 10).toFixed(6);
-      let indexkm = (indexm / 1000).toFixed(6);
-      let indexinch = (indexm * 39.3700787).toFixed(6);
-      let indexfoot = (indexm * 3.2808399).toFixed(6);
-      setmm(indexmm);
-      setcm(indexcm);
-      setdm(indexdm);
-      setm(indexm);
-      setkm(indexkm);
-      setinch(indexinch);
-      setfoot(indexfoot);
+      simplify(indexm);
     }
     if (!flaginch) {
       let indexm = (base * 0.0254).toFixed(6);
-      let indexmm = (indexm * 1000).toFixed(6);
-      let indexcm = (indexm * 100).toFixed(6);
-      let indexdm = (indexm * 10).toFixed(6);
-      let indexkm = (indexm / 1000).toFixed(6);
-      let indexinch = (indexm * 39.3700787).toFixed(6);
-      let indexfoot = (indexm * 3.2808399).toFixed(6);
-      setmm(indexmm);
-      setcm(indexcm);
-      setdm(indexdm);
-      setm(indexm);
-      setkm(indexkm);
-      setinch(indexinch);
-      setfoot(indexfoot);
+      simplify(indexm);
     }
   }
 
@@ -171,6 +104,7 @@ const Length = () => {
             <TextInput
               style={styles.valuetopinput}
               placeholder="请输入数值"
+              eyboardType="number-pad"
               onChangeText={(text) => Transform(text)}
             />
             <TouchableOpacity style={styles.valuetopbtn} onPress={Clear}>
@@ -194,7 +128,13 @@ const Length = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagmm ? '#222' : '#5050F3' },
+                {
+                  backgroundColor: flagmm
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -230,7 +170,13 @@ const Length = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagcm ? '#222' : '#5050F3' },
+                {
+                  backgroundColor: flagcm
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -266,7 +212,13 @@ const Length = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagdm ? '#222' : '#5050F3' },
+                {
+                  backgroundColor: flagdm
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -302,7 +254,13 @@ const Length = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagm ? '#222' : '#5050F3' },
+                {
+                  backgroundColor: flagm
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -339,7 +297,13 @@ const Length = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagkm ? '#222' : '#5050F3' },
+                {
+                  backgroundColor: flagkm
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -375,7 +339,13 @@ const Length = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagfoot ? '#222' : '#5050F3' },
+                {
+                  backgroundColor: flagfoot
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -411,7 +381,13 @@ const Length = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flaginch ? '#222' : '#5050F3' },
+                {
+                  backgroundColor: flaginch
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -441,8 +417,6 @@ const Length = () => {
 const styles = StyleSheet.create({
   body: {
     padding: 15,
-    //For Dark Mode
-    //backgroundColor:'black',
   },
   valuetop: {
     flexDirection: 'row',
@@ -460,12 +434,7 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 18,
     backgroundColor: '#EEEEEE',
-    //For Dark Mode
-    //borderColor:'orange',
-    //borderWidth:0.8,
     borderRadius: 10,
-    //For Dark Mode
-    //color:'#fff',
     color: '#111',
     fontWeight: '500',
   },

@@ -203,8 +203,6 @@ const Weight = () => {
 const styles = StyleSheet.create({
   body: {
     padding: 15,
-    //For Dark Mode
-    //backgroundColor:'black',
     backgroundColor: 'white',
   },
   valuetop: {
@@ -238,18 +236,11 @@ const styles = StyleSheet.create({
     marginLeft: 25,
     fontSize: 18,
     backgroundColor: '#EEEEEE',
-    //For Dark Mode
-    //borderColor:'orange',
-    //borderWidth:0.8,
     borderRadius: 10,
-    //For Dark Mode
-    //color:'#fff',
     color: '#111',
     fontWeight: '500',
   },
   btn1: {
-    //For Dark Mode
-    //backgroundColor:'white',
     backgroundColor: 'black',
     padding: 5,
     width: 150,

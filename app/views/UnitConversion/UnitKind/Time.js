@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
 } from 'react-native';
+import Theme from '../../../variables';
 
 const Time = () => {
   const [us, setus] = useState('');
@@ -25,118 +26,51 @@ const Time = () => {
   const [flagweek, setflagweek] = useState(true);
   const [flagyear, setflagyear] = useState(true);
 
+  function simplify(indexday) {
+    indexday = (indexday * 1).toFixed(2);
+    let indexus = (indexday * 86400000000).toFixed(2);
+    let indexs = (indexday * 86400).toFixed(2);
+    let indexmin = (indexday * 1440).toFixed(2);
+    let indexhour = (indexday * 24).toFixed(2);
+    let indexweek = (indexday * 0.1428571).toFixed(2);
+    let indexyear = (indexday * 0.0027397).toFixed(2);
+    setus(indexus);
+    sets(indexs);
+    setmin(indexmin);
+    sethour(indexhour);
+    setday(indexday);
+    setweek(indexweek);
+    setyear(indexyear);
+  }
+
   function Transform(base) {
     if (!flagus) {
       let indexday = (base / 86400000000).toFixed(6);
-      let indexus = (indexday * 86400000000).toFixed(6);
-      let indexs = (indexday * 86400).toFixed(6);
-      let indexmin = (indexday * 1440).toFixed(6);
-      let indexhour = (indexday * 24).toFixed(6);
-      let indexweek = (indexday * 0.1428571).toFixed(6);
-      let indexyear = (indexday * 0.0027397).toFixed(6);
-      setus(indexus);
-      sets(indexs);
-      setmin(indexmin);
-      sethour(indexhour);
-      setday(indexday);
-      setweek(indexweek);
-      setyear(indexyear);
+      simplify(indexday);
     }
     if (!flags) {
       let indexday = (base / 86400).toFixed(6);
-      let indexus = (indexday * 86400000000).toFixed(6);
-      let indexs = (indexday * 86400).toFixed(6);
-      let indexmin = (indexday * 1440).toFixed(6);
-      let indexhour = (indexday * 24).toFixed(6);
-      let indexweek = (indexday * 0.1428571).toFixed(6);
-      let indexyear = (indexday * 0.0027397).toFixed(6);
-      setus(indexus);
-      sets(indexs);
-      setmin(indexmin);
-      sethour(indexhour);
-      setday(indexday);
-      setweek(indexweek);
-      setyear(indexyear);
+      simplify(indexday);
     }
     if (!flagmin) {
       let indexday = (base / 1440).toFixed(6);
-      let indexus = (indexday * 86400000000).toFixed(6);
-      let indexs = (indexday * 86400).toFixed(6);
-      let indexmin = (indexday * 1440).toFixed(6);
-      let indexhour = (indexday * 24).toFixed(6);
-      let indexweek = (indexday * 0.1428571).toFixed(6);
-      let indexyear = (indexday * 0.0027397).toFixed(6);
-      setus(indexus);
-      sets(indexs);
-      setmin(indexmin);
-      sethour(indexhour);
-      setday(indexday);
-      setweek(indexweek);
-      setyear(indexyear);
+      simplify(indexday);
     }
     if (!flaghour) {
       let indexday = (base / 24).toFixed(6);
-      let indexus = (indexday * 86400000000).toFixed(6);
-      let indexs = (indexday * 86400).toFixed(6);
-      let indexmin = (indexday * 1440).toFixed(6);
-      let indexhour = (indexday * 24).toFixed(6);
-      let indexweek = (indexday * 0.1428571).toFixed(6);
-      let indexyear = (indexday * 0.0027397).toFixed(6);
-      setus(indexus);
-      sets(indexs);
-      setmin(indexmin);
-      sethour(indexhour);
-      setday(indexday);
-      setweek(indexweek);
-      setyear(indexyear);
+      simplify(indexday);
     }
     if (!flagday) {
       let indexday = (base * 1).toFixed(6);
-      let indexus = (indexday * 86400000000).toFixed(6);
-      let indexs = (indexday * 86400).toFixed(6);
-      let indexmin = (indexday * 1440).toFixed(6);
-      let indexhour = (indexday * 24).toFixed(6);
-      let indexweek = (indexday * 0.1428571).toFixed(6);
-      let indexyear = (indexday * 0.0027397).toFixed(6);
-      setus(indexus);
-      sets(indexs);
-      setmin(indexmin);
-      sethour(indexhour);
-      setday(indexday);
-      setweek(indexweek);
-      setyear(indexyear);
+      simplify(indexday);
     }
     if (!flagweek) {
       let indexday = (base * 7).toFixed(6);
-      let indexus = (indexday * 86400000000).toFixed(6);
-      let indexs = (indexday * 86400).toFixed(6);
-      let indexmin = (indexday * 1440).toFixed(6);
-      let indexhour = (indexday * 24).toFixed(6);
-      let indexweek = (indexday * 0.1428571).toFixed(6);
-      let indexyear = (indexday * 0.0027397).toFixed(6);
-      setus(indexus);
-      sets(indexs);
-      setmin(indexmin);
-      sethour(indexhour);
-      setday(indexday);
-      setweek(indexweek);
-      setyear(indexyear);
+      simplify(indexday);
     }
     if (!flagyear) {
       let indexday = (base * 365).toFixed(6);
-      let indexus = (indexday * 86400000000).toFixed(6);
-      let indexs = (indexday * 86400).toFixed(6);
-      let indexmin = (indexday * 1440).toFixed(6);
-      let indexhour = (indexday * 24).toFixed(6);
-      let indexweek = (indexday * 0.1428571).toFixed(6);
-      let indexyear = (indexday * 0.0027397).toFixed(6);
-      setus(indexus);
-      sets(indexs);
-      setmin(indexmin);
-      sethour(indexhour);
-      setday(indexday);
-      setweek(indexweek);
-      setyear(indexyear);
+      simplify(indexday);
     }
   }
 
@@ -152,12 +86,25 @@ const Time = () => {
   return (
     <ScrollView>
       <KeyboardAvoidingView>
-        <View style={styles.body}>
+        <View
+          style={[
+            styles.body,
+            { backgroundColor: Theme.colorTheme ? 'black' : 'white' },
+          ]}
+        >
           <View style={styles.valuetop}>
-            <Text style={styles.valuetoptext}>数值: </Text>
+            <Text
+              style={[
+                styles.valuetoptext,
+                { color: Theme.colorTheme ? 'white' : 'black' },
+              ]}
+            >
+              数值:{' '}
+            </Text>
             <TextInput
               style={styles.valuetopinput}
               placeholder="请输入数值"
+              eyboardType="number-pad"
               onChangeText={(text) => Transform(text)}
             />
             <TouchableOpacity style={styles.valuetopbtn} onPress={Clear}>
@@ -181,7 +128,13 @@ const Time = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagus ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flagus
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -217,7 +170,13 @@ const Time = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flags ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flags
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -253,7 +212,13 @@ const Time = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagmin ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flagmin
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -289,7 +254,13 @@ const Time = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flaghour ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flaghour
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -326,7 +297,13 @@ const Time = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagday ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flagday
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -362,7 +339,13 @@ const Time = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagweek ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flagweek
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -398,7 +381,13 @@ const Time = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagyear ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flagyear
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text

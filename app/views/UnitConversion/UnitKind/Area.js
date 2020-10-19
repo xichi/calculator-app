@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
 } from 'react-native';
+import Theme from '../../../variables';
 
 const Area = () => {
   //units
@@ -200,12 +201,25 @@ const Area = () => {
   return (
     <ScrollView>
       <KeyboardAvoidingView>
-        <View style={styles.body}>
+        <View
+          style={[
+            styles.body,
+            { backgroundColor: Theme.colorTheme ? 'black' : 'white' },
+          ]}
+        >
           <View style={styles.valuetop}>
-            <Text style={styles.valuetoptext}>数值: </Text>
+            <Text
+              style={[
+                styles.valuetoptext,
+                { color: Theme.colorTheme ? 'white' : 'black' },
+              ]}
+            >
+              数值:{' '}
+            </Text>
             <TextInput
               style={styles.valuetopinput}
               placeholder="请输入数值"
+              eyboardType="number-pad"
               onChangeText={(text) => Transform(text)}
             />
             <TouchableOpacity style={styles.valuetopbtn} onPress={Clear}>
@@ -214,7 +228,14 @@ const Area = () => {
           </View>
           <View style={styles.units}>
             {/* 公制 */}
-            <Text style={styles.unitkinds}>公制</Text>
+            <Text
+              style={[
+                styles.unitkinds,
+                { color: Theme.colorTheme ? '#a4b0be' : '#636e72' },
+              ]}
+            >
+              公制
+            </Text>
             <TouchableOpacity
               onPress={() => {
                 if (flagmm == true) {
@@ -246,7 +267,13 @@ const Area = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagmm ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flagmm
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -297,7 +324,13 @@ const Area = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagcm ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flagcm
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -348,7 +381,13 @@ const Area = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagdm ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flagdm
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -399,7 +438,13 @@ const Area = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagm ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flagm
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -450,7 +495,13 @@ const Area = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flaggongmu ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flaggongmu
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -501,7 +552,13 @@ const Area = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flaggongqin ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flaggongqin
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -552,7 +609,13 @@ const Area = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagkm ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flagkm
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -574,7 +637,15 @@ const Area = () => {
             </TouchableOpacity>
 
             {/* 英制 */}
-            <Text style={[styles.unitkinds, { marginTop: 15 }]}>英制</Text>
+            <Text
+              style={[
+                styles.unitkinds,
+                { marginTop: 15 },
+                { color: Theme.colorTheme ? '#a4b0be' : '#636e72' },
+              ]}
+            >
+              英制
+            </Text>
             <TouchableOpacity
               onPress={() => {
                 if (flagyingmu == true) {
@@ -606,7 +677,13 @@ const Area = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagyingmu ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flagyingmu
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -657,7 +734,13 @@ const Area = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagyingli ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flagyingli
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -708,7 +791,13 @@ const Area = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagma ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flagma
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -759,7 +848,13 @@ const Area = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagfoot ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flagfoot
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -810,7 +905,13 @@ const Area = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flaginch ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flaginch
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -832,7 +933,15 @@ const Area = () => {
             </TouchableOpacity>
 
             {/* 市制 */}
-            <Text style={[styles.unitkinds, { marginTop: 15 }]}>市制</Text>
+            <Text
+              style={[
+                styles.unitkinds,
+                { marginTop: 15 },
+                { color: Theme.colorTheme ? '#a4b0be' : '#636e72' },
+              ]}
+            >
+              市制
+            </Text>
             <TouchableOpacity
               onPress={() => {
                 if (flagqin == true) {
@@ -864,7 +973,13 @@ const Area = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagqin ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flagqin
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -915,7 +1030,13 @@ const Area = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagmu ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flagmu
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -966,7 +1087,13 @@ const Area = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagfen ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flagfen
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -1017,7 +1144,13 @@ const Area = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagchi ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flagchi
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -1068,7 +1201,13 @@ const Area = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagcun ? 'white' : '#5050F3' },
+                {
+                  backgroundColor: flagcun
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
               ]}
             >
               <Text
@@ -1098,8 +1237,6 @@ const Area = () => {
 const styles = StyleSheet.create({
   body: {
     padding: 15,
-    //For Dark Mode
-    //backgroundColor:'black',
     backgroundColor: 'white',
   },
   valuetop: {
@@ -1118,12 +1255,7 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 18,
     backgroundColor: '#EEEEEE',
-    //For Dark Mode
-    //borderColor:'orange',
-    //borderWidth:0.8,
     borderRadius: 10,
-    //For Dark Mode
-    //color:'#fff',
     color: '#111',
     fontWeight: '500',
   },
@@ -1155,7 +1287,6 @@ const styles = StyleSheet.create({
   },
   unitkinds: {
     fontSize: 20,
-    color: '#636e72',
     marginBottom: 6,
   },
   textleft: {
