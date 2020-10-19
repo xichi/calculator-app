@@ -16,3 +16,7 @@
 // MATH
 export const Pi = '3.1415926';
 export const E = '2.7182818';
+
+global.theme = {
+  colorTheme: false,
+};

@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
+import Theme from '../../variables';
 // import CalculatorIcon from 'app/assets/images/calculator.svg';
 
 const styles = StyleSheet.create({
@@ -13,9 +14,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-    backgroundColor: '#efefef',
   },
-  item: {
+  itemlight: {
     width: '41.5%',
     height: 100,
     backgroundColor: 'white',
@@ -26,7 +26,14 @@ const styles = StyleSheet.create({
     shadowOffset: { h: 10, w: 10 },
     shadowRadius: 6,
     shadowOpacity: 0.1,
-    //textAlign: 'center',
+  },
+  itemdark: {
+    width: '41.5%',
+    height: 100,
+    backgroundColor: '#222',
+    margin: 15,
+    paddingTop: 37.5,
+    borderRadius: 20,
   },
   text: {
     fontSize: 25,
@@ -42,27 +49,27 @@ function index({ navigation }) {
     <ScrollView>
       <View style={[styles.container]}>
         <TouchableOpacity
-          style={styles.item}
+          style={Theme.colorTheme ? styles.itemdark : styles.itemlight}
           onPress={() => navigation.navigate('Length')}
         >
           {/* <CalculatorIcon width={50} height={50} /> */}
           <Text style={styles.text}>长度单位</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.item}
+          style={Theme.colorTheme ? styles.itemdark : styles.itemlight}
           onPress={() => navigation.navigate('Time')}
         >
           <Text style={styles.text}>时间单位</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.item}
+          style={Theme.colorTheme ? styles.itemdark : styles.itemlight}
           onPress={() => navigation.navigate('Area')}
           //onPress={() => alert('此模块还在维护，尚未开放！')}
         >
           <Text style={styles.text}>面积单位</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.item}
+          style={Theme.colorTheme ? styles.itemdark : styles.itemlight}
           //onPress={() => navigation.navigate('Weight')}
           onPress={() => alert('此模块还在维护，尚未开放！')}
         >

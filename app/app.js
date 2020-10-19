@@ -8,7 +8,8 @@ import {
   DefaultTheme,
 } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { StyleSheet, Text, View, useColorScheme } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import Theme from './variables';
 
 // routes
 import Dashboard from './views/Dashboard';
@@ -50,11 +51,9 @@ const styles = StyleSheet.create({
 });
 
 const App = () => {
-  //var colorScheme = false;
-  const [colorScheme, setcolorScheme] = useState(false);
   const [mode, setmode] = useState('夜间模式');
   return (
-    <NavigationContainer theme={colorScheme == true ? DarkTheme : DefaultTheme}>
+    <NavigationContainer theme={Theme.colorTheme ? DarkTheme : DefaultTheme}>
       <Stack.Navigator initialRouteName="Dashboard" headerMode="screen">
         <Stack.Screen
           name="Dashboard"
@@ -68,7 +67,7 @@ const App = () => {
                   <Text
                     style={[
                       styles.title,
-                      { color: colorScheme ? 'white' : 'black' },
+                      { color: Theme.colorTheme ? 'white' : 'black' },
                     ]}
                   >
                     全能计算器
@@ -77,14 +76,14 @@ const App = () => {
                 <View>
                   <Text
                     onPress={() => {
-                      setcolorScheme(!colorScheme);
-                      colorScheme == true
-                        ? setmode('夜间模式')
-                        : setmode('日间模式');
+                      Theme.colorTheme = !Theme.colorTheme;
+                      Theme.colorTheme
+                        ? setmode('日间模式')
+                        : setmode('夜间模式');
                     }}
                     style={[
                       styles.dark,
-                      { color: colorScheme ? 'white' : 'black' },
+                      { color: Theme.colorTheme ? 'white' : 'black' },
                     ]}
                   >
                     {mode}
@@ -104,7 +103,7 @@ const App = () => {
                 <Text
                   style={[
                     styles.title,
-                    { color: colorScheme ? 'white' : 'black' },
+                    { color: Theme.colorTheme ? 'white' : 'black' },
                   ]}
                   onPress={() => {
                     navigation.navigate('Calculator', { mode: 'base' });
@@ -115,7 +114,7 @@ const App = () => {
                 <Text
                   style={[
                     styles.titleRight,
-                    { color: colorScheme ? 'white' : 'black' },
+                    { color: Theme.colorTheme ? 'white' : 'black' },
                   ]}
                   onPress={() => {
                     navigation.navigate('Calculator', { mode: 'scientific' });

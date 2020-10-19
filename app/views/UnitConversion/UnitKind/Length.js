@@ -8,7 +8,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
 } from 'react-native';
-
+import Theme from '../../../variables';
 const Length = () => {
   const [mm, setmm] = useState('');
   const [cm, setcm] = useState('');
@@ -148,13 +148,26 @@ const Length = () => {
     setkm('');
     setfoot('');
     setinch('');
+    alert(Theme.colorTheme);
   }
   return (
     <ScrollView>
       <KeyboardAvoidingView>
-        <View style={styles.body}>
+        <View
+          style={[
+            styles.body,
+            { backgroundColor: Theme.colorTheme ? 'black' : 'white' },
+          ]}
+        >
           <View style={styles.valuetop}>
-            <Text style={styles.valuetoptext}>数值: </Text>
+            <Text
+              style={[
+                styles.valuetoptext,
+                { color: Theme.colorTheme ? 'white' : 'black' },
+              ]}
+            >
+              数值:{' '}
+            </Text>
             <TextInput
               style={styles.valuetopinput}
               placeholder="请输入数值"
@@ -164,7 +177,7 @@ const Length = () => {
               <Text style={styles.btnText}>重置</Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.units}>
+          <View style={[styles.units]}>
             <TouchableOpacity
               onPress={() => {
                 if (flagmm == true) {
@@ -181,7 +194,7 @@ const Length = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagmm ? 'white' : '#5050F3' },
+                { backgroundColor: flagmm ? '#222' : '#5050F3' },
               ]}
             >
               <Text
@@ -217,7 +230,7 @@ const Length = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagcm ? 'white' : '#5050F3' },
+                { backgroundColor: flagcm ? '#222' : '#5050F3' },
               ]}
             >
               <Text
@@ -253,7 +266,7 @@ const Length = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagdm ? 'white' : '#5050F3' },
+                { backgroundColor: flagdm ? '#222' : '#5050F3' },
               ]}
             >
               <Text
@@ -289,7 +302,7 @@ const Length = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagm ? 'white' : '#5050F3' },
+                { backgroundColor: flagm ? '#222' : '#5050F3' },
               ]}
             >
               <Text
@@ -326,7 +339,7 @@ const Length = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagkm ? 'white' : '#5050F3' },
+                { backgroundColor: flagkm ? '#222' : '#5050F3' },
               ]}
             >
               <Text
@@ -362,7 +375,7 @@ const Length = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flagfoot ? 'white' : '#5050F3' },
+                { backgroundColor: flagfoot ? '#222' : '#5050F3' },
               ]}
             >
               <Text
@@ -398,7 +411,7 @@ const Length = () => {
               }}
               style={[
                 styles.unitsview,
-                { backgroundColor: flaginch ? 'white' : '#5050F3' },
+                { backgroundColor: flaginch ? '#222' : '#5050F3' },
               ]}
             >
               <Text
@@ -430,7 +443,6 @@ const styles = StyleSheet.create({
     padding: 15,
     //For Dark Mode
     //backgroundColor:'black',
-    backgroundColor: 'white',
   },
   valuetop: {
     flexDirection: 'row',

@@ -44,9 +44,7 @@ function ExchangeRate() {
 
   const renderItem = ({ item }) => (
     <View style={styles.item}>
-      <View
-        style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
-      >
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Image style={{ width: 80, height: 50 }} source={item.source} />
         <Text style={styles.itemId}>{item.id}</Text>
       </View>
@@ -108,9 +106,8 @@ const styles = StyleSheet.create({
     color: '#666',
   },
   item: {
-    backgroundColor: '#fff',
     padding: 20,
-    display: 'flex',
+    //display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderBottomColor: '#e8e8e8',
