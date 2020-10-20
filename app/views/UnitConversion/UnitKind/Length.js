@@ -145,14 +145,7 @@ const Length = () => {
               >
                 毫米: {mm}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagmm ? '#31A4F0' : 'white' },
-                ]}
-              >
-                mm
-              </Text>
+              <Text style={styles.textright}>mm</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -187,14 +180,7 @@ const Length = () => {
               >
                 厘米: {cm}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagcm ? '#31A4F0' : 'white' },
-                ]}
-              >
-                cm
-              </Text>
+              <Text style={styles.textright}>cm</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -229,14 +215,7 @@ const Length = () => {
               >
                 分米: {dm}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagdm ? '#31A4F0' : 'white' },
-                ]}
-              >
-                dm
-              </Text>
+              <Text style={styles.textright}>dm</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -271,14 +250,7 @@ const Length = () => {
               >
                 米: {m}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagm ? '#31A4F0' : 'white' },
-                ]}
-              >
-                m
-              </Text>
+              <Text style={styles.textright}>m</Text>
             </TouchableOpacity>
             <TouchableOpacity
               ouchableOpacity
@@ -314,14 +286,7 @@ const Length = () => {
               >
                 千米: {km}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagkm ? '#31A4F0' : 'white' },
-                ]}
-              >
-                km
-              </Text>
+              <Text style={styles.textright}>km</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -356,14 +321,7 @@ const Length = () => {
               >
                 英尺: {foot}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagfoot ? '#31A4F0' : 'white' },
-                ]}
-              >
-                foot
-              </Text>
+              <Text style={styles.textright}>foot</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -398,14 +356,7 @@ const Length = () => {
               >
                 英寸: {inch}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flaginch ? '#31A4F0' : 'white' },
-                ]}
-              >
-                inch
-              </Text>
+              <Text style={styles.textright}>inch</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -475,6 +426,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     fontSize: 23,
     fontWeight: '600',
+    color: '#bdc3c7',
   },
   btnText: {
     fontSize: 22,

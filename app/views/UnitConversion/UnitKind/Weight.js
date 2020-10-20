@@ -208,14 +208,7 @@ const Weight = () => {
               >
                 毫克: {haoke}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flaghaoke ? '#31A4F0' : 'white' },
-                ]}
-              >
-                mg
-              </Text>
+              <Text style={[styles.textright]}>mg</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -256,14 +249,7 @@ const Weight = () => {
               >
                 克: {ke}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagke ? '#31A4F0' : 'white' },
-                ]}
-              >
-                g
-              </Text>
+              <Text style={[styles.textright]}>g</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -304,14 +290,7 @@ const Weight = () => {
               >
                 千克: {qianke}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagqianke ? '#31A4F0' : 'white' },
-                ]}
-              >
-                kg
-              </Text>
+              <Text style={[styles.textright]}>kg</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -352,14 +331,7 @@ const Weight = () => {
               >
                 吨: {dun}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagdun ? '#31A4F0' : 'white' },
-                ]}
-              >
-                t
-              </Text>
+              <Text style={[styles.textright]}>t</Text>
             </TouchableOpacity>
 
             {/* 市制 */}
@@ -411,14 +383,7 @@ const Weight = () => {
               >
                 磅: {bang}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagbang ? '#31A4F0' : 'white' },
-                ]}
-              >
-                pound
-              </Text>
+              <Text style={[styles.textright]}>pound</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -459,14 +424,7 @@ const Weight = () => {
               >
                 盎司: {angsi}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagangsi ? '#31A4F0' : 'white' },
-                ]}
-              >
-                盎司
-              </Text>
+              <Text style={[styles.textright]}>盎司</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -507,14 +465,7 @@ const Weight = () => {
               >
                 克拉: {kela}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagkela ? '#31A4F0' : 'white' },
-                ]}
-              >
-                Ct
-              </Text>
+              <Text style={[styles.textright]}>Ct</Text>
             </TouchableOpacity>
 
             {/* 市制 */}
@@ -566,14 +517,7 @@ const Weight = () => {
               >
                 担: {dan}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagdan ? '#31A4F0' : 'white' },
-                ]}
-              >
-                担
-              </Text>
+              <Text style={[styles.textright]}>担</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -614,14 +558,7 @@ const Weight = () => {
               >
                 斤: {jin}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagjin ? '#31A4F0' : 'white' },
-                ]}
-              >
-                斤
-              </Text>
+              <Text style={[styles.textright]}>斤</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -662,14 +599,7 @@ const Weight = () => {
               >
                 两: {liang}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagliang ? '#31A4F0' : 'white' },
-                ]}
-              >
-                两
-              </Text>
+              <Text style={[styles.textright]}>两</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -744,6 +674,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     fontSize: 23,
     fontWeight: '600',
+    color: '#bdc3c7',
   },
   btnText: {
     fontSize: 22,

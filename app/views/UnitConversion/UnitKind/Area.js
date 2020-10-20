@@ -284,14 +284,7 @@ const Area = () => {
               >
                 平方毫米: {mm}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagmm ? '#31A4F0' : 'white' },
-                ]}
-              >
-                mm²
-              </Text>
+              <Text style={styles.textright}>mm²</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -341,14 +334,7 @@ const Area = () => {
               >
                 平方厘米: {cm}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagcm ? '#31A4F0' : 'white' },
-                ]}
-              >
-                cm²
-              </Text>
+              <Text style={styles.textright}>cm²</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -398,14 +384,7 @@ const Area = () => {
               >
                 平方分米: {dm}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagdm ? '#31A4F0' : 'white' },
-                ]}
-              >
-                dm²
-              </Text>
+              <Text style={styles.textright}>dm²</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -455,14 +434,7 @@ const Area = () => {
               >
                 平方米: {m}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagm ? '#31A4F0' : 'white' },
-                ]}
-              >
-                m²
-              </Text>
+              <Text style={styles.textright}>m²</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -512,14 +484,7 @@ const Area = () => {
               >
                 公亩: {gongmu}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flaggongmu ? '#31A4F0' : 'white' },
-                ]}
-              >
-                公亩
-              </Text>
+              <Text style={styles.textright}>公亩</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -569,14 +534,7 @@ const Area = () => {
               >
                 公顷: {gongqin}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flaggongqin ? '#31A4F0' : 'white' },
-                ]}
-              >
-                公顷
-              </Text>
+              <Text style={styles.textright}>公顷</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -626,14 +584,7 @@ const Area = () => {
               >
                 平方千米: {km}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagkm ? '#31A4F0' : 'white' },
-                ]}
-              >
-                km²
-              </Text>
+              <Text style={styles.textright}>km²</Text>
             </TouchableOpacity>
 
             {/* 英制 */}
@@ -694,14 +645,7 @@ const Area = () => {
               >
                 英亩: {yingmu}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagyingmu ? '#31A4F0' : 'white' },
-                ]}
-              >
-                英亩
-              </Text>
+              <Text style={styles.textright}>英亩</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -751,14 +695,7 @@ const Area = () => {
               >
                 英里: {yingli}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagyingli ? '#31A4F0' : 'white' },
-                ]}
-              >
-                英里
-              </Text>
+              <Text style={styles.textright}>英里</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -808,14 +745,7 @@ const Area = () => {
               >
                 平方码: {ma}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagma ? '#31A4F0' : 'white' },
-                ]}
-              >
-                平方码
-              </Text>
+              <Text style={styles.textright}>平方码</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -865,14 +795,7 @@ const Area = () => {
               >
                 平方英尺: {foot}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagfoot ? '#31A4F0' : 'white' },
-                ]}
-              >
-                平方英尺
-              </Text>
+              <Text style={styles.textright}>平方英尺</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -922,14 +845,7 @@ const Area = () => {
               >
                 平方英寸: {inch}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flaginch ? '#31A4F0' : 'white' },
-                ]}
-              >
-                平方英寸
-              </Text>
+              <Text style={styles.textright}>平方英寸</Text>
             </TouchableOpacity>
 
             {/* 市制 */}
@@ -990,14 +906,7 @@ const Area = () => {
               >
                 顷: {qin}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagqin ? '#31A4F0' : 'white' },
-                ]}
-              >
-                顷
-              </Text>
+              <Text style={styles.textright}>顷</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -1047,14 +956,7 @@ const Area = () => {
               >
                 亩: {mu}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagmu ? '#31A4F0' : 'white' },
-                ]}
-              >
-                亩
-              </Text>
+              <Text style={styles.textright}>亩</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -1104,14 +1006,7 @@ const Area = () => {
               >
                 分: {fen}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagfen ? '#31A4F0' : 'white' },
-                ]}
-              >
-                分
-              </Text>
+              <Text style={styles.textright}>分</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -1161,14 +1056,7 @@ const Area = () => {
               >
                 尺: {chi}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagchi ? '#31A4F0' : 'white' },
-                ]}
-              >
-                尺
-              </Text>
+              <Text style={styles.textright}>尺</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -1218,14 +1106,7 @@ const Area = () => {
               >
                 寸: {cun}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagcun ? '#31A4F0' : 'white' },
-                ]}
-              >
-                寸
-              </Text>
+              <Text style={styles.textright}>寸</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -1300,6 +1181,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     fontSize: 23,
     fontWeight: '600',
+    color: '#bdc3c7',
   },
   btnText: {
     fontSize: 22,

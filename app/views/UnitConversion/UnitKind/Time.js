@@ -145,14 +145,7 @@ const Time = () => {
               >
                 微秒: {us}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagus ? '#31A4F0' : 'white' },
-                ]}
-              >
-                us
-              </Text>
+              <Text style={styles.textright}>us</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -187,14 +180,7 @@ const Time = () => {
               >
                 秒: {s}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flags ? '#31A4F0' : 'white' },
-                ]}
-              >
-                s
-              </Text>
+              <Text style={styles.textright}>s</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -229,14 +215,7 @@ const Time = () => {
               >
                 分: {min}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagmin ? '#31A4F0' : 'white' },
-                ]}
-              >
-                min
-              </Text>
+              <Text style={styles.textright}>min</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -271,14 +250,7 @@ const Time = () => {
               >
                 时: {hour}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flaghour ? '#31A4F0' : 'white' },
-                ]}
-              >
-                hour
-              </Text>
+              <Text style={styles.textright}>hour</Text>
             </TouchableOpacity>
             <TouchableOpacity
               ouchableOpacity
@@ -314,14 +286,7 @@ const Time = () => {
               >
                 天: {day}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagday ? '#31A4F0' : 'white' },
-                ]}
-              >
-                天
-              </Text>
+              <Text style={styles.textright}>天</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -356,14 +321,7 @@ const Time = () => {
               >
                 周: {week}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagweek ? '#31A4F0' : 'white' },
-                ]}
-              >
-                周
-              </Text>
+              <Text style={styles.textright}>周</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -398,14 +356,7 @@ const Time = () => {
               >
                 年: {year}
               </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagyear ? '#31A4F0' : 'white' },
-                ]}
-              >
-                年
-              </Text>
+              <Text style={styles.textright}>年</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -483,6 +434,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     fontSize: 23,
     fontWeight: '600',
+    color: '#bdc3c7',
   },
   btnText: {
     fontSize: 22,

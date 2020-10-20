@@ -241,7 +241,6 @@ const DecimalConversion = ({ navigation }) => {
                 { backgroundColor: Theme.colorTheme ? '#2d3436' : '#f5f6fa' },
               ]}
               onPress={() => navigation.navigate('Sixteen')}
-              //onPress={() => alert('此模块还在维护，敬请期待！')}
             >
               <Text style={[styles.bottombtnText]}>Get it!</Text>
             </TouchableOpacity>
