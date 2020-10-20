@@ -10,78 +10,51 @@ import {
 } from 'react-native';
 import Theme from '../../variables';
 const Sixteen = () => {
-  const [mm, setmm] = useState('');
-  const [cm, setcm] = useState('');
-  const [dm, setdm] = useState('');
-  const [m, setm] = useState('');
-  const [km, setkm] = useState('');
-  const [foot, setfoot] = useState('');
-  const [inch, setinch] = useState('');
-  const [flagmm, setflagmm] = useState(true);
-  const [flagcm, setflagcm] = useState(true);
-  const [flagdm, setflagdm] = useState(true);
-  const [flagm, setflagm] = useState(false);
-  const [flagkm, setflagkm] = useState(true);
-  const [flagfoot, setflagfoot] = useState(true);
-  const [flaginch, setflaginch] = useState(true);
+  const [add, setadd] = useState('');
+  const [sub, setsub] = useState('');
+  const [mul, setmul] = useState('');
+  const [div, setdiv] = useState('');
+  const [sympol, setsympol] = useState('+');
+  const [flagadd, setflagadd] = useState(false);
+  const [flagsub, setflagsub] = useState(true);
+  const [flagmul, setflagmul] = useState(true);
+  const [flagdiv, setflagdiv] = useState(true);
 
-  function simplify(indexm) {
-    indexm = (indexm * 1).toFixed(2);
-    let indexmm = (indexm * 1000).toFixed(2);
-    let indexcm = (indexm * 100).toFixed(2);
-    let indexdm = (indexm * 10).toFixed(2);
-    let indexkm = (indexm / 1000).toFixed(2);
-    let indexinch = (indexm * 39.3700787).toFixed(2);
-    let indexfoot = (indexm * 3.2808399).toFixed(2);
-    setmm(indexmm);
-    setcm(indexcm);
-    setdm(indexdm);
-    setm(indexm);
-    setkm(indexkm);
-    setinch(indexinch);
-    setfoot(indexfoot);
+  function calculate() {
+    if (!flagadd) {
+      let result = parseInt(Theme.input1, 16) + parseInt(Theme.input2, 16);
+      result = result.toString(16);
+      setadd(result);
+    }
+    if (!flagsub) {
+      let result = parseInt(Theme.input1, 16) - parseInt(Theme.input2, 16);
+      result = result.toString(16);
+      setsub(result);
+    }
+    if (!flagmul) {
+      let result = parseInt(Theme.input1, 16) * parseInt(Theme.input2, 16);
+      result = result.toString(16);
+      setmul(result);
+    }
+    if (!flagdiv) {
+      let result = parseInt(Theme.input1, 16) / parseInt(Theme.input2, 16);
+      result = result.toString(16);
+      setdiv(result);
+    }
   }
 
-  function Transform(base) {
-    if (!flagmm) {
-      let indexm = (base / 1000).toFixed(6);
-      simplify(indexm);
-    }
-    if (!flagcm) {
-      let indexm = (base / 100).toFixed(6);
-      simplify(indexm);
-    }
-    if (!flagdm) {
-      let indexm = (base / 10).toFixed(6);
-      simplify(indexm);
-    }
-    if (!flagm) {
-      let indexm = (base * 1).toFixed(6);
-      simplify(indexm);
-    }
-    if (!flagkm) {
-      let indexm = (base * 1000).toFixed(6);
-      simplify(indexm);
-    }
-    if (!flagfoot) {
-      let indexm = (base * 0.3048).toFixed(6);
-      simplify(indexm);
-    }
-    if (!flaginch) {
-      let indexm = (base * 0.0254).toFixed(6);
-      simplify(indexm);
-    }
+  function Input1(text) {
+    Theme.input1 = text;
+  }
+  function Input2(text) {
+    Theme.input2 = text;
   }
 
   function Clear() {
-    setmm('');
-    setcm('');
-    setdm('');
-    setm('');
-    setkm('');
-    setfoot('');
-    setinch('');
-    alert(Theme.colorTheme);
+    setadd('');
+    setsub('');
+    setmul('');
+    setdiv('');
   }
   return (
     <ScrollView>
@@ -92,36 +65,51 @@ const Sixteen = () => {
             { backgroundColor: Theme.colorTheme ? 'black' : 'white' },
           ]}
         >
-          <View style={styles.valuetop}>
-            <Text
-              style={[
-                styles.valuetoptext,
-                { color: Theme.colorTheme ? 'white' : 'black' },
-              ]}
-            >
-              数值:{' '}
-            </Text>
-            <TextInput
-              style={styles.valuetopinput}
-              placeholder="请输入数值"
-              eyboardType="number-pad"
-              onChangeText={(text) => Transform(text)}
-            />
-            <TouchableOpacity style={styles.valuetopbtn} onPress={Clear}>
-              <Text style={styles.btnText}>重置</Text>
-            </TouchableOpacity>
+          <View>
+            <View style={styles.topinput}>
+              <TextInput
+                style={styles.valuetopinput1}
+                placeholder="请输入十六进制数"
+                onChangeText={(text) => Input1(text)}
+              />
+              <Text
+                style={{
+                  color: Theme.colorTheme ? '#a4b0be' : '#636e72',
+                  fontWeight: '700',
+                  fontSize: 30,
+                }}
+              >
+                {sympol}
+              </Text>
+              <TextInput
+                style={styles.valuetopinput2}
+                placeholder="请输入十六进制数"
+                onChangeText={(text) => Input2(text)}
+              />
+            </View>
+            <View style={styles.btns}>
+              <TouchableOpacity
+                style={styles.valuetopbtn1}
+                onPress={function () {
+                  calculate();
+                }}
+              >
+                <Text style={styles.btnText}>计算</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.valuetopbtn2} onPress={Clear}>
+                <Text style={styles.btnText}>重置</Text>
+              </TouchableOpacity>
+            </View>
           </View>
           <View style={[styles.units]}>
             <TouchableOpacity
               onPress={() => {
-                if (flagmm == true) {
-                  setflagmm(!flagmm);
-                  setflagcm(true);
-                  setflagdm(true);
-                  setflagm(true);
-                  setflagkm(true);
-                  setflagfoot(true);
-                  setflaginch(true);
+                if (flagadd == true) {
+                  setflagadd(!flagadd);
+                  setflagsub(true);
+                  setflagmul(true);
+                  setflagdiv(true);
+                  setsympol('+');
                 } else {
                   alert('请选择一个单位作为基准单位');
                 }
@@ -129,7 +117,7 @@ const Sixteen = () => {
               style={[
                 styles.unitsview,
                 {
-                  backgroundColor: flagmm
+                  backgroundColor: flagadd
                     ? Theme.colorTheme
                       ? '#222'
                       : 'white'
@@ -140,30 +128,28 @@ const Sixteen = () => {
               <Text
                 style={[
                   styles.textleft,
-                  { color: flagmm ? '#31A4F0' : 'white' },
+                  { color: flagadd ? '#31A4F0' : 'white' },
                 ]}
               >
-                毫米: {mm}
+                加法结果: {add}
               </Text>
               <Text
                 style={[
                   styles.textright,
-                  { color: flagmm ? '#31A4F0' : 'white' },
+                  { color: flagadd ? '#31A4F0' : 'white' },
                 ]}
               >
-                mm
+                +
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                if (flagcm == true) {
-                  setflagmm(true);
-                  setflagcm(!flagcm);
-                  setflagdm(true);
-                  setflagm(true);
-                  setflagkm(true);
-                  setflagfoot(true);
-                  setflaginch(true);
+                if (flagsub == true) {
+                  setflagadd(true);
+                  setflagsub(!flagsub);
+                  setflagmul(true);
+                  setflagdiv(true);
+                  setsympol('-');
                 } else {
                   alert('请选择一个单位作为基准单位');
                 }
@@ -171,7 +157,7 @@ const Sixteen = () => {
               style={[
                 styles.unitsview,
                 {
-                  backgroundColor: flagcm
+                  backgroundColor: flagsub
                     ? Theme.colorTheme
                       ? '#222'
                       : 'white'
@@ -182,30 +168,28 @@ const Sixteen = () => {
               <Text
                 style={[
                   styles.textleft,
-                  { color: flagcm ? '#31A4F0' : 'white' },
+                  { color: flagsub ? '#31A4F0' : 'white' },
                 ]}
               >
-                厘米: {cm}
+                减法结果: {sub}
               </Text>
               <Text
                 style={[
                   styles.textright,
-                  { color: flagcm ? '#31A4F0' : 'white' },
+                  { color: flagsub ? '#31A4F0' : 'white' },
                 ]}
               >
-                cm
+                -
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                if (flagdm == true) {
-                  setflagmm(true);
-                  setflagcm(true);
-                  setflagdm(!flagdm);
-                  setflagm(true);
-                  setflagkm(true);
-                  setflagfoot(true);
-                  setflaginch(true);
+                if (flagmul == true) {
+                  setflagadd(true);
+                  setflagsub(true);
+                  setflagmul(!flagmul);
+                  setflagdiv(true);
+                  setsympol('x');
                 } else {
                   alert('请选择一个单位作为基准单位');
                 }
@@ -213,7 +197,7 @@ const Sixteen = () => {
               style={[
                 styles.unitsview,
                 {
-                  backgroundColor: flagdm
+                  backgroundColor: flagmul
                     ? Theme.colorTheme
                       ? '#222'
                       : 'white'
@@ -224,30 +208,28 @@ const Sixteen = () => {
               <Text
                 style={[
                   styles.textleft,
-                  { color: flagdm ? '#31A4F0' : 'white' },
+                  { color: flagmul ? '#31A4F0' : 'white' },
                 ]}
               >
-                分米: {dm}
+                乘法结果: {mul}
               </Text>
               <Text
                 style={[
                   styles.textright,
-                  { color: flagdm ? '#31A4F0' : 'white' },
+                  { color: flagmul ? '#31A4F0' : 'white' },
                 ]}
               >
-                dm
+                x
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                if (flagm == true) {
-                  setflagmm(true);
-                  setflagcm(true);
-                  setflagdm(true);
-                  setflagm(!flagm);
-                  setflagkm(true);
-                  setflagfoot(true);
-                  setflaginch(true);
+                if (flagdiv == true) {
+                  setflagadd(true);
+                  setflagsub(true);
+                  setflagmul(true);
+                  setflagdiv(!flagdiv);
+                  setsympol('/');
                 } else {
                   alert('请选择一个单位作为基准单位');
                 }
@@ -255,7 +237,7 @@ const Sixteen = () => {
               style={[
                 styles.unitsview,
                 {
-                  backgroundColor: flagm
+                  backgroundColor: flagdiv
                     ? Theme.colorTheme
                       ? '#222'
                       : 'white'
@@ -266,145 +248,18 @@ const Sixteen = () => {
               <Text
                 style={[
                   styles.textleft,
-                  { color: flagm ? '#31A4F0' : 'white' },
+                  { color: flagdiv ? '#31A4F0' : 'white' },
                 ]}
               >
-                米: {m}
+                除法结果: {div}
               </Text>
               <Text
                 style={[
                   styles.textright,
-                  { color: flagm ? '#31A4F0' : 'white' },
+                  { color: flagdiv ? '#31A4F0' : 'white' },
                 ]}
               >
-                m
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              ouchableOpacity
-              onPress={() => {
-                if (flagkm == true) {
-                  setflagmm(true);
-                  setflagcm(true);
-                  setflagdm(true);
-                  setflagm(true);
-                  setflagkm(!flagkm);
-                  setflagfoot(true);
-                  setflaginch(true);
-                } else {
-                  alert('请选择一个单位作为基准单位');
-                }
-              }}
-              style={[
-                styles.unitsview,
-                {
-                  backgroundColor: flagkm
-                    ? Theme.colorTheme
-                      ? '#222'
-                      : 'white'
-                    : '#5050F3',
-                },
-              ]}
-            >
-              <Text
-                style={[
-                  styles.textleft,
-                  { color: flagkm ? '#31A4F0' : 'white' },
-                ]}
-              >
-                千米: {km}
-              </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagkm ? '#31A4F0' : 'white' },
-                ]}
-              >
-                km
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                if (flagfoot == true) {
-                  setflagmm(true);
-                  setflagcm(true);
-                  setflagdm(true);
-                  setflagm(true);
-                  setflagkm(true);
-                  setflagfoot(!flagfoot);
-                  setflaginch(true);
-                } else {
-                  alert('请选择一个单位作为基准单位');
-                }
-              }}
-              style={[
-                styles.unitsview,
-                {
-                  backgroundColor: flagfoot
-                    ? Theme.colorTheme
-                      ? '#222'
-                      : 'white'
-                    : '#5050F3',
-                },
-              ]}
-            >
-              <Text
-                style={[
-                  styles.textleft,
-                  { color: flagfoot ? '#31A4F0' : 'white' },
-                ]}
-              >
-                英尺: {foot}
-              </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flagfoot ? '#31A4F0' : 'white' },
-                ]}
-              >
-                foot
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                if (flaginch == true) {
-                  setflagmm(true);
-                  setflagcm(true);
-                  setflagdm(true);
-                  setflagm(true);
-                  setflagkm(true);
-                  setflagfoot(true);
-                  setflaginch(!flaginch);
-                } else {
-                  alert('请选择一个单位作为基准单位');
-                }
-              }}
-              style={[
-                styles.unitsview,
-                {
-                  backgroundColor: flaginch
-                    ? Theme.colorTheme
-                      ? '#222'
-                      : 'white'
-                    : '#5050F3',
-                },
-              ]}
-            >
-              <Text
-                style={[
-                  styles.textleft,
-                  { color: flaginch ? '#31A4F0' : 'white' },
-                ]}
-              >
-                英寸: {inch}
-              </Text>
-              <Text
-                style={[
-                  styles.textright,
-                  { color: flaginch ? '#31A4F0' : 'white' },
-                ]}
-              >
-                inch
+                /
               </Text>
             </TouchableOpacity>
           </View>
@@ -418,32 +273,57 @@ const styles = StyleSheet.create({
   body: {
     padding: 15,
   },
-  valuetop: {
+  topinput: {
     flexDirection: 'row',
-    flexWrap: 'nowrap',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
   },
-  valuetoptext: {
-    fontSize: 30,
-    fontWeight: '700',
-    marginTop: 3,
-  },
-  valuetopinput: {
-    width: 185,
+  valuetopinput1: {
+    flex: 1,
     height: 45,
     padding: 10,
-    fontSize: 18,
+    fontSize: 15,
     backgroundColor: '#EEEEEE',
     borderRadius: 10,
     color: '#111',
     fontWeight: '500',
+    marginRight: 20,
   },
-  valuetopbtn: {
+  valuetopinput2: {
+    flex: 1,
+    height: 45,
+    padding: 10,
+    fontSize: 15,
+    backgroundColor: '#EEEEEE',
+    borderRadius: 10,
+    color: '#111',
+    fontWeight: '500',
+    marginLeft: 20,
+  },
+  btns: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    height: 60,
+    marginTop: 20,
+  },
+  valuetopbtn1: {
+    flex: 1,
+    backgroundColor: '#ffa502',
+    padding: 5,
+    width: 75,
+    height: 60,
+    borderRadius: 10,
+    marginLeft: 25,
+    marginRight: 40,
+  },
+  valuetopbtn2: {
+    flex: 1,
     backgroundColor: 'red',
     padding: 5,
     width: 75,
-    height: 45,
+    height: 60,
     borderRadius: 10,
+    marginLeft: 40,
+    marginRight: 25,
   },
   units: {
     flexDirection: 'column',
@@ -477,11 +357,11 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   btnText: {
-    fontSize: 22,
+    fontSize: 25,
     color: 'white',
     fontWeight: 'bold',
     textAlign: 'center',
-    marginTop: 7,
+    marginTop: 12,
   },
 });
 
