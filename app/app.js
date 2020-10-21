@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     flexWrap: 'nowrap',
+    alignItems: 'center',
   },
   title: {
     fontSize: 18,
@@ -39,7 +40,6 @@ const styles = StyleSheet.create({
   icon: {
     width: 30,
     height: 30,
-    position: 'absolute',
   },
   dark: {
     fontSize: 18,
