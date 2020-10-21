@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    margin: 5,
+    //margin: 5,
   },
   icon: {
     width: 30,
@@ -70,6 +70,7 @@ const App = () => {
                   style={[
                     styles.title,
                     { color: Theme.colorTheme ? 'white' : 'black' },
+                    { margin: 5 },
                   ]}
                 >
                   全能计算器
