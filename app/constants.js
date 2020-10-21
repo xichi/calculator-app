@@ -44,6 +44,11 @@ export const tools = [
     img: require('./assets/icons/10.png'),
   },
   {
+    id: 'Plural',
+    name: '复数运算',
+    img: require('./assets/icons/plural.png'),
+  },
+  {
     id: '1',
     name: '日期计算',
     img: require('./assets/icons/calendar.png'),
