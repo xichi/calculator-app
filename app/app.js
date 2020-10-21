@@ -61,7 +61,7 @@ const App = () => {
     <NavigationContainer theme={Theme.colorTheme ? DarkTheme : DefaultTheme}>
       <Stack.Navigator initialRouteName="Dashboard" headerMode="screen">
         <Stack.Screen
-          name="全能计算器"
+          name="Dashboard"
           component={Dashboard}
           options={() => ({
             headerTitle: () => (

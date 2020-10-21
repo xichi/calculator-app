@@ -1,101 +1,112 @@
-import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, SafeAreaView } from 'react-native';
-import SortableGrid from 'react-native-sortable-grid';
-
-const tools = [
-  {
-    id: 'Calculator',
-    name: '计算器',
-    img: require('../assets/icons/calculator.png'),
-  },
-  {
-    id: 'ExchangeRate',
-    name: '汇率换算',
-    img: require('../assets/icons/rate.png'),
-  },
-  {
-    id: 'HousingLoan',
-    name: '房贷计算',
-    img: require('../assets/icons/loan.png'),
-  },
-  {
-    id: 'UnitConversion',
-    name: '单位换算',
-    img: require('../assets/icons/unit.png'),
-  },
-  {
-    id: 'DecimalConversion',
-    name: '进制转换',
-    img: require('../assets/icons/10.png'),
-  },
-  {
-    id: '1',
-    name: '日期计算',
-    img: require('../assets/icons/calendar.png'),
-  },
-  {
-    id: '2',
-    name: 'BMI计算',
-    img: require('../assets/icons/BMI.png'),
-  },
-  {
-    id: '4',
-    name: '大写金额',
-    img: require('../assets/icons/money.png'),
-  },
-];
+import React, { useState, useEffect } from 'react';
+import {
+  View,
+  Text,
+  Image,
+  Alert,
+  StyleSheet,
+  SafeAreaView,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+import { tools } from '../constants';
 
 function Dashboard({ navigation }) {
   const [myTools, setMyTools] = useState(tools.slice(0, 1));
+  const [selectMode, setSelectMode] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem('MY_TOOLS');
+        if (jsonValue) {
+          setMyTools(JSON.parse(jsonValue));
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const onTapTools = async (item) => {
+    if (!selectMode) {
+      navigation.navigate(item.id);
+    } else {
+      setSelectMode(false);
+      const MY_TOOLS = myTools.concat(item);
+      setMyTools(MY_TOOLS);
+      await AsyncStorage.setItem('MY_TOOLS', JSON.stringify(MY_TOOLS));
+    }
+  };
+
+  const showDeleteDialog = async (index) => {
+    Alert.alert('提示', '是否移除该工具', [
+      {
+        text: '是',
+        onPress: async () => {
+          // let temp_tools = myTools;
+          let temp_tools = [...myTools]; // 拷贝到新的数组，setState才能更新
+          temp_tools.splice(index, 1);
+          setMyTools(temp_tools);
+          await AsyncStorage.setItem('MY_TOOLS', JSON.stringify(temp_tools));
+        },
+      },
+      {
+        text: '否',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+    ]);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>我的工具</Text>
-        <Image
-          style={{ width: 30, height: 30 }}
-          source={require('../assets/icons/add.png')}
-        />
-      </View>
-      <SortableGrid
-        style={styles.box}
-        blockTransitionDuration={400}
-        activeBlockCenteringDuration={200}
-        itemsPerRow={3}
-        dragActivationTreshold={200}
-      >
-        {myTools.map((item) => (
-          <View
-            key={item.id}
-            style={styles.item}
-            onTap={() => navigation.navigate(item.id)}
-          >
-            <Image style={styles.icon} source={item.img} />
-            <Text style={styles.text}>{item.name}</Text>
-          </View>
-        ))}
-      </SortableGrid>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>全部工具</Text>
-      </View>
-      <SortableGrid
-        style={styles.box}
-        blockTransitionDuration={400}
-        activeBlockCenteringDuration={200}
-        itemsPerRow={3}
-        dragActivationTreshold={200}
-      >
-        {tools.map((item) => (
-          <View
-            style={styles.item}
-            key={item.id}
-            onTap={() => navigation.navigate(item.id)}
-          >
-            <Image style={styles.icon} source={item.img} />
-            <Text style={styles.text}>{item.name}</Text>
-          </View>
-        ))}
-      </SortableGrid>
+      <ScrollView>
+        <View style={styles.header}>
+          <Text style={styles.headerText}>我的工具</Text>
+          <TouchableOpacity onPress={() => setSelectMode(!selectMode)}>
+            <Image
+              style={{ width: 30, height: 30 }}
+              source={require('../assets/icons/add.png')}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.line}>
+          {myTools.map((item, index) => (
+            <TouchableOpacity
+              style={styles.item}
+              key={item.id}
+              onPress={() => navigation.navigate(item.id)}
+              onLongPress={() => showDeleteDialog(index)}
+            >
+              <Image style={styles.icon} source={item.img} />
+              <Text style={styles.text}>{item.name}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+        <View style={styles.header}>
+          <Text style={styles.headerText}>全部工具</Text>
+          {selectMode ? (
+            <Text style={{ color: '#ffa931', fontSize: 12 }}>
+              点击图标添加至我的工具箱
+            </Text>
+          ) : null}
+        </View>
+        <View style={!selectMode ? styles.line : selectLine}>
+          {tools.map((item) => (
+            <TouchableOpacity
+              style={styles.item}
+              key={item.id}
+              onPress={() => onTapTools(item)}
+            >
+              <Image style={styles.icon} source={item.img} />
+              <Text style={styles.text}>{item.name}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -103,7 +114,6 @@ function Dashboard({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     paddingTop: 10,
   },
   box: {
@@ -113,9 +123,12 @@ const styles = StyleSheet.create({
   line: {
     display: 'flex',
     flexDirection: 'row',
+    flexWrap: 'wrap',
     alignItems: 'center',
   },
   item: {
+    width: '33%',
+    marginVertical: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -129,6 +142,8 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 20,
     lineHeight: 50,
+    color: '#555',
+    fontWeight: 'bold',
   },
   boxItem: {
     flexShrink: 0,
@@ -143,7 +158,12 @@ const styles = StyleSheet.create({
   },
   text: {
     lineHeight: 30,
+    color: '#666',
   },
+});
+
+const selectLine = StyleSheet.compose(styles.line, {
+  backgroundColor: '#dfdfdf',
 });
 
 export default Dashboard;

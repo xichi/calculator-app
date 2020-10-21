@@ -26,7 +26,6 @@ function ExchangeRate() {
   const USMoney = money / currency.find((item) => item.id === base).rate;
 
   useEffect(() => {
-    let isMounted = true;
     const fetchRateData = async () => {
       const results = await getExchangeRate();
       const { rates } = results.data;
@@ -40,13 +39,8 @@ function ExchangeRate() {
       });
       setCurrency(newCurrency);
     };
-    if (isMounted) {
-      fetchRateData();
-    }
-    return () => {
-      isMounted = false;
-    };
-  }, [currency, base]);
+    fetchRateData();
+  }, [currency]);
 
   const renderItem = ({ item }) => (
     <TouchableOpacity onPress={() => setBase(item.id)}>
@@ -171,7 +165,7 @@ const styles = StyleSheet.create({
     color: '#999',
   },
   active: {
-    backgroundColor: '#e8e8e8',
+    backgroundColor: '#ccc',
   },
 });
 
