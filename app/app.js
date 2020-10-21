@@ -1,9 +1,15 @@
 // In App.js in a new project
 
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { useState } from 'react';
+import {
+  NavigationContainer,
+  DarkTheme,
+  DefaultTheme,
+} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import Theme from './variables';
 
 // routes
 import Dashboard from './views/Dashboard';
@@ -11,23 +17,35 @@ import Calculator from './views/Calculator';
 import ExchangeRate from './views/ExchangeRate';
 import HousingLoan from './views/HousingLoan';
 import UnitConversion from './views/UnitConversion';
-import DecimalConversion from './views/DecimalConversion'
-import Length from './views/UnitConversion/UnitKind/Length'
-import Area from './views/UnitConversion/UnitKind/Area'
-import Time from './views/UnitConversion/UnitKind/Time'
-import Weight from './views/UnitConversion/UnitKind/Weight'
-
+import DecimalConversion from './views/DecimalConversion';
+import Sixteen from './views/DecimalConversion/Sixteen';
+import Length from './views/UnitConversion/UnitKind/Length';
+import Area from './views/UnitConversion/UnitKind/Area';
+import Time from './views/UnitConversion/UnitKind/Time';
+import Weight from './views/UnitConversion/UnitKind/Weight';
 const Stack = createStackNavigator();
 
-/*
-  TODO:
-  定制化样式颜色(至少支持夜间模式)
-*/
 const styles = StyleSheet.create({
-  navbar: { display: 'flex', flexDirection: 'row' },
+  navbar: {
+    width: '100%',
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    alignItems: 'center',
+  },
   title: {
     fontSize: 18,
     fontWeight: 'bold',
+    //margin: 5,
+  },
+  icon: {
+    width: 30,
+    height: 30,
+  },
+  dark: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    position: 'absolute',
+    left: 60,
   },
   titleRight: {
     fontSize: 18,
@@ -36,16 +54,47 @@ const styles = StyleSheet.create({
   },
 });
 
-function App() {
+const App = () => {
+  const [mode, setmode] = useState('夜间模式');
+
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={Theme.colorTheme ? DarkTheme : DefaultTheme}>
       <Stack.Navigator initialRouteName="Dashboard" headerMode="screen">
         <Stack.Screen
-          name="Dashboard"
+          name="全能计算器"
           component={Dashboard}
-          options={{
-            title: '全能计算器',
-          }}
+          options={() => ({
+            headerTitle: () => (
+              <View style={styles.navbar}>
+                <Text
+                  style={[
+                    styles.title,
+                    { color: Theme.colorTheme ? 'white' : 'black' },
+                    { margin: 5 },
+                  ]}
+                >
+                  全能计算器
+                </Text>
+                <TouchableOpacity
+                  onPress={() => {
+                    Theme.colorTheme = !Theme.colorTheme;
+                    Theme.colorTheme
+                      ? setmode('日间模式')
+                      : setmode('夜间模式');
+                  }}
+                >
+                  <Image
+                    style={styles.icon}
+                    source={
+                      mode === '夜间模式'
+                        ? require('./assets/icons/dark.png')
+                        : require('./assets/icons/light.png')
+                    }
+                  />
+                </TouchableOpacity>
+              </View>
+            ),
+          })}
         />
         <Stack.Screen
           name="Calculator"
@@ -55,7 +104,10 @@ function App() {
             headerTitle: () => (
               <View style={styles.navbar}>
                 <Text
-                  style={styles.title}
+                  style={[
+                    styles.title,
+                    { color: Theme.colorTheme ? 'white' : 'black' },
+                  ]}
                   onPress={() => {
                     navigation.navigate('Calculator', { mode: 'base' });
                   }}
@@ -63,7 +115,10 @@ function App() {
                   基础
                 </Text>
                 <Text
-                  style={styles.titleRight}
+                  style={[
+                    styles.titleRight,
+                    { color: Theme.colorTheme ? 'white' : 'black' },
+                  ]}
                   onPress={() => {
                     navigation.navigate('Calculator', { mode: 'scientific' });
                   }}
@@ -103,6 +158,13 @@ function App() {
           }}
         />
         <Stack.Screen
+          name="Sixteen"
+          component={Sixteen}
+          options={{
+            title: '十六进制计算',
+          }}
+        />
+        <Stack.Screen
           name="Length"
           component={Length}
           options={{
@@ -133,6 +195,6 @@ function App() {
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
 
 export default App;

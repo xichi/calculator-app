@@ -9,6 +9,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { Picker } from 'native-base';
+import Theme from '../../variables';
 
 function HousingLoan() {
   const [amount, onChangeAmount] = useState('');
@@ -95,7 +96,14 @@ function HousingLoan() {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <View style={styles.line}>
-          <Text style={styles.text}>贷款金额（万元）</Text>
+          <Text
+            style={[
+              styles.text,
+              { color: Theme.colorTheme ? 'white' : 'black' },
+            ]}
+          >
+            贷款金额（万元）
+          </Text>
           <TextInput
             style={styles.TextInput}
             keyboardType="numeric"
@@ -104,7 +112,14 @@ function HousingLoan() {
           />
         </View>
         <View style={styles.line}>
-          <Text style={styles.text}>贷款年限（年）</Text>
+          <Text
+            style={[
+              styles.text,
+              { color: Theme.colorTheme ? 'white' : 'black' },
+            ]}
+          >
+            贷款年限（年）
+          </Text>
           <TextInput
             style={styles.TextInput}
             keyboardType="numeric"
@@ -113,7 +128,14 @@ function HousingLoan() {
           />
         </View>
         <View style={styles.line}>
-          <Text style={styles.text}>贷款利率（%）</Text>
+          <Text
+            style={[
+              styles.text,
+              { color: Theme.colorTheme ? 'white' : 'black' },
+            ]}
+          >
+            贷款利率（%）
+          </Text>
           <TextInput
             style={styles.TextInput}
             keyboardType="numeric"
@@ -122,10 +144,20 @@ function HousingLoan() {
           />
         </View>
         <View style={styles.line}>
-          <Text style={styles.text}>贷款方式</Text>
+          <Text
+            style={[
+              styles.text,
+              { color: Theme.colorTheme ? 'white' : 'black' },
+            ]}
+          >
+            贷款方式
+          </Text>
           <Picker
             mode="dialog"
-            style={styles.picker}
+            style={[
+              styles.picker,
+              { color: Theme.colorTheme ? 'white' : 'black' },
+            ]}
             selectedValue={selectedMethod}
             onValueChange={(value) => onChangeMethod(value)}
           >
@@ -144,7 +176,7 @@ function HousingLoan() {
               </Text>
               <Text>
                 <Text
-                  style={{ fontSize: 25 }}
+                  style={{ fontSize: 25, color: '#ffa931' }}
                 >{`￥${results?.monthRepayment}`}</Text>
                 <Text style={styles.secondaryColor}>元</Text>
               </Text>
@@ -203,14 +235,14 @@ const styles = StyleSheet.create({
     height: 30,
     padding: 6,
     borderRadius: 6,
-    borderColor: '#999',
+    borderColor: '#333',
     backgroundColor: '#fff',
     borderWidth: 1,
   },
   item: {
     width: '25%',
     textAlign: 'center',
-    color: '#333',
+    color: '#666',
   },
   picker: {
     width: 200,
@@ -228,7 +260,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   secondaryColor: {
-    color: '#333',
+    color: '#666',
   },
   tableHeader: {
     marginTop: 10,

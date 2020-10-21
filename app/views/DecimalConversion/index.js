@@ -5,58 +5,249 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  Keyboard,
+  KeyboardAvoidingView,
+  ScrollView,
 } from 'react-native';
+import Theme from '../../variables';
+const DecimalConversion = ({ navigation }) => {
+  const [two, settwo] = useState('');
+  const [eight, seteight] = useState('');
+  const [ten, setten] = useState('');
+  const [sixteen, setsixteen] = useState('');
+  const [flagtwo, setflagtwo] = useState(true);
+  const [flageight, setflageight] = useState(true);
+  const [flagten, setflagten] = useState(false);
+  const [flagsixteen, setflagsixteen] = useState(true);
 
-const DecimalConversion = () => {
-  const [txtValue2, settxtValue2] = useState('');
-  const [txtValue8, settxtValue8] = useState('');
-  const [txtValue10, settxtValue10] = useState('');
-  const [txtValue16, settxtValue16] = useState('');
+  function simplify(indexten) {
+    let indextwo = indexten.toString(2);
+    let indexeight = indexten.toString(8);
+    let indexsixteen = indexten.toString(16);
+    settwo(indextwo);
+    seteight(indexeight);
+    setten(indexten);
+    setsixteen(indexsixteen);
+  }
+  function setnum(text) {
+    Theme.num = text;
+  }
 
-  function Transform() {
-    if (txtValue10 == '') {
-      alert('请输入十进制数值');
-    } else {
-      let index = parseInt(txtValue10, 10);
-      settxtValue2(index.toString(2));
-      settxtValue8(index.toString(8));
-      settxtValue16(index.toString(16));
+  function Transform(base) {
+    if (!flagtwo) {
+      let indexten = parseInt(base, 2);
+      simplify(indexten);
+    }
+    if (!flageight) {
+      let indexten = parseInt(base, 8);
+      simplify(indexten);
+    }
+    if (!flagten) {
+      let indexten = parseInt(base, 10);
+      simplify(indexten);
+    }
+    if (!flagsixteen) {
+      let indexten = parseInt(base, 16);
+      simplify(indexten);
     }
   }
+
   function Clear() {
-    settxtValue2('');
-    settxtValue8('');
-    settxtValue10('');
-    settxtValue16('');
+    settwo('');
+    seteight('');
+    setten('');
+    setsixteen('');
   }
   return (
-    <View style={styles.body}>
-      <View style={styles.row}>
-        <Text style={styles.text}>十进制: </Text>
-        <TextInput
-          placeholder="请输入十进制数"
-          keyboardType="number-pad"
-          clearButtonMode="while-editing"
-          clearTextOnFocus={true}
-          returnKeyType="done"
-          onChangeText={(text) => {
-            settxtValue10(text);
-          }}
-          style={styles.inputstyle}
-        />
-      </View>
-      <Text style={styles.Decimaltext}>二进制: {txtValue2}</Text>
-      <Text style={styles.Decimaltext}>八进制: {txtValue8}</Text>
-      <Text style={styles.Decimaltext}>十进制: {txtValue10}</Text>
-      <Text style={styles.Decimaltext}>十六进制: {txtValue16}</Text>
-      <TouchableOpacity style={styles.btn1} onPress={Transform}>
-        <Text style={styles.btnText}>转换</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.btn2} onPress={Clear}>
-        <Text style={styles.btnText}>重置</Text>
-      </TouchableOpacity>
-    </View>
+    <ScrollView>
+      <KeyboardAvoidingView>
+        <View
+          style={[
+            styles.body,
+            { backgroundColor: Theme.colorTheme ? 'black' : 'white' },
+          ]}
+        >
+          <View style={styles.valuetop}>
+            <Text
+              style={[
+                styles.valuetoptext,
+                { color: Theme.colorTheme ? 'white' : 'black' },
+              ]}
+            >
+              数值:{' '}
+            </Text>
+            <TextInput
+              style={styles.valuetopinput}
+              placeholder="请输入数值"
+              eyboardType="number-pad"
+              onChangeText={(text) => setnum(text)}
+            />
+          </View>
+          <View style={styles.btns}>
+            <TouchableOpacity
+              style={styles.valuetopbtn1}
+              onPress={function () {
+                Transform(Theme.num);
+              }}
+            >
+              <Text style={styles.btnText}>转换</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.valuetopbtn2} onPress={Clear}>
+              <Text style={styles.btnText}>重置</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={[styles.units]}>
+            <TouchableOpacity
+              onPress={() => {
+                if (flagtwo == true) {
+                  setflagtwo(!flagtwo);
+                  setflageight(true);
+                  setflagten(true);
+                  setflagsixteen(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
+              }}
+              style={[
+                styles.unitsview,
+                {
+                  backgroundColor: flagtwo
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
+              ]}
+            >
+              <Text
+                style={[
+                  styles.textleft,
+                  { color: flagtwo ? '#31A4F0' : 'white' },
+                ]}
+              >
+                二进制: {two}
+              </Text>
+              <Text style={[styles.textright]}>2</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                if (flageight == true) {
+                  setflagtwo(true);
+                  setflageight(!flageight);
+                  setflagten(true);
+                  setflagsixteen(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
+              }}
+              style={[
+                styles.unitsview,
+                {
+                  backgroundColor: flageight
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
+              ]}
+            >
+              <Text
+                style={[
+                  styles.textleft,
+                  { color: flageight ? '#31A4F0' : 'white' },
+                ]}
+              >
+                八进制: {eight}
+              </Text>
+              <Text style={[styles.textright]}>8</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                if (flagten == true) {
+                  setflagtwo(true);
+                  setflageight(true);
+                  setflagten(!flagten);
+                  setflagsixteen(true);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
+              }}
+              style={[
+                styles.unitsview,
+                {
+                  backgroundColor: flagten
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
+              ]}
+            >
+              <Text
+                style={[
+                  styles.textleft,
+                  { color: flagten ? '#31A4F0' : 'white' },
+                ]}
+              >
+                十进制: {ten}
+              </Text>
+              <Text style={[styles.textright]}>10</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                if (flagsixteen == true) {
+                  setflagtwo(true);
+                  setflageight(true);
+                  setflagten(true);
+                  setflagsixteen(!flagsixteen);
+                } else {
+                  alert('请选择一个单位作为基准单位');
+                }
+              }}
+              style={[
+                styles.unitsview,
+                {
+                  backgroundColor: flagsixteen
+                    ? Theme.colorTheme
+                      ? '#222'
+                      : 'white'
+                    : '#5050F3',
+                },
+              ]}
+            >
+              <Text
+                style={[
+                  styles.textleft,
+                  { color: flagsixteen ? '#31A4F0' : 'white' },
+                ]}
+              >
+                十六进制: {sixteen}
+              </Text>
+              <Text style={[styles.textright]}>16</Text>
+            </TouchableOpacity>
+          </View>
+          <Text
+            style={{
+              marginTop: 30,
+              color: Theme.colorTheme ? '#a4b0be' : '#636e72',
+              fontSize: 17,
+            }}
+          >
+            点击进入下方按钮进入十六进制计算
+          </Text>
+          <View style={styles.bottom}>
+            <TouchableOpacity
+              style={[
+                styles.bottombtn,
+                { backgroundColor: Theme.colorTheme ? '#2d3436' : '#f5f6fa' },
+              ]}
+              onPress={() => navigation.navigate('Sixteen')}
+            >
+              <Text style={[styles.bottombtnText]}>Get it!</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </KeyboardAvoidingView>
+    </ScrollView>
   );
 };
 
@@ -64,59 +255,110 @@ const styles = StyleSheet.create({
   body: {
     padding: 15,
   },
-  row: {
+  valuetop: {
     flexDirection: 'row',
-    height: 40,
+    flexWrap: 'nowrap',
+    justifyContent: 'space-between',
+  },
+  valuetoptext: {
+    flex: 1,
+    fontSize: 30,
+    fontWeight: '700',
+    marginTop: 3,
+  },
+  valuetopinput: {
+    flex: 3,
+    width: 185,
+    height: 45,
+    padding: 10,
+    fontSize: 18,
+    backgroundColor: '#EEEEEE',
+    borderRadius: 10,
+    color: '#111',
+    fontWeight: '500',
+  },
+  btns: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    height: 60,
     marginTop: 20,
   },
-  text: {
+  valuetopbtn1: {
     flex: 1,
-    marginTop: 6,
-    color: '#555',
-    fontSize: 20,
-  },
-  Decimaltext: {
-    color: '#333',
-    fontSize: 23,
-    marginTop: 35,
-  },
-  inputstyle: {
-    flex: 2,
-    padding: 10,
-    fontSize: 17,
-    height: 40,
-    borderColor: 'black',
-    borderWidth: 1,
-    borderRadius: 10,
-    width: 200,
-    marginRight: 100,
-  },
-  btn1: {
-    backgroundColor: 'black',
+    backgroundColor: '#ffa502',
     padding: 5,
-    width: 80,
-    height: 80,
-    borderRadius: 50,
-    position: 'absolute',
-    top: 360,
-    left: 80,
+    width: 75,
+    height: 60,
+    borderRadius: 10,
+    marginLeft: 25,
+    marginRight: 40,
   },
-  btn2: {
+  valuetopbtn2: {
+    flex: 1,
     backgroundColor: 'red',
     padding: 5,
-    width: 80,
-    height: 80,
-    borderRadius: 50,
-    position: 'absolute',
-    top: 360,
-    left: 260,
+    width: 75,
+    height: 60,
+    borderRadius: 10,
+    marginLeft: 40,
+    marginRight: 25,
+  },
+  units: {
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    marginTop: 20,
+  },
+  unitsview: {
+    alignSelf: 'stretch',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderStyle: 'solid',
+    borderBottomColor: '#CCCCCC',
+    borderBottomWidth: 0.6,
+    paddingTop: 5,
+    paddingBottom: 10,
+    paddingLeft: 5,
+    paddingRight: 10,
+    marginTop: 5,
+    borderRadius: 12,
+  },
+  textleft: {
+    height: 30,
+    marginTop: 8,
+    fontSize: 23,
+    fontWeight: '600',
+  },
+  textright: {
+    height: 30,
+    marginTop: 8,
+    fontSize: 23,
+    fontWeight: '600',
+    color: '#bdc3c7',
+  },
+  bottom: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  bottombtn: {
+    padding: 5,
+    width: 200,
+    height: 60,
+    borderRadius: 10,
+    marginTop: 50,
   },
   btnText: {
     fontSize: 25,
     color: 'white',
     fontWeight: 'bold',
     textAlign: 'center',
-    marginTop: 23,
+    marginTop: 13,
+  },
+  bottombtnText: {
+    fontSize: 26,
+    color: '#00a8ff',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginTop: 10,
   },
 });
 

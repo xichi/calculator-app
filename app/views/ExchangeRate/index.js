@@ -11,6 +11,7 @@ import {
 import moment from 'moment';
 import { getExchangeRate } from '../../api';
 import { CurrencyDATA, CurrencyTime } from './data';
+import Theme from '../../variables';
 
 const CurrencyId = CurrencyDATA.map((item) => item.id);
 
@@ -44,14 +45,24 @@ function ExchangeRate() {
 
   const renderItem = ({ item }) => (
     <View style={styles.item}>
-      <View
-        style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
-      >
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Image style={{ width: 80, height: 50 }} source={item.source} />
-        <Text style={styles.itemId}>{item.id}</Text>
+        <Text
+          style={[
+            styles.itemId,
+            { color: Theme.colorTheme ? 'white' : 'black' },
+          ]}
+        >
+          {item.id}
+        </Text>
       </View>
       <View style={styles.currency}>
-        <Text style={styles.currencyNumber}>
+        <Text
+          style={[
+            styles.currencyNumber,
+            { color: Theme.colorTheme ? 'white' : 'black' },
+          ]}
+        >
           {item.rate ? 100 * item.rate : 0}
         </Text>
         <Text style={styles.currencyName}>{item.currency}</Text>
@@ -74,10 +85,16 @@ function ExchangeRate() {
           </View>
         }
         ListFooterComponent={
-          <Text style={{ marginVertical: 10, textAlign: 'center' }}>
+          <Text
+            style={{
+              marginVertical: 10,
+              textAlign: 'center',
+              color: Theme.colorTheme ? 'white' : 'black',
+            }}
+          >
             感谢
             <Text
-              style={{ color: '#0000ff' }}
+              style={{ color: Theme.colorTheme ? '#0ff' : '#0000ff' }}
               onPress={() => {
                 let url = 'https://www.mycurrency.net/';
                 Linking.openURL(url);
@@ -108,9 +125,7 @@ const styles = StyleSheet.create({
     color: '#666',
   },
   item: {
-    backgroundColor: '#fff',
     padding: 20,
-    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderBottomColor: '#e8e8e8',
