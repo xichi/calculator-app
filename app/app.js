@@ -23,6 +23,8 @@ import Length from './views/UnitConversion/UnitKind/Length';
 import Area from './views/UnitConversion/UnitKind/Area';
 import Time from './views/UnitConversion/UnitKind/Time';
 import Weight from './views/UnitConversion/UnitKind/Weight';
+import Pressure from './views/UnitConversion/UnitKind/Pressure';
+import Speed from './views/UnitConversion/UnitKind/Speed';
 const Stack = createStackNavigator();
 
 const styles = StyleSheet.create({
@@ -190,6 +192,20 @@ const App = () => {
           component={Weight}
           options={{
             title: '重量单位',
+          }}
+        />
+        <Stack.Screen
+          name="Pressure"
+          component={Pressure}
+          options={{
+            title: '压强单位',
+          }}
+        />
+        <Stack.Screen
+          name="Speed"
+          component={Speed}
+          options={{
+            title: '速度单位',
           }}
         />
       </Stack.Navigator>

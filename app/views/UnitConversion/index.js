@@ -74,6 +74,20 @@ function index({ navigation }) {
         >
           <Text style={styles.text}>重量单位</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={Theme.colorTheme ? styles.itemdark : styles.itemlight}
+          onPress={() => navigation.navigate('Pressure')}
+          //onPress={() => alert('此模块还在维护，敬请期待！')}
+        >
+          <Text style={styles.text}>压强单位</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={Theme.colorTheme ? styles.itemdark : styles.itemlight}
+          //onPress={() => navigation.navigate('Speed')}
+          onPress={() => alert('此模块还在维护，敬请期待！')}
+        >
+          <Text style={styles.text}>速度单位</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
