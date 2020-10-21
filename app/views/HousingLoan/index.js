@@ -144,7 +144,14 @@ function HousingLoan() {
           />
         </View>
         <View style={styles.line}>
-          <Text style={styles.text}>贷款方式</Text>
+          <Text
+            style={[
+              styles.text,
+              { color: Theme.colorTheme ? 'white' : 'black' },
+            ]}
+          >
+            贷款方式
+          </Text>
           <Picker
             mode="dialog"
             style={[
