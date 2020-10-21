@@ -81,7 +81,6 @@ const Length = () => {
     setkm('');
     setfoot('');
     setinch('');
-    alert(Theme.colorTheme);
   }
   return (
     <ScrollView>
