@@ -8,7 +8,7 @@ import {
   DefaultTheme,
 } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import Theme from './variables';
 
 // routes
@@ -25,14 +25,11 @@ import Time from './views/UnitConversion/UnitKind/Time';
 import Weight from './views/UnitConversion/UnitKind/Weight';
 const Stack = createStackNavigator();
 
-/*
-  TODO:
-  定制化样式颜色(至少支持夜间模式)
-*/
 const styles = StyleSheet.create({
   navbar: {
+    width: '100%',
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexWrap: 'nowrap',
   },
   title: {
     fontSize: 18,
@@ -53,43 +50,43 @@ const styles = StyleSheet.create({
 
 const App = () => {
   const [mode, setmode] = useState('夜间模式');
+
   return (
     <NavigationContainer theme={Theme.colorTheme ? DarkTheme : DefaultTheme}>
       <Stack.Navigator initialRouteName="Dashboard" headerMode="screen">
         <Stack.Screen
           name="Dashboard"
           component={Dashboard}
-          //options={{ title: '全能计算器' }}
           options={() => ({
-            title: '全能计算器',
             headerTitle: () => (
-              <View style={styles.navbar}>
-                <View>
-                  <Text
-                    style={[
-                      styles.title,
-                      { color: Theme.colorTheme ? 'white' : 'black' },
-                    ]}
-                  >
-                    全能计算器
-                  </Text>
-                </View>
-                <View>
-                  <Text
-                    onPress={() => {
-                      Theme.colorTheme = !Theme.colorTheme;
-                      Theme.colorTheme
-                        ? setmode('日间模式')
-                        : setmode('夜间模式');
-                    }}
-                    style={[
-                      styles.dark,
-                      { color: Theme.colorTheme ? 'white' : 'black' },
-                    ]}
-                  >
-                    {mode}
-                  </Text>
-                </View>
+              <View
+                style={[styles.navbar, { justifyContent: 'space-between' }]}
+              >
+                <Text
+                  style={[
+                    styles.title,
+                    { color: Theme.colorTheme ? 'white' : 'black' },
+                  ]}
+                >
+                  全能计算器
+                </Text>
+                <TouchableOpacity
+                  onPress={() => {
+                    Theme.colorTheme = !Theme.colorTheme;
+                    Theme.colorTheme
+                      ? setmode('日间模式')
+                      : setmode('夜间模式');
+                  }}
+                >
+                  <Image
+                    style={{ width: 30, height: 30 }}
+                    source={
+                      mode === '夜间模式'
+                        ? require('./assets/icons/dark.png')
+                        : require('./assets/icons/light.png')
+                    }
+                  />
+                </TouchableOpacity>
               </View>
             ),
           })}

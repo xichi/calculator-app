@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
 import { Pi, E } from '../../constants';
+import Theme from '../../variables';
 
 const styles = StyleSheet.create({
   container: {
@@ -36,7 +37,14 @@ function Calculator({ route, navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.exp}>
-        <Text style={styles.expText}>{exp}</Text>
+        <Text
+          style={[
+            styles.expText,
+            { color: Theme.colorTheme ? 'white' : 'black' },
+          ]}
+        >
+          {exp}
+        </Text>
       </View>
       <View style={styles.board}>
         {mode === 'scientific' ? (
@@ -64,7 +72,6 @@ const baseStyles = StyleSheet.create({
     borderStyle: 'solid',
     borderWidth: 1,
     borderColor: '#e8e8e8',
-    backgroundColor: '#fff',
   },
   equal: {
     color: '#fff',
@@ -167,7 +174,11 @@ function BaseCalculator(props) {
         <View style={baseStyles.line} key={`line-${lineIndex}`}>
           {line.map((item, itemIndex) => (
             <Text
-              style={item === '=' ? equal : baseStyles.item}
+              style={[
+                { backgroundColor: Theme.colorTheme ? 'black' : 'white' },
+                { color: Theme.colorTheme ? '#ffa931' : 'black' },
+                item === '=' ? equal : baseStyles.item,
+              ]}
               key={`${lineIndex}-${itemIndex}`}
               onPress={() => compute(item)}
             >
