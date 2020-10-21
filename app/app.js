@@ -34,6 +34,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: 'bold',
+    margin: 5,
+  },
+  icon: {
+    width: 30,
+    height: 30,
+    position: 'absolute',
   },
   dark: {
     fontSize: 18,
@@ -55,13 +61,11 @@ const App = () => {
     <NavigationContainer theme={Theme.colorTheme ? DarkTheme : DefaultTheme}>
       <Stack.Navigator initialRouteName="Dashboard" headerMode="screen">
         <Stack.Screen
-          name="Dashboard"
+          name="全能计算器"
           component={Dashboard}
           options={() => ({
             headerTitle: () => (
-              <View
-                style={[styles.navbar, { justifyContent: 'space-between' }]}
-              >
+              <View style={styles.navbar}>
                 <Text
                   style={[
                     styles.title,
@@ -79,7 +83,7 @@ const App = () => {
                   }}
                 >
                   <Image
-                    style={{ width: 30, height: 30 }}
+                    style={styles.icon}
                     source={
                       mode === '夜间模式'
                         ? require('./assets/icons/dark.png')
