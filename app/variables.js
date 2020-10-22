@@ -3,4 +3,6 @@ export default {
   num: '',
   input1: '',
   input2: '',
+  shengao: '',
+  tizhong: '',
 };

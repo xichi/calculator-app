@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
+  TextInput,
   FlatList,
   SafeAreaView,
   StyleSheet,
   Image,
   Linking,
+  TouchableOpacity,
 } from 'react-native';
 import moment from 'moment';
 import { getExchangeRate } from '../../api';
@@ -16,58 +18,71 @@ import Theme from '../../variables';
 const CurrencyId = CurrencyDATA.map((item) => item.id);
 
 function ExchangeRate() {
+  const [base, setBase] = useState('USD');
   const [time, setTime] = useState('');
-  const [update, setUpdate] = useState(false);
   const [currency, setCurrency] = useState(CurrencyDATA);
+  const [money, onChangeMoney] = useState('100'); // base money
 
-  const fetchRateData = async () => {
-    const results = await getExchangeRate();
-    const { rates } = results.data;
-    setTime(moment().format('MM-DD HH:mm:ss'));
-    let newCurrency = currency;
-    rates.map((item, key) => {
-      const TheKey = CurrencyId.indexOf(item.currency_code);
-      if (TheKey !== -1) {
-        newCurrency[TheKey] = { ...currency[TheKey], rate: item.rate };
-      }
-    });
-    setCurrency(newCurrency);
-    setUpdate(true);
-  };
+  const USMoney = money / currency.find((item) => item.id === base).rate;
 
-  /*
-    TODO:
-    Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
-  */
   useEffect(() => {
+    const fetchRateData = async () => {
+      const results = await getExchangeRate();
+      const { rates } = results.data;
+      setTime(moment().format('MM-DD HH:mm:ss'));
+      let newCurrency = currency;
+      rates.map((item, key) => {
+        const TheKey = CurrencyId.indexOf(item.currency_code);
+        if (TheKey !== -1) {
+          newCurrency[TheKey] = { ...currency[TheKey], rate: item.rate };
+        }
+      });
+      setCurrency(newCurrency);
+    };
     fetchRateData();
-  }, [update]);
+  }, [currency]);
 
   const renderItem = ({ item }) => (
-    <View style={styles.item}>
-      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <Image style={{ width: 80, height: 50 }} source={item.source} />
-        <Text
-          style={[
-            styles.itemId,
-            { color: Theme.colorTheme ? 'white' : 'black' },
-          ]}
+    <TouchableOpacity onPress={() => setBase(item.id)}>
+      <View style={item.id === base ? baseItem : styles.item}>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}
         >
-          {item.id}
-        </Text>
+          <Image style={{ width: 80, height: 50 }} source={item.source} />
+          <Text
+            style={[
+              styles.itemId,
+              { color: Theme.colorTheme ? 'white' : 'black' },
+            ]}
+          >
+            {item.id}
+          </Text>
+        </View>
+        <View style={styles.currency}>
+          {item.id === base ? (
+            <TextInput
+              style={styles.TextInput}
+              keyboardType="numeric"
+              onChangeText={(text) => onChangeMoney(text)}
+              value={money}
+            />
+          ) : (
+            <Text
+              style={[
+                styles.currencyNumber,
+                { color: Theme.colorTheme ? 'white' : 'black' },
+              ]}
+            >
+              {item.rate ? (USMoney * item.rate).toFixed(2) : 0}
+            </Text>
+          )}
+          <Text style={styles.currencyName}>{item.currency}</Text>
+        </View>
       </View>
-      <View style={styles.currency}>
-        <Text
-          style={[
-            styles.currencyNumber,
-            { color: Theme.colorTheme ? 'white' : 'black' },
-          ]}
-        >
-          {item.rate ? 100 * item.rate : 0}
-        </Text>
-        <Text style={styles.currencyName}>{item.currency}</Text>
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 
   return (
@@ -135,6 +150,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginHorizontal: 10,
   },
+  TextInput: {
+    fontSize: 20,
+  },
   currency: {
     display: 'flex',
     alignItems: 'flex-end',
@@ -143,8 +161,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   currencyName: {
-    color: '#999',
+    color: '#95a5a6',
+  },
+  active: {
+    backgroundColor: '#40739e',
   },
 });
+
+const baseItem = StyleSheet.compose(styles.item, styles.active);
 
 export default ExchangeRate;

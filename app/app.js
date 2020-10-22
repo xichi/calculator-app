@@ -16,6 +16,7 @@ import Dashboard from './views/Dashboard';
 import Calculator from './views/Calculator';
 import ExchangeRate from './views/ExchangeRate';
 import HousingLoan from './views/HousingLoan';
+import BMI from './views/BMI';
 import UnitConversion from './views/UnitConversion';
 import DecimalConversion from './views/DecimalConversion';
 import Sixteen from './views/DecimalConversion/Sixteen';
@@ -37,7 +38,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    //margin: 5,
   },
   icon: {
     width: 30,
@@ -122,7 +122,13 @@ const App = () => {
                     { color: Theme.colorTheme ? 'white' : 'black' },
                   ]}
                   onPress={() => {
-                    navigation.navigate('Calculator', { mode: 'scientific' });
+                    Alert.alert('提示', '该功能暂未开放', [
+                      {
+                        text: '我明白了',
+                        onPress: () => {},
+                      },
+                    ]);
+                    //navigation.navigate('Calculator', { mode: 'scientific' });
                   }}
                 >
                   科学
@@ -143,6 +149,13 @@ const App = () => {
           component={HousingLoan}
           options={{
             title: '房贷计算',
+          }}
+        />
+        <Stack.Screen
+          name="BMI"
+          component={BMI}
+          options={{
+            title: 'BMI计算',
           }}
         />
         <Stack.Screen
