@@ -59,7 +59,7 @@ export const tools = [
     img: require('./assets/icons/BMI.png'),
   },
   {
-    id: '4',
+    id: 'MoneyConversion',
     name: '大写金额',
     img: require('./assets/icons/money.png'),
   },
