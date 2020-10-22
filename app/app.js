@@ -8,7 +8,14 @@ import {
   DefaultTheme,
 } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
 import Theme from './variables';
 
 // routes
@@ -23,6 +30,7 @@ import Length from './views/UnitConversion/UnitKind/Length';
 import Area from './views/UnitConversion/UnitKind/Area';
 import Time from './views/UnitConversion/UnitKind/Time';
 import Weight from './views/UnitConversion/UnitKind/Weight';
+import Plural from './views/Plural';
 const Stack = createStackNavigator();
 
 const styles = StyleSheet.create({
@@ -120,7 +128,13 @@ const App = () => {
                     { color: Theme.colorTheme ? 'white' : 'black' },
                   ]}
                   onPress={() => {
-                    navigation.navigate('Calculator', { mode: 'scientific' });
+                    Alert.alert('提示', '该功能暂未开放', [
+                      {
+                        text: '我明白了',
+                        onPress: () => {},
+                      },
+                    ]);
+                    //navigation.navigate('Calculator', { mode: 'scientific' });
                   }}
                 >
                   科学
@@ -190,6 +204,13 @@ const App = () => {
           component={Weight}
           options={{
             title: '重量单位',
+          }}
+        />
+        <Stack.Screen
+          name="Plural"
+          component={Plural}
+          options={{
+            title: '复数运算',
           }}
         />
       </Stack.Navigator>
