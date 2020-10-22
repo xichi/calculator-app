@@ -6,11 +6,13 @@ import {
   TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
+  Image,
   ScrollView,
 } from 'react-native';
 import Theme from '../../variables';
 const BMI = () => {
   const [result, setresult] = useState('');
+  const [status, setstatus] = useState('');
 
   function input1(text) {
     Theme.shengao = text;
@@ -22,11 +24,24 @@ const BMI = () => {
   function calculate() {
     let shengao = (Theme.shengao * 1) / 100;
     let tizhong = Theme.tizhong * 1;
-    indexresult = (tizhong / (shengao * shengao)).toFixed(2);
+    indexresult = (tizhong / (shengao * shengao)).toFixed(1);
     setresult(indexresult);
+    if (indexresult <= 18.4) {
+      setstatus('偏瘦');
+    }
+    if (indexresult >= 18.5 && indexresult <= 23.9) {
+      setstatus('正常');
+    }
+    if (indexresult >= 24.0 && indexresult <= 27.9) {
+      setstatus('过重');
+    }
+    if (indexresult >= 28.0) {
+      setstatus('肥胖');
+    }
   }
   function Clear() {
     setresult('');
+    setstatus('');
   }
   return (
     <ScrollView>
@@ -86,19 +101,32 @@ const BMI = () => {
               <Text style={styles.btnText}>重置</Text>
             </TouchableOpacity>
           </View>
-          <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
             <Text
               style={[
                 styles.result,
                 { color: Theme.colorTheme ? 'white' : 'black' },
               ]}
             >
-              您的BMI结果为: {result}
+              您的BMI结果为: {'      ' + result}
             </Text>
           </View>
-          {/* <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-            <Text style={styles.result}>您的身体状况: {ststus}</Text>
-          </View> */}
+          <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+            <Text
+              style={[
+                styles.status,
+                { color: Theme.colorTheme ? 'white' : 'black' },
+              ]}
+            >
+              您的身体状况: {'      ' + status}
+            </Text>
+          </View>
+          <View>
+            <Image
+              style={styles.icon}
+              source={require('../../assets/images/Status.png')}
+            ></Image>
+          </View>
         </View>
       </KeyboardAvoidingView>
     </ScrollView>
@@ -174,6 +202,18 @@ const styles = StyleSheet.create({
   result: {
     fontSize: 25,
     marginTop: 30,
+  },
+  status: {
+    fontSize: 25,
+    marginTop: 20,
+  },
+  icon: {
+    marginTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    width: '100%',
+    height: '59%',
+    borderRadius: 8,
   },
 });
 
