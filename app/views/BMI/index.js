@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   Icon: {
-    marginTop: 50,
+    marginTop: 30,
     flexDirection: 'row',
     justifyContent: 'center',
     height: '100%',
@@ -216,7 +216,8 @@ const styles = StyleSheet.create({
   icon: {
     borderRadius: 8,
     width: '100%',
-    height: '20%',
+    height: 230,
+    resizeMode: 'contain',
   },
 });
 
