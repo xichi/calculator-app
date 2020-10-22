@@ -125,7 +125,7 @@ const App = () => {
                 >
                   基础
                 </Text>
-                <Text
+                {/* <Text
                   style={[
                     styles.titleRight,
                     { color: Theme.colorTheme ? 'white' : 'black' },
@@ -141,7 +141,7 @@ const App = () => {
                   }}
                 >
                   科学
-                </Text>
+                </Text> */}
               </View>
             ),
           })}
