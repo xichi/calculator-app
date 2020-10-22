@@ -35,6 +35,9 @@ function Dashboard({ navigation }) {
       navigation.navigate(item.id);
     } else {
       setSelectMode(false);
+      if (myTools.some((tool) => tool.id === item.id)) {
+        return;
+      }
       const MY_TOOLS = myTools.concat(item);
       setMyTools(MY_TOOLS);
       await AsyncStorage.setItem('MY_TOOLS', JSON.stringify(MY_TOOLS));
