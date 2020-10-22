@@ -162,7 +162,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   currencyName: {
-    color: '#999',
+    color: '#95a5a6',
+  },
+  active: {
+    backgroundColor: '#40739e',
   },
   active: {
     backgroundColor: '#ccc',

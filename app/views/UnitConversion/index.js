@@ -7,7 +7,6 @@ import {
   ScrollView,
 } from 'react-native';
 import Theme from '../../variables';
-// import CalculatorIcon from 'app/assets/images/calculator.svg';
 
 const styles = StyleSheet.create({
   container: {
@@ -52,7 +51,6 @@ function index({ navigation }) {
           style={Theme.colorTheme ? styles.itemdark : styles.itemlight}
           onPress={() => navigation.navigate('Length')}
         >
-          {/* <CalculatorIcon width={50} height={50} /> */}
           <Text style={styles.text}>长度单位</Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -70,9 +68,20 @@ function index({ navigation }) {
         <TouchableOpacity
           style={Theme.colorTheme ? styles.itemdark : styles.itemlight}
           onPress={() => navigation.navigate('Weight')}
-          //onPress={() => alert('此模块还在维护，敬请期待！')}
         >
           <Text style={styles.text}>重量单位</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={Theme.colorTheme ? styles.itemdark : styles.itemlight}
+          onPress={() => navigation.navigate('Pressure')}
+        >
+          <Text style={styles.text}>压强单位</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={Theme.colorTheme ? styles.itemdark : styles.itemlight}
+          onPress={() => navigation.navigate('Speed')}
+        >
+          <Text style={styles.text}>速度单位</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

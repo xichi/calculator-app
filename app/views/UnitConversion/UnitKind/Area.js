@@ -219,7 +219,7 @@ const Area = () => {
             <TextInput
               style={styles.valuetopinput}
               placeholder="请输入数值"
-              eyboardType="number-pad"
+              keyboardType="number-pad"
               onChangeText={(text) => Transform(text)}
             />
             <TouchableOpacity style={styles.valuetopbtn} onPress={Clear}>

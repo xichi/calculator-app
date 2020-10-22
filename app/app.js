@@ -23,6 +23,7 @@ import Dashboard from './views/Dashboard';
 import Calculator from './views/Calculator';
 import ExchangeRate from './views/ExchangeRate';
 import HousingLoan from './views/HousingLoan';
+import BMI from './views/BMI';
 import UnitConversion from './views/UnitConversion';
 import DecimalConversion from './views/DecimalConversion';
 import Sixteen from './views/DecimalConversion/Sixteen';
@@ -30,6 +31,8 @@ import Length from './views/UnitConversion/UnitKind/Length';
 import Area from './views/UnitConversion/UnitKind/Area';
 import Time from './views/UnitConversion/UnitKind/Time';
 import Weight from './views/UnitConversion/UnitKind/Weight';
+import Pressure from './views/UnitConversion/UnitKind/Pressure';
+import Speed from './views/UnitConversion/UnitKind/Speed';
 import Plural from './views/Plural';
 import MoneyConversion from './views/MoneyConversion';
 const Stack = createStackNavigator();
@@ -44,7 +47,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    //margin: 5,
   },
   icon: {
     width: 30,
@@ -159,6 +161,13 @@ const App = () => {
           }}
         />
         <Stack.Screen
+          name="BMI"
+          component={BMI}
+          options={{
+            title: 'BMI计算',
+          }}
+        />
+        <Stack.Screen
           name="UnitConversion"
           component={UnitConversion}
           options={{
@@ -212,6 +221,20 @@ const App = () => {
           component={Weight}
           options={{
             title: '重量单位',
+          }}
+        />
+        <Stack.Screen
+          name="Pressure"
+          component={Pressure}
+          options={{
+            title: '压强单位',
+          }}
+        />
+        <Stack.Screen
+          name="Speed"
+          component={Speed}
+          options={{
+            title: '速度单位',
           }}
         />
         <Stack.Screen

@@ -49,7 +49,7 @@ export const tools = [
     img: require('./assets/icons/plural.png'),
   },
   {
-    id: '2',
+    id: 'BMI',
     name: 'BMI计算',
     img: require('./assets/icons/BMI.png'),
   },

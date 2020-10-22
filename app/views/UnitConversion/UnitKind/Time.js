@@ -104,7 +104,7 @@ const Time = () => {
             <TextInput
               style={styles.valuetopinput}
               placeholder="请输入数值"
-              eyboardType="number-pad"
+              keyboardType="number-pad"
               onChangeText={(text) => Transform(text)}
             />
             <TouchableOpacity style={styles.valuetopbtn} onPress={Clear}>
@@ -253,7 +253,6 @@ const Time = () => {
               <Text style={styles.textright}>hour</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              ouchableOpacity
               onPress={() => {
                 if (flagday == true) {
                   setflagus(true);
