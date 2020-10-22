@@ -49,17 +49,12 @@ export const tools = [
     img: require('./assets/icons/plural.png'),
   },
   {
-    id: '1',
-    name: '日期计算',
-    img: require('./assets/icons/calendar.png'),
-  },
-  {
     id: '2',
     name: 'BMI计算',
     img: require('./assets/icons/BMI.png'),
   },
   {
-    id: '4',
+    id: 'MoneyConversion',
     name: '大写金额',
     img: require('./assets/icons/money.png'),
   },

@@ -31,6 +31,7 @@ import Area from './views/UnitConversion/UnitKind/Area';
 import Time from './views/UnitConversion/UnitKind/Time';
 import Weight from './views/UnitConversion/UnitKind/Weight';
 import Plural from './views/Plural';
+import MoneyConversion from './views/MoneyConversion';
 const Stack = createStackNavigator();
 
 const styles = StyleSheet.create({
@@ -169,6 +170,13 @@ const App = () => {
           component={DecimalConversion}
           options={{
             title: '进制转换',
+          }}
+        />
+        <Stack.Screen
+          name="MoneyConversion"
+          component={MoneyConversion}
+          options={{
+            title: '大写金额',
           }}
         />
         <Stack.Screen
