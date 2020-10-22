@@ -1,3 +1,4 @@
+import { Item } from 'native-base';
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
 import { Pi, E } from '../../constants';
@@ -84,6 +85,7 @@ const equal = StyleSheet.compose(baseStyles.item, baseStyles.equal);
 function BaseCalculator(props) {
   const [exp, setExp] = useState('');
   const [flag, setFlag] = useState(false); // is finished
+  const [result, setResult] = useState('');
 
   useEffect(() => {
     props.updateExp(exp);
@@ -113,7 +115,6 @@ function BaseCalculator(props) {
   /**
    TODO:
    1. 把'8e'这种情况自动转换成'8*e'
-   2. 表达式完成计算后把结果用于下一次计算
    */
   const getExp = (item, temp) => {
     switch (item) {
@@ -122,7 +123,9 @@ function BaseCalculator(props) {
       case '=':
         temp = temp.replace(/π/gi, Pi);
         temp = temp.replace(/e/gi, E);
-        temp = exp + '=' + eval(temp);
+        const temp_eval = eval(temp).toFixed(2);
+        temp = exp + '=' + temp_eval;
+        setResult(temp_eval);
         setFlag(true);
         return temp;
       case '☒':
@@ -139,11 +142,11 @@ function BaseCalculator(props) {
         return temp.slice(0, temp.length - numStr.length) + percentage;
       case 'x²':
         const numStr1 = getLatestNum(temp);
-        const square = Math.pow(numStr1, 2);
+        const square = Math.pow(numStr1, 2).toFixed(2);
         return temp.slice(0, temp.length - numStr1.length) + square;
       case '√':
         const numStr2 = getLatestNum(temp);
-        const squareRoot = Math.sqrt(numStr2);
+        const squareRoot = Math.sqrt(numStr2).toFixed(2);
         return temp.slice(0, temp.length - numStr2.length) + squareRoot;
       default:
         return temp.concat(item);
@@ -154,8 +157,12 @@ function BaseCalculator(props) {
     let temp = exp;
 
     if (flag) {
-      temp = '';
       setFlag(false);
+      if (!isNaN(item) || item === 'e' || item === 'π') {
+        temp = '';
+      } else {
+        temp = result;
+      }
     }
 
     try {

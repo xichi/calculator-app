@@ -47,6 +47,7 @@ function ExchangeRate() {
       <View style={item.id === base ? baseItem : styles.item}>
         <View
           style={{
+            display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
           }}
@@ -165,6 +166,9 @@ const styles = StyleSheet.create({
   },
   active: {
     backgroundColor: '#40739e',
+  },
+  active: {
+    backgroundColor: '#ccc',
   },
 });
 

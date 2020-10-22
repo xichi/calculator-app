@@ -8,7 +8,14 @@ import {
   DefaultTheme,
 } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
 import Theme from './variables';
 
 // routes
@@ -26,6 +33,8 @@ import Time from './views/UnitConversion/UnitKind/Time';
 import Weight from './views/UnitConversion/UnitKind/Weight';
 import Pressure from './views/UnitConversion/UnitKind/Pressure';
 import Speed from './views/UnitConversion/UnitKind/Speed';
+import Plural from './views/Plural';
+import MoneyConversion from './views/MoneyConversion';
 const Stack = createStackNavigator();
 
 const styles = StyleSheet.create({
@@ -63,7 +72,7 @@ const App = () => {
     <NavigationContainer theme={Theme.colorTheme ? DarkTheme : DefaultTheme}>
       <Stack.Navigator initialRouteName="Dashboard" headerMode="screen">
         <Stack.Screen
-          name="全能计算器"
+          name="Dashboard"
           component={Dashboard}
           options={() => ({
             headerTitle: () => (
@@ -173,6 +182,13 @@ const App = () => {
           }}
         />
         <Stack.Screen
+          name="MoneyConversion"
+          component={MoneyConversion}
+          options={{
+            title: '大写金额',
+          }}
+        />
+        <Stack.Screen
           name="Sixteen"
           component={Sixteen}
           options={{
@@ -219,6 +235,13 @@ const App = () => {
           component={Speed}
           options={{
             title: '速度单位',
+          }}
+        />
+        <Stack.Screen
+          name="Plural"
+          component={Plural}
+          options={{
+            title: '复数运算',
           }}
         />
       </Stack.Navigator>
