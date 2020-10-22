@@ -10,77 +10,59 @@ import {
 } from 'react-native';
 import Theme from '../../../variables';
 const Speed = () => {
-  const [mm, setmm] = useState('');
-  const [cm, setcm] = useState('');
-  const [dm, setdm] = useState('');
-  const [m, setm] = useState('');
-  const [km, setkm] = useState('');
-  const [foot, setfoot] = useState('');
-  const [inch, setinch] = useState('');
-  const [flagmm, setflagmm] = useState(true);
-  const [flagcm, setflagcm] = useState(true);
-  const [flagdm, setflagdm] = useState(true);
-  const [flagm, setflagm] = useState(false);
-  const [flagkm, setflagkm] = useState(true);
-  const [flagfoot, setflagfoot] = useState(true);
-  const [flaginch, setflaginch] = useState(true);
+  const [ms, setms] = useState('');
+  const [kms, setkms] = useState('');
+  const [kmh, setkmh] = useState('');
+  const [guang, setguang] = useState('');
+  const [mahe, setmahe] = useState('');
+  const [flagms, setflagms] = useState(true);
+  const [flagkms, setflagkms] = useState(true);
+  const [flagkmh, setflagkmh] = useState(false);
+  const [flagguang, setflagguang] = useState(true);
+  const [flagmahe, setflagmahe] = useState(true);
 
-  function simplify(indexm) {
-    indexm = (indexm * 1).toFixed(2);
-    let indexmm = (indexm * 1000).toFixed(2);
-    let indexcm = (indexm * 100).toFixed(2);
-    let indexdm = (indexm * 10).toFixed(2);
-    let indexkm = (indexm / 1000).toFixed(2);
-    let indexinch = (indexm * 39.3700787).toFixed(2);
-    let indexfoot = (indexm * 3.2808399).toFixed(2);
-    setmm(indexmm);
-    setcm(indexcm);
-    setdm(indexdm);
-    setm(indexm);
-    setkm(indexkm);
-    setinch(indexinch);
-    setfoot(indexfoot);
+  function simplify(indexkmh) {
+    indexkmh = (indexkmh * 1).toFixed(2);
+    let indexms = (indexkmh / 3.6).toFixed(2);
+    let indexkms = (indexkmh / 3600).toFixed(2);
+    let indexguang = (indexkmh / 299792.458).toFixed(2);
+    let indexmahe = (indexkmh * 0.0008163).toFixed(2);
+    setms(indexms);
+    setkms(indexkms);
+    setkmh(indexkmh);
+    setguang(indexguang);
+    setmahe(indexmahe);
   }
 
   function Transform(base) {
-    if (!flagmm) {
-      let indexm = (base / 1000).toFixed(6);
-      simplify(indexm);
+    if (!flagms) {
+      let indexkmh = (base * 3.6).toFixed(6);
+      simplify(indexkmh);
     }
-    if (!flagcm) {
-      let indexm = (base / 100).toFixed(6);
-      simplify(indexm);
+    if (!flagkms) {
+      let indexkmh = (base * 3600).toFixed(6);
+      simplify(indexkmh);
     }
-    if (!flagdm) {
-      let indexm = (base / 10).toFixed(6);
-      simplify(indexm);
+    if (!flagkmh) {
+      let indexkmh = (base * 1).toFixed(6);
+      simplify(indexkmh);
     }
-    if (!flagm) {
-      let indexm = (base * 1).toFixed(6);
-      simplify(indexm);
+    if (!flagguang) {
+      let indexkmh = (base * 299792.458).toFixed(6);
+      simplify(indexkmh);
     }
-    if (!flagkm) {
-      let indexm = (base * 1000).toFixed(6);
-      simplify(indexm);
-    }
-    if (!flagfoot) {
-      let indexm = (base * 0.3048).toFixed(6);
-      simplify(indexm);
-    }
-    if (!flaginch) {
-      let indexm = (base * 0.0254).toFixed(6);
-      simplify(indexm);
+    if (!flagmahe) {
+      let indexkmh = (base * 1225.08).toFixed(6);
+      simplify(indexkmh);
     }
   }
 
   function Clear() {
-    setmm('');
-    setcm('');
-    setdm('');
-    setm('');
-    setkm('');
-    setfoot('');
-    setinch('');
+    setms('');
+    setkms('');
+    setkmh('');
+    setguang('');
+    setmahe('');
   }
   return (
     <ScrollView>
@@ -103,7 +85,7 @@ const Speed = () => {
             <TextInput
               style={styles.valuetopinput}
               placeholder="请输入数值"
-              eyboardType="number-pad"
+              keyboardType="number-pad"
               onChangeText={(text) => Transform(text)}
             />
             <TouchableOpacity style={styles.valuetopbtn} onPress={Clear}>
@@ -113,14 +95,12 @@ const Speed = () => {
           <View style={[styles.units]}>
             <TouchableOpacity
               onPress={() => {
-                if (flagmm == true) {
-                  setflagmm(!flagmm);
-                  setflagcm(true);
-                  setflagdm(true);
-                  setflagm(true);
-                  setflagkm(true);
-                  setflagfoot(true);
-                  setflaginch(true);
+                if (flagms == true) {
+                  setflagms(!flagms);
+                  setflagkms(true);
+                  setflagkmh(true);
+                  setflagguang(true);
+                  setflagmahe(true);
                 } else {
                   alert('请选择一个单位作为基准单位');
                 }
@@ -128,7 +108,7 @@ const Speed = () => {
               style={[
                 styles.unitsview,
                 {
-                  backgroundColor: flagmm
+                  backgroundColor: flagms
                     ? Theme.colorTheme
                       ? '#222'
                       : 'white'
@@ -139,23 +119,21 @@ const Speed = () => {
               <Text
                 style={[
                   styles.textleft,
-                  { color: flagmm ? '#31A4F0' : 'white' },
+                  { color: flagms ? '#31A4F0' : 'white' },
                 ]}
               >
-                毫米: {mm}
+                米/秒: {ms}
               </Text>
-              <Text style={styles.textright}>mm</Text>
+              <Text style={styles.textright}>m / s</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                if (flagcm == true) {
-                  setflagmm(true);
-                  setflagcm(!flagcm);
-                  setflagdm(true);
-                  setflagm(true);
-                  setflagkm(true);
-                  setflagfoot(true);
-                  setflaginch(true);
+                if (flagkms == true) {
+                  setflagms(true);
+                  setflagkms(!flagkms);
+                  setflagkmh(true);
+                  setflagguang(true);
+                  setflagmahe(true);
                 } else {
                   alert('请选择一个单位作为基准单位');
                 }
@@ -163,7 +141,7 @@ const Speed = () => {
               style={[
                 styles.unitsview,
                 {
-                  backgroundColor: flagcm
+                  backgroundColor: flagkms
                     ? Theme.colorTheme
                       ? '#222'
                       : 'white'
@@ -174,23 +152,21 @@ const Speed = () => {
               <Text
                 style={[
                   styles.textleft,
-                  { color: flagcm ? '#31A4F0' : 'white' },
+                  { color: flagkms ? '#31A4F0' : 'white' },
                 ]}
               >
-                厘米: {cm}
+                千米/秒: {kms}
               </Text>
-              <Text style={styles.textright}>cm</Text>
+              <Text style={styles.textright}>km / s</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                if (flagdm == true) {
-                  setflagmm(true);
-                  setflagcm(true);
-                  setflagdm(!flagdm);
-                  setflagm(true);
-                  setflagkm(true);
-                  setflagfoot(true);
-                  setflaginch(true);
+                if (flagkmh == true) {
+                  setflagms(true);
+                  setflagkms(true);
+                  setflagkmh(!flagkmh);
+                  setflagguang(true);
+                  setflagmahe(true);
                 } else {
                   alert('请选择一个单位作为基准单位');
                 }
@@ -198,7 +174,7 @@ const Speed = () => {
               style={[
                 styles.unitsview,
                 {
-                  backgroundColor: flagdm
+                  backgroundColor: flagkmh
                     ? Theme.colorTheme
                       ? '#222'
                       : 'white'
@@ -209,23 +185,21 @@ const Speed = () => {
               <Text
                 style={[
                   styles.textleft,
-                  { color: flagdm ? '#31A4F0' : 'white' },
+                  { color: flagkmh ? '#31A4F0' : 'white' },
                 ]}
               >
-                分米: {dm}
+                千米/时: {kmh}
               </Text>
-              <Text style={styles.textright}>dm</Text>
+              <Text style={styles.textright}>km / h</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                if (flagm == true) {
-                  setflagmm(true);
-                  setflagcm(true);
-                  setflagdm(true);
-                  setflagm(!flagm);
-                  setflagkm(true);
-                  setflagfoot(true);
-                  setflaginch(true);
+                if (flagguang == true) {
+                  setflagms(true);
+                  setflagkms(true);
+                  setflagkmh(true);
+                  setflagguang(!flagguang);
+                  setflagmahe(true);
                 } else {
                   alert('请选择一个单位作为基准单位');
                 }
@@ -233,7 +207,7 @@ const Speed = () => {
               style={[
                 styles.unitsview,
                 {
-                  backgroundColor: flagm
+                  backgroundColor: flagguang
                     ? Theme.colorTheme
                       ? '#222'
                       : 'white'
@@ -244,59 +218,21 @@ const Speed = () => {
               <Text
                 style={[
                   styles.textleft,
-                  { color: flagm ? '#31A4F0' : 'white' },
+                  { color: flagguang ? '#31A4F0' : 'white' },
                 ]}
               >
-                米: {m}
+                光速: {guang}
               </Text>
-              <Text style={styles.textright}>m</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              ouchableOpacity
-              onPress={() => {
-                if (flagkm == true) {
-                  setflagmm(true);
-                  setflagcm(true);
-                  setflagdm(true);
-                  setflagm(true);
-                  setflagkm(!flagkm);
-                  setflagfoot(true);
-                  setflaginch(true);
-                } else {
-                  alert('请选择一个单位作为基准单位');
-                }
-              }}
-              style={[
-                styles.unitsview,
-                {
-                  backgroundColor: flagkm
-                    ? Theme.colorTheme
-                      ? '#222'
-                      : 'white'
-                    : '#5050F3',
-                },
-              ]}
-            >
-              <Text
-                style={[
-                  styles.textleft,
-                  { color: flagkm ? '#31A4F0' : 'white' },
-                ]}
-              >
-                千米: {km}
-              </Text>
-              <Text style={styles.textright}>km</Text>
+              <Text style={styles.textright}>c</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                if (flagfoot == true) {
-                  setflagmm(true);
-                  setflagcm(true);
-                  setflagdm(true);
-                  setflagm(true);
-                  setflagkm(true);
-                  setflagfoot(!flagfoot);
-                  setflaginch(true);
+                if (flagmahe == true) {
+                  setflagms(true);
+                  setflagkms(true);
+                  setflagkmh(true);
+                  setflagguang(true);
+                  setflagmahe(!flagmahe);
                 } else {
                   alert('请选择一个单位作为基准单位');
                 }
@@ -304,7 +240,7 @@ const Speed = () => {
               style={[
                 styles.unitsview,
                 {
-                  backgroundColor: flagfoot
+                  backgroundColor: flagmahe
                     ? Theme.colorTheme
                       ? '#222'
                       : 'white'
@@ -315,47 +251,12 @@ const Speed = () => {
               <Text
                 style={[
                   styles.textleft,
-                  { color: flagfoot ? '#31A4F0' : 'white' },
+                  { color: flagmahe ? '#31A4F0' : 'white' },
                 ]}
               >
-                英尺: {foot}
+                马赫: {mahe}
               </Text>
-              <Text style={styles.textright}>foot</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                if (flaginch == true) {
-                  setflagmm(true);
-                  setflagcm(true);
-                  setflagdm(true);
-                  setflagm(true);
-                  setflagkm(true);
-                  setflagfoot(true);
-                  setflaginch(!flaginch);
-                } else {
-                  alert('请选择一个单位作为基准单位');
-                }
-              }}
-              style={[
-                styles.unitsview,
-                {
-                  backgroundColor: flaginch
-                    ? Theme.colorTheme
-                      ? '#222'
-                      : 'white'
-                    : '#5050F3',
-                },
-              ]}
-            >
-              <Text
-                style={[
-                  styles.textleft,
-                  { color: flaginch ? '#31A4F0' : 'white' },
-                ]}
-              >
-                英寸: {inch}
-              </Text>
-              <Text style={styles.textright}>inch</Text>
+              <Text style={styles.textright}>Ma</Text>
             </TouchableOpacity>
           </View>
         </View>

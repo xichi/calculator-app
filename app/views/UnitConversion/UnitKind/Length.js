@@ -103,7 +103,7 @@ const Length = () => {
             <TextInput
               style={styles.valuetopinput}
               placeholder="请输入数值"
-              eyboardType="number-pad"
+              keyboardType="number-pad"
               onChangeText={(text) => Transform(text)}
             />
             <TouchableOpacity style={styles.valuetopbtn} onPress={Clear}>
@@ -252,7 +252,6 @@ const Length = () => {
               <Text style={styles.textright}>m</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              ouchableOpacity
               onPress={() => {
                 if (flagkm == true) {
                   setflagmm(true);

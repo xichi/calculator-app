@@ -65,7 +65,7 @@ const BMI = () => {
               <TextInput
                 style={styles.valuetopinput}
                 placeholder="请输入你的身高(cm)"
-                eyboardType="number-pad"
+                keyboardType="number-pad"
                 onChangeText={(text) => input1(text)}
               />
             </View>
@@ -83,7 +83,7 @@ const BMI = () => {
               <TextInput
                 style={styles.valuetopinput}
                 placeholder="请输入你的体重(kg)"
-                eyboardType="number-pad"
+                keyboardType="number-pad"
                 onChangeText={(text) => input2(text)}
               />
             </View>
