@@ -121,7 +121,7 @@ const BMI = () => {
               您的身体状况: {'      ' + status}
             </Text>
           </View>
-          <View>
+          <View style={styles.Icon}>
             <Image
               style={styles.icon}
               source={require('../../assets/images/Status.png')}
@@ -207,13 +207,16 @@ const styles = StyleSheet.create({
     fontSize: 25,
     marginTop: 20,
   },
-  icon: {
-    marginTop: 20,
+  Icon: {
+    marginTop: 50,
     flexDirection: 'row',
     justifyContent: 'center',
-    width: '100%',
-    height: '59%',
+    height: '100%',
+  },
+  icon: {
     borderRadius: 8,
+    width: '100%',
+    height: '20%',
   },
 });
 
