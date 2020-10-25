@@ -144,11 +144,11 @@ function BaseCalculator(props) {
         return temp.slice(0, temp.length - numStr.length) + percentage;
       case 'x²':
         const numStr1 = getLatestNum(temp);
-        const square = Math.pow(numStr1, 2).toFixed(2);
+        const square = Math.pow(numStr1, 2).toFixed(5);
         return temp.slice(0, temp.length - numStr1.length) + square;
       case '√':
         const numStr2 = getLatestNum(temp);
-        const squareRoot = Math.sqrt(numStr2).toFixed(2);
+        const squareRoot = Math.sqrt(numStr2).toFixed(5);
         return temp.slice(0, temp.length - numStr2.length) + squareRoot;
       default:
         return temp.concat(item);
