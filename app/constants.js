@@ -14,8 +14,8 @@
 // export const AppId = '2dc9e06756ad48489053d73e84ba4aa1';
 
 // MATH
-export const Pi = Math.PI;
-export const E = Math.E;
+export const Pi = Math.PI.toFixed(8);
+export const E = Math.E.toFixed(8);
 
 export const tools = [
   {

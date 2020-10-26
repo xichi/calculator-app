@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     paddingTop: 15,
   },
   expText: {
+    textAlign: 'right',
     fontSize: 50,
     position: 'absolute',
     bottom: 15,
@@ -112,19 +113,20 @@ function BaseCalculator(props) {
     return numArr.pop();
   };
 
-  /**
-   TODO:
-   1. 把'8e'这种情况自动转换成'8*e'
-   */
   const getExp = (item, temp) => {
     switch (item) {
       case 'AC':
         return '';
       case '=':
+        // auto fix: 8e -> 8*e
+        temp = temp.replace(/(\w+)\*?π/gi, '$1' + '*' + Math.PI);
+        temp = temp.replace(/(\w+)\*?e/gi, '$1' + '*' + E);
+        temp = temp.replace(/(\w+)\*?\(/gi, '$1' + '*(');
+        // 替换e、π的值：5e-5
         temp = temp.replace(/π/gi, Pi);
         temp = temp.replace(/e/gi, E);
-        const temp_eval = eval(temp).toFixed(2);
-        temp = exp + '=' + temp_eval;
+        const temp_eval = eval(temp) + '';
+        temp = exp + '\n' + '= ' + temp_eval;
         setResult(temp_eval);
         setFlag(true);
         return temp;
@@ -142,11 +144,11 @@ function BaseCalculator(props) {
         return temp.slice(0, temp.length - numStr.length) + percentage;
       case 'x²':
         const numStr1 = getLatestNum(temp);
-        const square = Math.pow(numStr1, 2).toFixed(2);
+        const square = Math.pow(numStr1, 2).toFixed(5);
         return temp.slice(0, temp.length - numStr1.length) + square;
       case '√':
         const numStr2 = getLatestNum(temp);
-        const squareRoot = Math.sqrt(numStr2).toFixed(2);
+        const squareRoot = Math.sqrt(numStr2).toFixed(5);
         return temp.slice(0, temp.length - numStr2.length) + squareRoot;
       default:
         return temp.concat(item);
@@ -157,18 +159,15 @@ function BaseCalculator(props) {
     let temp = exp;
 
     if (flag) {
+      if (item === '=') return;
       setFlag(false);
-      if (!isNaN(item) || item === 'e' || item === 'π') {
-        temp = '';
-      } else {
-        temp = result;
-      }
+      temp = !isNaN(item) || item === 'e' || item === 'π' ? '' : result;
     }
 
     try {
       temp = getExp(item, temp);
     } catch {
-      temp = temp + 'ERROR';
+      temp = 'ERROR';
       setFlag(true);
     } finally {
       setExp(temp);
