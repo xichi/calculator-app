@@ -40,7 +40,7 @@ function ExchangeRate() {
       setCurrency(newCurrency);
     };
     fetchRateData();
-  }, [currency]);
+  }, []);
 
   const renderItem = ({ item }) => (
     <TouchableOpacity onPress={() => setBase(item.id)}>
