@@ -16,12 +16,18 @@ const styles = StyleSheet.create({
     paddingRight: 30,
     paddingTop: 15,
   },
-  expText: {
-    textAlign: 'right',
-    fontSize: 50,
+  expWrapper: {
     position: 'absolute',
     bottom: 15,
     right: 15,
+  },
+  expText: {
+    textAlign: 'right',
+    fontSize: 50,
+  },
+  resultText: {
+    textAlign: 'right',
+    fontSize: 50,
   },
   board: {
     flexShrink: 0,
@@ -31,6 +37,7 @@ const styles = StyleSheet.create({
 function Calculator({ route, navigation }) {
   const { mode } = route.params;
   const [exp, setExp] = useState('');
+  const [expression, result = ''] = exp.split('\n');
 
   const updateExp = (item) => {
     setExp(item);
@@ -39,14 +46,27 @@ function Calculator({ route, navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.exp}>
-        <Text
-          style={[
-            styles.expText,
-            { color: Theme.colorTheme ? 'white' : 'black' },
-          ]}
-        >
-          {exp}
-        </Text>
+        <View style={styles.expWrapper}>
+          <Text
+            style={[
+              styles.expText,
+              { fontSize: result.length > 0 ? 30 : 50 },
+              { color: Theme.colorTheme ? 'white' : 'black' },
+            ]}
+          >
+            {expression}
+          </Text>
+          {result.length > 0 ? (
+            <Text
+              style={[
+                styles.resultText,
+                { color: Theme.colorTheme ? 'white' : 'black' },
+              ]}
+            >
+              {result}
+            </Text>
+          ) : null}
+        </View>
       </View>
       <View style={styles.board}>
         {mode === 'scientific' ? (
@@ -109,7 +129,7 @@ function BaseCalculator(props) {
   };
 
   const getLatestNum = (str) => {
-    var numArr = str.match(/-?([1-9]\d*(\.\d*)*|0\.[1-9]\d*)/g);
+    var numArr = str.match(/(-?\d+)(\.\d+)?/g);
     return numArr.pop();
   };
 
@@ -125,8 +145,18 @@ function BaseCalculator(props) {
         // 替换e、π的值：5e-5
         temp = temp.replace(/π/gi, Pi);
         temp = temp.replace(/e/gi, E);
-        const temp_eval = eval(temp) + '';
-        temp = exp + '\n' + '= ' + temp_eval;
+        const temp_eval = eval(temp);
+        // 浮动数处理
+        const maxFixed = temp.match(/(-?\d+)(\.\d+)?/g).reduce((acc, cur) => {
+          return cur.indexOf('.') !== -1
+            ? Math.max(0, cur.split('.')[1].length)
+            : acc;
+        }, 0);
+        temp =
+          exp +
+          '\n' +
+          '= ' +
+          temp_eval.toFixed(maxFixed + 2).replace(/.(0)+$/g, '');
         setResult(temp_eval);
         setFlag(true);
         return temp;
@@ -162,6 +192,14 @@ function BaseCalculator(props) {
       if (item === '=') return;
       setFlag(false);
       temp = !isNaN(item) || item === 'e' || item === 'π' ? '' : result;
+    }
+
+    // 连续输入运算符的情况
+    const isOperator = (x) => {
+      return x === '*' || x === '/' || x === '-' || x === '+';
+    };
+    if (isOperator(item) && isOperator(exp[exp.length - 1])) {
+      return;
     }
 
     try {
